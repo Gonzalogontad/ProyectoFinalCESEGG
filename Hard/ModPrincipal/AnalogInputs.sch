@@ -1,9 +1,10 @@
 EESchema Schematic File Version 4
+LIBS:ModPrincipal-cache
 EELAYER 30 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
-Sheet 2 2
+Sheet 2 4
 Title ""
 Date ""
 Rev ""
@@ -412,9 +413,9 @@ Wire Wire Line
 Connection ~ 6600 3500
 Wire Wire Line
 	6600 3500 6100 3500
-Text HLabel 8800 2150 2    50   Input ~ 0
+Text HLabel 8800 2150 2    50   Output ~ 0
 ADC1
-Text HLabel 8800 3600 2    50   Input ~ 0
+Text HLabel 8800 3600 2    50   Output ~ 0
 ADC2
 Wire Wire Line
 	7700 2400 7700 2150
