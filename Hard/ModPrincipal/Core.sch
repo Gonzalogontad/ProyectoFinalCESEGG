@@ -1,0 +1,136 @@
+EESchema Schematic File Version 4
+EELAYER 30 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 3 3
+Title ""
+Date ""
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L Analog_DACs:MCP4725xxx-xCH U?
+U 1 1 5EC9DEE9
+P 8250 2150
+F 0 "U?" H 8694 2196 50  0000 L CNN
+F 1 "MCP4725xxx-xCH" H 8694 2105 50  0000 L CNN
+F 2 "Package_TO_SOT_SMD:SOT-23-6" H 8250 1900 50  0001 C CNN
+F 3 "http://ww1.microchip.com/downloads/en/DeviceDoc/22039d.pdf" H 8250 2150 50  0001 C CNN
+	1    8250 2150
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 5EC9E7EE
+P 7650 2350
+F 0 "#PWR?" H 7650 2100 50  0001 C CNN
+F 1 "GND" H 7655 2177 50  0000 C CNN
+F 2 "" H 7650 2350 50  0001 C CNN
+F 3 "" H 7650 2350 50  0001 C CNN
+	1    7650 2350
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 5EC9EEEF
+P 8250 2600
+F 0 "#PWR?" H 8250 2350 50  0001 C CNN
+F 1 "GND" H 8255 2427 50  0000 C CNN
+F 2 "" H 8250 2600 50  0001 C CNN
+F 3 "" H 8250 2600 50  0001 C CNN
+	1    8250 2600
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+3.3V #PWR?
+U 1 1 5EC9F066
+P 8250 1700
+F 0 "#PWR?" H 8250 1550 50  0001 C CNN
+F 1 "+3.3V" H 8265 1873 50  0000 C CNN
+F 2 "" H 8250 1700 50  0001 C CNN
+F 3 "" H 8250 1700 50  0001 C CNN
+	1    8250 1700
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	7650 2350 7650 2250
+Wire Wire Line
+	7650 2250 7850 2250
+Wire Wire Line
+	8250 2450 8250 2600
+Wire Wire Line
+	8250 1850 8250 1700
+Text Label 7700 2150 0    50   ~ 0
+SDA
+Text Label 7700 2050 0    50   ~ 0
+SCL
+Wire Wire Line
+	7700 2050 7850 2050
+Wire Wire Line
+	7700 2150 7850 2150
+$Comp
+L power:+3.3V #PWR?
+U 1 1 5ECA1003
+P 6950 1650
+F 0 "#PWR?" H 6950 1500 50  0001 C CNN
+F 1 "+3.3V" H 6965 1823 50  0000 C CNN
+F 2 "" H 6950 1650 50  0001 C CNN
+F 3 "" H 6950 1650 50  0001 C CNN
+	1    6950 1650
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 5ECA1827
+P 6950 2100
+F 0 "#PWR?" H 6950 1850 50  0001 C CNN
+F 1 "GND" H 6955 1927 50  0000 C CNN
+F 2 "" H 6950 2100 50  0001 C CNN
+F 3 "" H 6950 2100 50  0001 C CNN
+	1    6950 2100
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:C C?
+U 1 1 5ECA1E94
+P 6950 1900
+F 0 "C?" H 7065 1946 50  0000 L CNN
+F 1 "C" H 7065 1855 50  0000 L CNN
+F 2 "" H 6988 1750 50  0001 C CNN
+F 3 "~" H 6950 1900 50  0001 C CNN
+	1    6950 1900
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:C C?
+U 1 1 5ECA21C9
+P 6600 1900
+F 0 "C?" H 6715 1946 50  0000 L CNN
+F 1 "C" H 6715 1855 50  0000 L CNN
+F 2 "" H 6638 1750 50  0001 C CNN
+F 3 "~" H 6600 1900 50  0001 C CNN
+	1    6600 1900
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6600 1750 6600 1700
+Wire Wire Line
+	6600 1700 6950 1700
+Wire Wire Line
+	6950 1700 6950 1650
+Wire Wire Line
+	6950 1750 6950 1700
+Connection ~ 6950 1700
+Wire Wire Line
+	6600 2050 6600 2100
+Wire Wire Line
+	6600 2100 6950 2100
+Wire Wire Line
+	6950 2050 6950 2100
+Connection ~ 6950 2100
+$EndSCHEMATC

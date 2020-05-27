@@ -1,10 +1,9 @@
 EESchema Schematic File Version 4
-LIBS:ModPrincipal-cache
 EELAYER 30 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
-Sheet 1 4
+Sheet 1 5
 Title ""
 Date ""
 Rev ""
@@ -27,9 +26,15 @@ F0 "AnalogOut" 118
 F1 "AnalogOut.sch" 118
 $EndSheet
 $Sheet
-S 2150 4100 1450 1350
+S 1650 3450 1450 1350
 U 5ED20EE2
 F0 "UARTAislada" 118
 F1 "UARTAislada.sch" 118
+$EndSheet
+$Sheet
+S 1500 5250 2900 2100
+U 5EE6B2B0
+F0 "IOs digitales" 118
+F1 "IOs digitales.sch" 118
 $EndSheet
 $EndSCHEMATC
