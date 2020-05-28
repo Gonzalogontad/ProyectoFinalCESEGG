@@ -1,4 +1,5 @@
 EESchema Schematic File Version 4
+LIBS:ModPrincipal-cache
 EELAYER 30 0
 EELAYER END
 $Descr A4 11693 8268
@@ -19,7 +20,7 @@ U 1 1 5EC720AC
 P 5150 2050
 F 0 "U201" H 5150 2417 50  0000 C CNN
 F 1 "LM324" H 5150 2326 50  0000 C CNN
-F 2 "" H 5100 2150 50  0001 C CNN
+F 2 "Package_SO:SOIC-14_3.9x8.7mm_P1.27mm" H 5100 2150 50  0001 C CNN
 F 3 "http://www.ti.com/lit/ds/symlink/lm2902-n.pdf" H 5200 2250 50  0001 C CNN
 	1    5150 2050
 	1    0    0    -1  
@@ -30,7 +31,7 @@ U 2 1 5EC745ED
 P 5150 3500
 F 0 "U201" H 5150 3867 50  0000 C CNN
 F 1 "LM324" H 5150 3776 50  0000 C CNN
-F 2 "" H 5100 3600 50  0001 C CNN
+F 2 "Package_SO:SOIC-14_3.9x8.7mm_P1.27mm" H 5100 3600 50  0001 C CNN
 F 3 "http://www.ti.com/lit/ds/symlink/lm2902-n.pdf" H 5200 3700 50  0001 C CNN
 	2    5150 3500
 	1    0    0    -1  
@@ -41,7 +42,7 @@ U 3 1 5EC75219
 P 6850 3600
 F 0 "U201" H 6850 3967 50  0000 C CNN
 F 1 "LM324" H 6850 3876 50  0000 C CNN
-F 2 "" H 6800 3700 50  0001 C CNN
+F 2 "Package_SO:SOIC-14_3.9x8.7mm_P1.27mm" H 6800 3700 50  0001 C CNN
 F 3 "http://www.ti.com/lit/ds/symlink/lm2902-n.pdf" H 6900 3800 50  0001 C CNN
 	3    6850 3600
 	1    0    0    -1  
@@ -52,7 +53,7 @@ U 4 1 5EC763BC
 P 6850 2150
 F 0 "U201" H 6850 2517 50  0000 C CNN
 F 1 "LM324" H 6850 2426 50  0000 C CNN
-F 2 "" H 6800 2250 50  0001 C CNN
+F 2 "Package_SO:SOIC-14_3.9x8.7mm_P1.27mm" H 6800 2250 50  0001 C CNN
 F 3 "http://www.ti.com/lit/ds/symlink/lm2902-n.pdf" H 6900 2350 50  0001 C CNN
 	4    6850 2150
 	1    0    0    -1  
@@ -63,7 +64,7 @@ U 5 1 5EC776DF
 P 3250 5600
 F 0 "U201" H 3208 5646 50  0000 L CNN
 F 1 "LM324" H 3208 5555 50  0000 L CNN
-F 2 "" H 3200 5700 50  0001 C CNN
+F 2 "Package_SO:SOIC-14_3.9x8.7mm_P1.27mm" H 3200 5700 50  0001 C CNN
 F 3 "http://www.ti.com/lit/ds/symlink/lm2902-n.pdf" H 3300 5800 50  0001 C CNN
 	5    3250 5600
 	1    0    0    -1  
@@ -499,10 +500,10 @@ Wire Wire Line
 	2050 5800 2050 5850
 Connection ~ 2050 5850
 $Comp
-L Device:R R?
+L Device:R R207
 U 1 1 5ED0C39C
 P 7500 2150
-F 0 "R?" V 7293 2150 50  0000 C CNN
+F 0 "R207" V 7293 2150 50  0000 C CNN
 F 1 "10k" V 7384 2150 50  0000 C CNN
 F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder" V 7430 2150 50  0001 C CNN
 F 3 "~" H 7500 2150 50  0001 C CNN
@@ -510,10 +511,10 @@ F 3 "~" H 7500 2150 50  0001 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L Device:R R?
+L Device:R R208
 U 1 1 5ED0D996
 P 7500 3600
-F 0 "R?" V 7293 3600 50  0000 C CNN
+F 0 "R208" V 7293 3600 50  0000 C CNN
 F 1 "10k" V 7384 3600 50  0000 C CNN
 F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder" V 7430 3600 50  0001 C CNN
 F 3 "~" H 7500 3600 50  0001 C CNN

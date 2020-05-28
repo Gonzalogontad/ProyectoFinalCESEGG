@@ -1,4 +1,5 @@
 EESchema Schematic File Version 4
+LIBS:ModPrincipal-cache
 EELAYER 30 0
 EELAYER END
 $Descr A4 11693 8268
@@ -29,6 +30,8 @@ U 5ECD8445
 F0 "AnalogOut" 118
 F1 "AnalogOut.sch" 118
 F2 "AnalogOut" O R 8550 2900 50 
+F3 "SDA" B L 6400 2900 50 
+F4 "SCL" I L 6400 2700 50 
 $EndSheet
 $Sheet
 S 1000 2150 1450 1350
@@ -127,4 +130,20 @@ Wire Wire Line
 	6400 1150 5450 1150
 Wire Wire Line
 	6400 1500 5450 1500
+Wire Wire Line
+	5450 2700 6400 2700
+Wire Wire Line
+	6400 2900 5450 2900
+Wire Wire Line
+	5450 4200 6400 4200
+Wire Wire Line
+	5450 4050 6400 4050
+Wire Wire Line
+	6400 4350 5450 4350
+Wire Wire Line
+	6400 4500 5450 4500
+Wire Wire Line
+	5450 4900 6400 4900
+Wire Wire Line
+	6400 5050 5450 5050
 $EndSCHEMATC

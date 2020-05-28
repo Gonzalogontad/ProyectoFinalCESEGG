@@ -1,4 +1,5 @@
 (sym_lib_table
   (lib (name BluePill)(type Legacy)(uri ${KIPRJMOD}/BluePill.lib)(options "")(descr ""))
   (lib (name Analog_DACs)(type Legacy)(uri "/home/gonzalo/Escritorio/Especializacion/Proyecto Final/Repositorio/ProyectoFinalCESEGG/Hard/Librerias/Analog_DAC/Analog_DACs.lib")(options "")(descr ""))
+  (lib (name ModPrincipal-rescue)(type Legacy)(uri ${KIPRJMOD}/ModPrincipal-rescue.lib)(options "")(descr ""))
 )
