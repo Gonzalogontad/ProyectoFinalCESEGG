@@ -3,7 +3,7 @@ EELAYER 30 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
-Sheet 4 4
+Sheet 4 8
 Title ""
 Date ""
 Rev ""
@@ -452,6 +452,8 @@ $Comp
 L pspice:C C?
 U 1 1 5EDF9D16
 P 4000 2150
+AR Path="/5EC7150D/5EDF9D16" Ref="C?"  Part="1" 
+AR Path="/5ED20EE2/5EDF9D16" Ref="C?"  Part="1" 
 F 0 "C?" H 3800 2000 50  0000 L CNN
 F 1 "100nF" H 4100 2000 50  0000 L CNN
 F 2 "Capacitor_SMD:C_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 4000 2150 50  0001 C CNN
@@ -476,6 +478,8 @@ $Comp
 L pspice:C C?
 U 1 1 5EE12A84
 P 9250 5050
+AR Path="/5EC7150D/5EE12A84" Ref="C?"  Part="1" 
+AR Path="/5ED20EE2/5EE12A84" Ref="C?"  Part="1" 
 F 0 "C?" H 9050 4900 50  0000 L CNN
 F 1 "100nF" H 9350 4900 50  0000 L CNN
 F 2 "Capacitor_SMD:C_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 9250 5050 50  0001 C CNN
