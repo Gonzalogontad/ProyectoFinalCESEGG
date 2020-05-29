@@ -58,7 +58,7 @@ U 1 1 5ED08CA7
 P 7750 1950
 F 0 "D501" H 7950 2200 50  0000 L CNN
 F 1 "MB6S" H 7950 2100 50  0000 L CNN
-F 2 "Package_SO:SOIC-4_4.55x3.7mm_P2.54mm" H 7900 2075 50  0001 L CNN
+F 2 "Package_SO:SO-4_4.4x4.3mm_P2.54mm" H 7900 2075 50  0001 L CNN
 F 3 "http://www.vishay.com/docs/88573/dfs.pdf" H 7750 1950 50  0001 C CNN
 	1    7750 1950
 	1    0    0    -1  
