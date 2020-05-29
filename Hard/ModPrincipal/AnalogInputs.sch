@@ -1,5 +1,4 @@
 EESchema Schematic File Version 4
-LIBS:ModPrincipal-cache
 EELAYER 30 0
 EELAYER END
 $Descr A4 11693 8268
@@ -59,23 +58,12 @@ F 3 "http://www.ti.com/lit/ds/symlink/lm2902-n.pdf" H 6900 2350 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Amplifier_Operational:LM324 U201
-U 5 1 5EC776DF
-P 3250 5600
-F 0 "U201" H 3208 5646 50  0000 L CNN
-F 1 "LM324" H 3208 5555 50  0000 L CNN
-F 2 "Package_SO:SOIC-14_3.9x8.7mm_P1.27mm" H 3200 5700 50  0001 C CNN
-F 3 "http://www.ti.com/lit/ds/symlink/lm2902-n.pdf" H 3300 5800 50  0001 C CNN
-	5    3250 5600
-	1    0    0    -1  
-$EndComp
-$Comp
 L Device:R R201
 U 1 1 5EC815E1
 P 3650 1950
 F 0 "R201" V 3443 1950 50  0000 C CNN
 F 1 "5k6" V 3534 1950 50  0000 C CNN
-F 2 "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal" V 3580 1950 50  0001 C CNN
+F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder" V 3580 1950 50  0001 C CNN
 F 3 "~" H 3650 1950 50  0001 C CNN
 	1    3650 1950
 	0    1    1    0   
@@ -147,7 +135,7 @@ U 1 1 5EC95F9A
 P 3650 3400
 F 0 "R202" V 3443 3400 50  0000 C CNN
 F 1 "5k6" V 3534 3400 50  0000 C CNN
-F 2 "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P10.16mm_Horizontal" V 3580 3400 50  0001 C CNN
+F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder" V 3580 3400 50  0001 C CNN
 F 3 "~" H 3650 3400 50  0001 C CNN
 	1    3650 3400
 	0    1    1    0   
@@ -197,8 +185,6 @@ F 3 "" H 4300 3900 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	4000 4000 4000 4100
-Wire Wire Line
 	4300 3800 4300 3900
 Wire Wire Line
 	3800 3400 4000 3400
@@ -214,9 +200,9 @@ Wire Wire Line
 Wire Wire Line
 	3150 3400 3500 3400
 Text Notes 2700 3550 0    50   ~ 0
-0-10V (max 48v)\n
+0-10V (max 38v)\n
 Text Notes 2700 2100 0    50   ~ 0
-0-10V (max 48v)\n
+0-10V (max 38v)\n
 Wire Wire Line
 	4850 2150 4800 2150
 Wire Wire Line
@@ -435,8 +421,6 @@ F 3 "" H 3150 5150 50  0001 C CNN
 $EndComp
 Wire Wire Line
 	3150 5150 3150 5300
-Wire Wire Line
-	3150 5900 3150 6000
 $Comp
 L power:GNDA #PWR0202
 U 1 1 5ED582BA
@@ -539,4 +523,49 @@ Connection ~ 6100 2050
 Wire Wire Line
 	6100 3500 6550 3500
 Connection ~ 6100 3500
+$Comp
+L Connector:TestPoint TP?
+U 1 1 5ED569D6
+P 7900 2100
+AR Path="/5ECD8445/5ED569D6" Ref="TP?"  Part="1" 
+AR Path="/5EC7150D/5ED569D6" Ref="TP201"  Part="1" 
+F 0 "TP201" H 7958 2218 50  0000 L CNN
+F 1 "TestPoint" H 7958 2127 50  0000 L CNN
+F 2 "TestPoint:TestPoint_Pad_D1.5mm" H 8100 2100 50  0001 C CNN
+F 3 "~" H 8100 2100 50  0001 C CNN
+	1    7900 2100
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	7900 2100 7900 2150
+$Comp
+L Connector:TestPoint TP?
+U 1 1 5ED58D2E
+P 7900 3550
+AR Path="/5ECD8445/5ED58D2E" Ref="TP?"  Part="1" 
+AR Path="/5EC7150D/5ED58D2E" Ref="TP202"  Part="1" 
+F 0 "TP202" H 7958 3668 50  0000 L CNN
+F 1 "TestPoint" H 7958 3577 50  0000 L CNN
+F 2 "TestPoint:TestPoint_Pad_D1.5mm" H 8100 3550 50  0001 C CNN
+F 3 "~" H 8100 3550 50  0001 C CNN
+	1    7900 3550
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	7900 3550 7900 3600
+$Comp
+L Amplifier_Operational:LM324 U201
+U 5 1 5EC776DF
+P 3250 5600
+F 0 "U201" H 3208 5646 50  0000 L CNN
+F 1 "LM324" H 3208 5555 50  0000 L CNN
+F 2 "Package_SO:SOIC-14_3.9x8.7mm_P1.27mm" H 3200 5700 50  0001 C CNN
+F 3 "http://www.ti.com/lit/ds/symlink/lm2902-n.pdf" H 3300 5800 50  0001 C CNN
+	5    3250 5600
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3150 5900 3150 6000
+Wire Wire Line
+	4000 4000 4000 4100
 $EndSCHEMATC

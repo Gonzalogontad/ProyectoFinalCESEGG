@@ -1,5 +1,4 @@
 EESchema Schematic File Version 4
-LIBS:ModPrincipal-cache
 EELAYER 30 0
 EELAYER END
 $Descr A4 11693 8268
@@ -184,14 +183,10 @@ Wire Wire Line
 	5400 3150 5750 3150
 Wire Wire Line
 	5750 3250 5400 3250
-Text HLabel 5750 2950 2    50   Output ~ 0
+Text HLabel 6300 2950 2    50   Output ~ 0
 SCL
-Wire Wire Line
-	5750 2950 5400 2950
-Text HLabel 5750 2850 2    50   BiDi ~ 0
+Text HLabel 6300 2850 2    50   BiDi ~ 0
 SDA
-Wire Wire Line
-	5750 2850 5400 2850
 $Comp
 L Connector_Generic:Conn_01x06 J801
 U 1 1 5EDBAA35
@@ -241,4 +236,60 @@ Wire Wire Line
 	2700 4100 2700 3950
 Wire Wire Line
 	2700 3950 2550 3950
+$Comp
+L Connector:TestPoint TP?
+U 1 1 5ED3083E
+P 5600 2650
+AR Path="/5ECD8445/5ED3083E" Ref="TP?"  Part="1" 
+AR Path="/5ED9C9D6/5ED3083E" Ref="TP801"  Part="1" 
+F 0 "TP801" H 5658 2768 50  0000 L CNN
+F 1 "TestPoint" H 5658 2677 50  0000 L CNN
+F 2 "TestPoint:TestPoint_Pad_D1.5mm" H 5800 2650 50  0001 C CNN
+F 3 "~" H 5800 2650 50  0001 C CNN
+	1    5600 2650
+	1    0    0    -1  
+$EndComp
+$Comp
+L Connector:TestPoint TP?
+U 1 1 5ED31409
+P 6050 2650
+AR Path="/5ECD8445/5ED31409" Ref="TP?"  Part="1" 
+AR Path="/5ED9C9D6/5ED31409" Ref="TP802"  Part="1" 
+F 0 "TP802" H 6108 2768 50  0000 L CNN
+F 1 "TestPoint" H 6108 2677 50  0000 L CNN
+F 2 "TestPoint:TestPoint_Pad_D1.5mm" H 6250 2650 50  0001 C CNN
+F 3 "~" H 6250 2650 50  0001 C CNN
+	1    6050 2650
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	6300 2850 6050 2850
+Wire Wire Line
+	5400 2950 5600 2950
+Wire Wire Line
+	6050 2650 6050 2850
+Connection ~ 6050 2850
+Wire Wire Line
+	6050 2850 5400 2850
+Wire Wire Line
+	5600 2650 5600 2950
+Connection ~ 5600 2950
+Wire Wire Line
+	5600 2950 6300 2950
+NoConn ~ 3900 2650
+NoConn ~ 3900 2750
+NoConn ~ 3900 2850
+NoConn ~ 5400 2650
+NoConn ~ 5400 2750
+NoConn ~ 5400 3350
+NoConn ~ 5400 3450
+NoConn ~ 5400 3550
+NoConn ~ 5400 3850
+NoConn ~ 4500 2400
+NoConn ~ 4650 2400
+NoConn ~ 3900 3950
+NoConn ~ 3900 4050
+NoConn ~ 4500 4500
+NoConn ~ 4600 4500
+NoConn ~ 3900 4250
 $EndSCHEMATC

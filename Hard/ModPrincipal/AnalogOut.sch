@@ -1,5 +1,4 @@
 EESchema Schematic File Version 4
-LIBS:ModPrincipal-cache
 EELAYER 30 0
 EELAYER END
 $Descr A4 11693 8268
@@ -162,8 +161,6 @@ F 3 "" H 8200 2650 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	8200 2550 8200 2650
-Wire Wire Line
 	8600 2200 8600 2350
 Wire Wire Line
 	8650 2000 8200 2000
@@ -201,8 +198,6 @@ F 3 "" H 3100 4800 50  0001 C CNN
 $EndComp
 Wire Wire Line
 	3100 4800 3100 4950
-Wire Wire Line
-	3100 5550 3100 5650
 $Comp
 L power:GNDA #PWR?
 U 1 1 5ECE379F
@@ -316,7 +311,7 @@ Wire Wire Line
 	6800 2450 6800 2350
 Connection ~ 6800 2350
 Wire Wire Line
-	6850 1900 5200 1900
+	6850 1900 5950 1900
 Wire Wire Line
 	6800 2750 6800 2850
 $Comp
@@ -448,9 +443,9 @@ Wire Wire Line
 Wire Wire Line
 	4300 2000 4400 2000
 Wire Wire Line
-	3550 1800 4400 1800
+	3550 1800 3800 1800
 Wire Wire Line
-	3550 1900 4400 1900
+	3550 1900 4150 1900
 $Comp
 L power:+3.3V #PWR0303
 U 1 1 5EE3FB8C
@@ -533,4 +528,86 @@ Text HLabel 3550 1900 0    50   BiDi ~ 0
 SDA
 Text HLabel 3550 1800 0    50   Input ~ 0
 SCL
+$Comp
+L Device:R R?
+U 1 1 5ED1578C
+P 4150 1350
+AR Path="/5EC7150D/5ED1578C" Ref="R?"  Part="1" 
+AR Path="/5ECD8445/5ED1578C" Ref="R306"  Part="1" 
+F 0 "R306" V 3943 1350 50  0000 C CNN
+F 1 "4.7k" V 4034 1350 50  0000 C CNN
+F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder" V 4080 1350 50  0001 C CNN
+F 3 "~" H 4150 1350 50  0001 C CNN
+	1    4150 1350
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R R?
+U 1 1 5ED15792
+P 3800 1350
+AR Path="/5EC7150D/5ED15792" Ref="R?"  Part="1" 
+AR Path="/5ECD8445/5ED15792" Ref="R305"  Part="1" 
+F 0 "R305" V 3593 1350 50  0000 C CNN
+F 1 "4.7k" V 3684 1350 50  0000 C CNN
+F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder" V 3730 1350 50  0001 C CNN
+F 3 "~" H 3800 1350 50  0001 C CNN
+	1    3800 1350
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+3.3V #PWR0317
+U 1 1 5ED18E3E
+P 3800 1050
+F 0 "#PWR0317" H 3800 900 50  0001 C CNN
+F 1 "+3.3V" H 3815 1223 50  0000 C CNN
+F 2 "" H 3800 1050 50  0001 C CNN
+F 3 "" H 3800 1050 50  0001 C CNN
+	1    3800 1050
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3800 1050 3800 1200
+$Comp
+L power:+3.3V #PWR0318
+U 1 1 5ED1A1DA
+P 4150 1050
+F 0 "#PWR0318" H 4150 900 50  0001 C CNN
+F 1 "+3.3V" H 4165 1223 50  0000 C CNN
+F 2 "" H 4150 1050 50  0001 C CNN
+F 3 "" H 4150 1050 50  0001 C CNN
+	1    4150 1050
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4150 1050 4150 1200
+Wire Wire Line
+	3800 1500 3800 1800
+Connection ~ 3800 1800
+Wire Wire Line
+	3800 1800 4400 1800
+Wire Wire Line
+	4150 1500 4150 1900
+Connection ~ 4150 1900
+Wire Wire Line
+	4150 1900 4400 1900
+$Comp
+L Connector:TestPoint TP301
+U 1 1 5ED26346
+P 5950 1850
+F 0 "TP301" H 6008 1968 50  0000 L CNN
+F 1 "TestPoint" H 6008 1877 50  0000 L CNN
+F 2 "TestPoint:TestPoint_Pad_D1.5mm" H 6150 1850 50  0001 C CNN
+F 3 "~" H 6150 1850 50  0001 C CNN
+	1    5950 1850
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5950 1850 5950 1900
+Connection ~ 5950 1900
+Wire Wire Line
+	5950 1900 5200 1900
+Wire Wire Line
+	8200 2550 8200 2650
+Wire Wire Line
+	3100 5550 3100 5650
 $EndSCHEMATC

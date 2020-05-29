@@ -1,5 +1,4 @@
 EESchema Schematic File Version 4
-LIBS:ModPrincipal-cache
 EELAYER 30 0
 EELAYER END
 $Descr A4 11693 8268
@@ -221,4 +220,8 @@ Text HLabel 3350 1600 0    50   Input ~ 0
 Out_L_220
 Text HLabel 3350 1800 0    50   Input ~ 0
 Out_N_220
+NoConn ~ 3650 1900
+NoConn ~ 4150 1900
+NoConn ~ 4150 1700
+NoConn ~ 3650 1700
 $EndSCHEMATC

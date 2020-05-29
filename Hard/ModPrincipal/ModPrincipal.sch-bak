@@ -1,5 +1,4 @@
 EESchema Schematic File Version 4
-LIBS:ModPrincipal-cache
 EELAYER 30 0
 EELAYER END
 $Descr A4 11693 8268
@@ -92,6 +91,8 @@ F11 "Entrada1" I R 8550 5050 50
 F12 "CPU_ModPower" I L 6400 4500 50 
 F13 "L_220V_Out" O R 8550 5550 50 
 F14 "N_220V_Out" O R 8550 5750 50 
+F15 "CPU_In2" O L 6400 5200 50 
+F16 "Entrada2" I R 8550 5200 50 
 $EndSheet
 Wire Wire Line
 	8550 4050 9450 4050
@@ -146,4 +147,8 @@ Wire Wire Line
 	5450 4900 6400 4900
 Wire Wire Line
 	6400 5050 5450 5050
+Wire Wire Line
+	9450 5200 8550 5200
+Wire Wire Line
+	6400 5200 5450 5200
 $EndSCHEMATC
