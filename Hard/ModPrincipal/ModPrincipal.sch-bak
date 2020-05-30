@@ -151,4 +151,48 @@ Wire Wire Line
 	9450 5200 8550 5200
 Wire Wire Line
 	6400 5200 5450 5200
+$Comp
+L Mechanical:MountingHole H101
+U 1 1 5ED1215B
+P 1200 6450
+F 0 "H101" H 1300 6496 50  0000 L CNN
+F 1 "MountingHole" H 1300 6405 50  0000 L CNN
+F 2 "MountingHole:MountingHole_3.2mm_M3" H 1200 6450 50  0001 C CNN
+F 3 "~" H 1200 6450 50  0001 C CNN
+	1    1200 6450
+	1    0    0    -1  
+$EndComp
+$Comp
+L Mechanical:MountingHole H103
+U 1 1 5ED12ABD
+P 1950 6450
+F 0 "H103" H 2050 6496 50  0000 L CNN
+F 1 "MountingHole" H 2050 6405 50  0000 L CNN
+F 2 "MountingHole:MountingHole_3.2mm_M3" H 1950 6450 50  0001 C CNN
+F 3 "~" H 1950 6450 50  0001 C CNN
+	1    1950 6450
+	1    0    0    -1  
+$EndComp
+$Comp
+L Mechanical:MountingHole H102
+U 1 1 5ED130EC
+P 1200 6900
+F 0 "H102" H 1300 6946 50  0000 L CNN
+F 1 "MountingHole" H 1300 6855 50  0000 L CNN
+F 2 "MountingHole:MountingHole_3.2mm_M3" H 1200 6900 50  0001 C CNN
+F 3 "~" H 1200 6900 50  0001 C CNN
+	1    1200 6900
+	1    0    0    -1  
+$EndComp
+$Comp
+L Mechanical:MountingHole H104
+U 1 1 5ED136EF
+P 1950 6900
+F 0 "H104" H 2050 6946 50  0000 L CNN
+F 1 "MountingHole" H 2050 6855 50  0000 L CNN
+F 2 "MountingHole:MountingHole_3.2mm_M3" H 1950 6900 50  0001 C CNN
+F 3 "~" H 1950 6900 50  0001 C CNN
+	1    1950 6900
+	1    0    0    -1  
+$EndComp
 $EndSCHEMATC

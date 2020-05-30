@@ -1,5 +1,4 @@
 EESchema Schematic File Version 4
-LIBS:ModPrincipal-cache
 EELAYER 30 0
 EELAYER END
 $Descr A4 11693 8268
@@ -313,7 +312,7 @@ U 1 1 5EF29FDB
 P 9050 1800
 F 0 "D708" V 9004 1880 50  0000 L CNN
 F 1 "1N4148W" V 9095 1880 50  0000 L CNN
-F 2 "Diode_SMD:D_MiniMELF_Handsoldering" H 9050 1625 50  0001 C CNN
+F 2 "Diode_SMD:D_MiniMELF" H 9050 1625 50  0001 C CNN
 F 3 "https://www.vishay.com/docs/85748/1n4148w.pdf" H 9050 1800 50  0001 C CNN
 	1    9050 1800
 	0    1    1    0   
@@ -324,7 +323,7 @@ U 1 1 5EF2B295
 P 9050 1300
 F 0 "D707" V 9004 1380 50  0000 L CNN
 F 1 "1N4148W" V 9095 1380 50  0000 L CNN
-F 2 "Diode_SMD:D_MiniMELF_Handsoldering" H 9050 1125 50  0001 C CNN
+F 2 "Diode_SMD:D_MiniMELF" H 9050 1125 50  0001 C CNN
 F 3 "https://www.vishay.com/docs/85748/1n4148w.pdf" H 9050 1300 50  0001 C CNN
 	1    9050 1300
 	0    1    1    0   
@@ -457,17 +456,6 @@ Wire Wire Line
 	2250 6850 2250 7050
 Wire Wire Line
 	1900 7150 1900 7300
-$Comp
-L Relay:RT42xxxx K701
-U 1 1 5EFA37ED
-P 3250 6000
-F 0 "K701" H 3880 6046 50  0000 L CNN
-F 1 "RT42xxxx" H 3880 5955 50  0000 L CNN
-F 2 "Relay_THT:Relay_DPDT_Schrack-RT2-FormC_RM5mm" H 3250 6000 50  0001 C CNN
-F 3 "http://www.te.com/commerce/DocumentDelivery/DDEController?Action=showdoc&DocId=Data+Sheet%7FRT2%7F1014%7Fpdf%7FEnglish%7FENG_DS_RT2_1014.pdf%7F6-1393243-3" H 3250 6000 50  0001 C CNN
-	1    3250 6000
-	1    0    0    -1  
-$EndComp
 Wire Wire Line
 	2850 6300 2850 6350
 $Comp
@@ -535,29 +523,13 @@ Wire Wire Line
 Connection ~ 2850 6350
 Wire Wire Line
 	2850 6950 2850 7000
-Wire Wire Line
-	4450 5100 3350 5100
-Wire Wire Line
-	3350 5100 3350 5700
-Wire Wire Line
-	3750 5700 3750 5500
-Wire Wire Line
-	3750 5500 4450 5500
-Text HLabel 4450 6900 2    50   Output ~ 0
+Text HLabel 4100 5100 2    50   Output ~ 0
 L_220V_Out
-Text HLabel 4450 6500 2    50   Output ~ 0
+Text HLabel 4100 5500 2    50   Output ~ 0
 N_220V_Out
-Wire Wire Line
-	4450 6500 3650 6500
-Wire Wire Line
-	3650 6500 3650 6300
-Wire Wire Line
-	3250 6300 3250 6900
-Wire Wire Line
-	3250 6900 4450 6900
-Text GLabel 4450 5100 2    50   Input ~ 0
+Text GLabel 4100 6900 2    50   Input ~ 0
 L_220VAC
-Text GLabel 4450 5500 2    50   Input ~ 0
+Text GLabel 4100 6500 2    50   Input ~ 0
 N_220VAC
 $Comp
 L Device:R R?
@@ -652,7 +624,7 @@ U 1 1 5ED25A17
 P 8700 3950
 F 0 "D704" V 8654 4030 50  0000 L CNN
 F 1 "1N4148W" V 8745 4030 50  0000 L CNN
-F 2 "Diode_SMD:D_MiniMELF_Handsoldering" H 8700 3775 50  0001 C CNN
+F 2 "Diode_SMD:D_MiniMELF" H 8700 3775 50  0001 C CNN
 F 3 "https://www.vishay.com/docs/85748/1n4148w.pdf" H 8700 3950 50  0001 C CNN
 	1    8700 3950
 	0    1    1    0   
@@ -663,7 +635,7 @@ U 1 1 5ED25A1D
 P 8700 3450
 F 0 "D703" V 8654 3530 50  0000 L CNN
 F 1 "1N4148W" V 8745 3530 50  0000 L CNN
-F 2 "Diode_SMD:D_MiniMELF_Handsoldering" H 8700 3275 50  0001 C CNN
+F 2 "Diode_SMD:D_MiniMELF" H 8700 3275 50  0001 C CNN
 F 3 "https://www.vishay.com/docs/85748/1n4148w.pdf" H 8700 3450 50  0001 C CNN
 	1    8700 3450
 	0    1    1    0   
@@ -807,7 +779,7 @@ U 1 1 5ED2EFAC
 P 8700 5650
 F 0 "D706" V 8654 5730 50  0000 L CNN
 F 1 "1N4148W" V 8745 5730 50  0000 L CNN
-F 2 "Diode_SMD:D_MiniMELF_Handsoldering" H 8700 5475 50  0001 C CNN
+F 2 "Diode_SMD:D_MiniMELF" H 8700 5475 50  0001 C CNN
 F 3 "https://www.vishay.com/docs/85748/1n4148w.pdf" H 8700 5650 50  0001 C CNN
 	1    8700 5650
 	0    1    1    0   
@@ -818,7 +790,7 @@ U 1 1 5ED2EFB2
 P 8700 5150
 F 0 "D705" V 8654 5230 50  0000 L CNN
 F 1 "1N4148W" V 8745 5230 50  0000 L CNN
-F 2 "Diode_SMD:D_MiniMELF_Handsoldering" H 8700 4975 50  0001 C CNN
+F 2 "Diode_SMD:D_MiniMELF" H 8700 4975 50  0001 C CNN
 F 3 "https://www.vishay.com/docs/85748/1n4148w.pdf" H 8700 5150 50  0001 C CNN
 	1    8700 5150
 	0    1    1    0   
@@ -911,6 +883,31 @@ F 3 "" H 7950 6000 50  0001 C CNN
 $EndComp
 Wire Wire Line
 	7950 5900 7950 6000
-NoConn ~ 3550 5700
-NoConn ~ 3150 5700
+Wire Wire Line
+	4100 5500 3750 5500
+Wire Wire Line
+	3750 5500 3750 5700
+Wire Wire Line
+	4100 5100 3350 5100
+Wire Wire Line
+	3350 5100 3350 5700
+Wire Wire Line
+	3650 6300 3650 6500
+Wire Wire Line
+	3650 6500 4100 6500
+Wire Wire Line
+	4100 6900 3250 6900
+Wire Wire Line
+	3250 6900 3250 6300
+$Comp
+L Relay:RT44xxxx K701
+U 1 1 5ED8A7A8
+P 3250 6000
+F 0 "K701" H 3880 6046 50  0000 L CNN
+F 1 "RT44xxxx" H 3880 5955 50  0000 L CNN
+F 2 "Relay_THT:Relay_DPST_Schrack-RT2-FormA_RM5mm" H 3250 6000 50  0001 C CNN
+F 3 "http://www.te.com/commerce/DocumentDelivery/DDEController?Action=showdoc&DocId=Data+Sheet%7FRT2%7F1014%7Fpdf%7FEnglish%7FENG_DS_RT2_1014.pdf%7F6-1393243-3" H 3250 6000 50  0001 C CNN
+	1    3250 6000
+	1    0    0    -1  
+$EndComp
 $EndSCHEMATC
