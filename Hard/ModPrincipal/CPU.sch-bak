@@ -128,13 +128,13 @@ Wire Wire Line
 	6650 4600 6650 4650
 Wire Wire Line
 	6650 4650 6650 4750
-Text HLabel 3600 3150 0    50   Output ~ 0
-ModPowerOut
-Text HLabel 3600 3250 0    50   Output ~ 0
-ModOut0
-Text HLabel 3600 3350 0    50   Output ~ 0
-ModOut1
 Text HLabel 3600 3450 0    50   Output ~ 0
+ModPowerOut
+Text HLabel 3600 3150 0    50   Output ~ 0
+ModOut0
+Text HLabel 3600 3250 0    50   Output ~ 0
+ModOut1
+Text HLabel 3600 3350 0    50   Output ~ 0
 ModOut2
 Wire Wire Line
 	3600 3150 3900 3150
@@ -144,11 +144,11 @@ Wire Wire Line
 	3600 3350 3900 3350
 Wire Wire Line
 	3600 3450 3900 3450
-Text HLabel 5750 3250 2    50   Input ~ 0
+Text HLabel 5750 3050 2    50   Input ~ 0
 ModIn0
 Text HLabel 5750 3150 2    50   Input ~ 0
 ModIn1
-Text HLabel 5750 3050 2    50   Input ~ 0
+Text HLabel 5750 3250 2    50   Input ~ 0
 ModIn2
 Wire Wire Line
 	5750 3050 5400 3050
@@ -179,17 +179,6 @@ Wire Wire Line
 	2550 3750 3900 3750
 Wire Wire Line
 	3900 3850 2550 3850
-$Comp
-L power:+3.3V #PWR0801
-U 1 1 5EDC0299
-P 2700 3250
-F 0 "#PWR0801" H 2700 3100 50  0001 C CNN
-F 1 "+3.3V" H 2715 3423 50  0000 C CNN
-F 2 "" H 2700 3250 50  0001 C CNN
-F 3 "" H 2700 3250 50  0001 C CNN
-	1    2700 3250
-	1    0    0    -1  
-$EndComp
 Wire Wire Line
 	2700 3250 2700 3450
 Wire Wire Line
@@ -259,7 +248,6 @@ NoConn ~ 5400 3450
 NoConn ~ 5400 3550
 NoConn ~ 5400 3850
 NoConn ~ 4500 2400
-NoConn ~ 4650 2400
 NoConn ~ 3900 3950
 NoConn ~ 3900 4050
 NoConn ~ 3900 4250
@@ -318,17 +306,6 @@ F 3 "~" H 7150 3700 50  0001 C CNN
 	1    7150 3700
 	1    0    0    -1  
 $EndComp
-$Comp
-L power:+3.3V #PWR0806
-U 1 1 5EDB772B
-P 6650 3350
-F 0 "#PWR0806" H 6650 3200 50  0001 C CNN
-F 1 "+3.3V" H 6665 3523 50  0000 C CNN
-F 2 "" H 6650 3350 50  0001 C CNN
-F 3 "" H 6650 3350 50  0001 C CNN
-	1    6650 3350
-	1    0    0    -1  
-$EndComp
 Wire Wire Line
 	6400 3550 6400 3450
 Wire Wire Line
@@ -375,4 +352,37 @@ Wire Wire Line
 Connection ~ 6400 4250
 Wire Wire Line
 	6400 4250 6400 4300
+$Comp
+L power:+3.3VA #PWR0103
+U 1 1 5EDA1357
+P 4650 2400
+F 0 "#PWR0103" H 4650 2250 50  0001 C CNN
+F 1 "+3.3VA" H 4665 2573 50  0000 C CNN
+F 2 "" H 4650 2400 50  0001 C CNN
+F 3 "" H 4650 2400 50  0001 C CNN
+	1    4650 2400
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+3.3VA #PWR0109
+U 1 1 5EDE7E13
+P 6650 3350
+F 0 "#PWR0109" H 6650 3200 50  0001 C CNN
+F 1 "+3.3VA" H 6665 3523 50  0000 C CNN
+F 2 "" H 6650 3350 50  0001 C CNN
+F 3 "" H 6650 3350 50  0001 C CNN
+	1    6650 3350
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+3.3VA #PWR0110
+U 1 1 5EDEB176
+P 2700 3250
+F 0 "#PWR0110" H 2700 3100 50  0001 C CNN
+F 1 "+3.3VA" H 2715 3423 50  0000 C CNN
+F 2 "" H 2700 3250 50  0001 C CNN
+F 3 "" H 2700 3250 50  0001 C CNN
+	1    2700 3250
+	1    0    0    -1  
+$EndComp
 $EndSCHEMATC

@@ -1,3 +1,4 @@
 (fp_lib_table
   (lib (name BluePill)(type KiCad)(uri ${KIPRJMOD}/BluePill.pretty)(options "")(descr ""))
+  (lib (name Connector)(type KiCad)(uri ${KIPRJMOD}/Connector.pretty)(options "")(descr ""))
 )

@@ -44,13 +44,13 @@ L_220VAC
 $Comp
 L Connector_Generic:Conn_01x02 J503
 U 1 1 5ED063FA
-P 6450 1950
-F 0 "J503" V 6530 1942 50  0000 L CNN
-F 1 "Conn_01x02" H 6530 1851 50  0000 L CNN
-F 2 "TerminalBlock:TerminalBlock_bornier-2_P5.08mm" H 6450 1950 50  0001 C CNN
-F 3 "~" H 6450 1950 50  0001 C CNN
-	1    6450 1950
-	-1   0    0    1   
+P 6450 1850
+F 0 "J503" V 6530 1842 50  0000 L CNN
+F 1 "Conn_01x02" H 6530 1751 50  0000 L CNN
+F 2 "TerminalBlock:TerminalBlock_bornier-2_P5.08mm" H 6450 1850 50  0001 C CNN
+F 3 "~" H 6450 1850 50  0001 C CNN
+	1    6450 1850
+	-1   0    0    -1  
 $EndComp
 $Comp
 L Diode_Bridge:MB6S D501
@@ -216,34 +216,6 @@ F 3 "http://www.advanced-monolithic.com/pdf/ds1117.pdf" H 9400 3100 50  0001 C C
 	1    9300 3350
 	1    0    0    -1  
 $EndComp
-$Comp
-L Diode:1N4007 D502
-U 1 1 5ED28BF5
-P 10500 2150
-F 0 "D502" V 10454 2229 50  0000 L CNN
-F 1 "1N4007" V 10545 2229 50  0000 L CNN
-F 2 "Diode_THT:D_DO-41_SOD81_P10.16mm_Horizontal" H 10500 1975 50  0001 C CNN
-F 3 "http://www.vishay.com/docs/88503/1n4001.pdf" H 10500 2150 50  0001 C CNN
-	1    10500 2150
-	0    1    1    0   
-$EndComp
-Wire Wire Line
-	10500 2000 10500 1950
-Wire Wire Line
-	10500 1950 10050 1950
-$Comp
-L power:GND #PWR0518
-U 1 1 5ED2ABE3
-P 10500 2350
-F 0 "#PWR0518" H 10500 2100 50  0001 C CNN
-F 1 "GND" H 10505 2177 50  0000 C CNN
-F 2 "" H 10500 2350 50  0001 C CNN
-F 3 "" H 10500 2350 50  0001 C CNN
-	1    10500 2350
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	10500 2300 10500 2350
 $Comp
 L power:+3.3V #PWR0514
 U 1 1 5ED2F462
@@ -484,7 +456,6 @@ F 3 "~" H 6800 2000 50  0001 C CNN
 	1    6800 2000
 	-1   0    0    1   
 $EndComp
-Connection ~ 10500 1950
 Wire Wire Line
 	9800 1950 10050 1950
 $Comp
@@ -532,8 +503,6 @@ F 3 "~" H 10950 1900 50  0001 C CNN
 $EndComp
 Wire Wire Line
 	10750 1900 10750 1950
-Wire Wire Line
-	10750 1950 10500 1950
 Wire Wire Line
 	2650 1500 2300 1500
 Wire Wire Line
@@ -688,4 +657,6 @@ Wire Wire Line
 Connection ~ 2450 1700
 Wire Wire Line
 	2450 1700 3000 1700
+Wire Wire Line
+	10050 1950 10750 1950
 $EndSCHEMATC

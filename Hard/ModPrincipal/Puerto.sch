@@ -19,7 +19,7 @@ U 1 1 5EE5AF19
 P 3850 1800
 F 0 "J602" H 3900 2217 50  0000 C CNN
 F 1 "Conn_02x05_Odd_Even" H 3900 2126 50  0000 C CNN
-F 2 "Connector_PinSocket_2.54mm:PinSocket_2x05_P2.54mm_Horizontal" H 3850 1800 50  0001 C CNN
+F 2 "Connector:PinSocket_2x03_Doble_Paso_P2.54mm_Horizontal" H 3850 1800 50  0001 C CNN
 F 3 "~" H 3850 1800 50  0001 C CNN
 	1    3850 1800
 	1    0    0    -1  
