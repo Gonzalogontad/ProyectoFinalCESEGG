@@ -4,11 +4,11 @@ EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
 Sheet 4 8
-Title ""
-Date ""
-Rev ""
-Comp ""
-Comment1 ""
+Title "Probado - Modulo Principal"
+Date "2020-05-31"
+Rev "1.0"
+Comp "CESE - FIUBA"
+Comment1 "Gonzalo Gontad"
 Comment2 ""
 Comment3 ""
 Comment4 ""
@@ -284,17 +284,6 @@ UARTSlave_TX
 Text HLabel 8350 3750 2    50   Output ~ 0
 UARTSlave_RX
 $Comp
-L Connector_Generic:Conn_01x05 J401
-U 1 1 5EDB4016
-P 3600 3550
-F 0 "J401" H 3518 3125 50  0000 C CNN
-F 1 "Conn_01x05" H 3518 3216 50  0000 C CNN
-F 2 "Connector_PinHeader_2.54mm:PinHeader_1x05_P2.54mm_Vertical" H 3600 3550 50  0001 C CNN
-F 3 "~" H 3600 3550 50  0001 C CNN
-	1    3600 3550
-	-1   0    0    1   
-$EndComp
-$Comp
 L power:+3.3VP #PWR0407
 U 1 1 5EDBAED1
 P 4450 3150
@@ -308,12 +297,12 @@ $EndComp
 $Comp
 L power:+5VP #PWR0403
 U 1 1 5EDC0A46
-P 3250 3900
-F 0 "#PWR0403" H 3250 3750 50  0001 C CNN
-F 1 "+5VP" H 3265 4073 50  0000 C CNN
-F 2 "" H 3250 3900 50  0001 C CNN
-F 3 "" H 3250 3900 50  0001 C CNN
-	1    3250 3900
+P 3950 3900
+F 0 "#PWR0403" H 3950 3750 50  0001 C CNN
+F 1 "+5VP" H 3965 4073 50  0000 C CNN
+F 2 "" H 3950 3900 50  0001 C CNN
+F 3 "" H 3950 3900 50  0001 C CNN
+	1    3950 3900
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
@@ -476,17 +465,6 @@ Wire Wire Line
 Wire Wire Line
 	3400 2400 3400 2500
 $Comp
-L power:+3.3V #PWR0420
-U 1 1 5EE1AF7E
-P 8650 4700
-F 0 "#PWR0420" H 8650 4550 50  0001 C CNN
-F 1 "+3.3V" H 8665 4873 50  0000 C CNN
-F 2 "" H 8650 4700 50  0001 C CNN
-F 3 "" H 8650 4700 50  0001 C CNN
-	1    8650 4700
-	1    0    0    -1  
-$EndComp
-$Comp
 L power:+5V #PWR0422
 U 1 1 5EE1E069
 P 9250 4700
@@ -524,69 +502,43 @@ Wire Wire Line
 Wire Wire Line
 	9250 5300 9250 5400
 $Comp
-L Connector_Generic:Conn_01x05 J402
-U 1 1 5EE59D4F
-P 3600 5000
-F 0 "J402" H 3518 4575 50  0000 C CNN
-F 1 "Conn_01x05" H 3518 4666 50  0000 C CNN
-F 2 "Connector_PinHeader_2.54mm:PinHeader_1x05_P2.54mm_Vertical" H 3600 5000 50  0001 C CNN
-F 3 "~" H 3600 5000 50  0001 C CNN
-	1    3600 5000
-	-1   0    0    1   
-$EndComp
-$Comp
 L power:+3.3VP #PWR0408
 U 1 1 5EE59D55
-P 4050 4700
-F 0 "#PWR0408" H 4200 4650 50  0001 C CNN
-F 1 "+3.3VP" H 4070 4843 50  0000 C CNN
-F 2 "" H 4050 4700 50  0001 C CNN
-F 3 "" H 4050 4700 50  0001 C CNN
-	1    4050 4700
-	1    0    0    -1  
+P 3050 3250
+F 0 "#PWR0408" H 3200 3200 50  0001 C CNN
+F 1 "+3.3VP" H 3070 3393 50  0000 C CNN
+F 2 "" H 3050 3250 50  0001 C CNN
+F 3 "" H 3050 3250 50  0001 C CNN
+	1    3050 3250
+	-1   0    0    -1  
 $EndComp
 Wire Wire Line
-	4050 4700 4050 4800
+	3050 3250 3050 3350
 Wire Wire Line
-	4050 4800 3800 4800
-$Comp
-L power:+5VP #PWR0404
-U 1 1 5EE59D5D
-P 3950 5450
-F 0 "#PWR0404" H 3950 5300 50  0001 C CNN
-F 1 "+5VP" H 3965 5623 50  0000 C CNN
-F 2 "" H 3950 5450 50  0001 C CNN
-F 3 "" H 3950 5450 50  0001 C CNN
-	1    3950 5450
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	3950 5450 3800 5450
-Wire Wire Line
-	3800 5450 3800 5200
+	3050 3350 3300 3350
 $Comp
 L power:GNDS #PWR0410
 U 1 1 5EE59D65
-P 4200 5150
-F 0 "#PWR0410" H 4200 4900 50  0001 C CNN
-F 1 "GNDS" H 4205 4977 50  0000 C CNN
-F 2 "" H 4200 5150 50  0001 C CNN
-F 3 "" H 4200 5150 50  0001 C CNN
-	1    4200 5150
-	1    0    0    -1  
+P 2900 3700
+F 0 "#PWR0410" H 2900 3450 50  0001 C CNN
+F 1 "GNDS" H 2905 3527 50  0000 C CNN
+F 2 "" H 2900 3700 50  0001 C CNN
+F 3 "" H 2900 3700 50  0001 C CNN
+	1    2900 3700
+	-1   0    0    -1  
 $EndComp
 Wire Wire Line
-	4200 5150 4200 5100
+	2900 3700 2900 3650
 Wire Wire Line
-	4200 5100 3800 5100
-Text Label 4050 4900 0    50   ~ 0
+	2900 3650 3300 3650
+Text Label 3050 3450 2    50   ~ 0
 UARTMaster_Tx
-Text Label 4050 5000 0    50   ~ 0
+Text Label 3050 3550 2    50   ~ 0
 UARTMaster_Rx
 Wire Wire Line
-	4050 4900 3800 4900
+	3050 3450 3300 3450
 Wire Wire Line
-	3800 5000 4050 5000
+	3300 3550 3050 3550
 $Comp
 L Connector:TestPoint TP?
 U 1 1 5ED42166
@@ -640,10 +592,6 @@ Wire Wire Line
 	4550 3700 4550 3650
 Wire Wire Line
 	4550 3650 4200 3650
-Wire Wire Line
-	3250 3900 3250 4000
-Wire Wire Line
-	3250 4000 3500 4000
 $Comp
 L power:PWR_FLAG #FLG0103
 U 1 1 5EE2396B
@@ -679,7 +627,6 @@ F 3 "~" H 3500 4100 50  0001 C CNN
 $EndComp
 Wire Wire Line
 	3500 4100 3500 4000
-Connection ~ 3500 4000
 Wire Wire Line
 	3500 4000 3800 4000
 Wire Wire Line
@@ -718,4 +665,38 @@ F 3 "" H 7600 3250 50  0001 C CNN
 	1    7600 3250
 	1    0    0    -1  
 $EndComp
+$Comp
+L power:+3.3VA #PWR?
+U 1 1 5EDC62F4
+P 8650 4700
+AR Path="/5ED9C9D6/5EDC62F4" Ref="#PWR?"  Part="1" 
+AR Path="/5ED20EE2/5EDC62F4" Ref="#PWR0110"  Part="1" 
+F 0 "#PWR0110" H 8650 4550 50  0001 C CNN
+F 1 "+3.3VA" H 8665 4873 50  0000 C CNN
+F 2 "" H 8650 4700 50  0001 C CNN
+F 3 "" H 8650 4700 50  0001 C CNN
+	1    8650 4700
+	1    0    0    -1  
+$EndComp
+$Comp
+L Connector_Generic:Conn_02x05_Odd_Even J401
+U 1 1 5EDD89D0
+P 3600 3550
+F 0 "J401" H 3650 3967 50  0000 C CNN
+F 1 "Conn_02x05_Odd_Even" H 3650 3876 50  0000 C CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_2x05_P2.54mm_Vertical" H 3600 3550 50  0001 C CNN
+F 3 "~" H 3600 3550 50  0001 C CNN
+	1    3600 3550
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	3300 3750 3300 4000
+Wire Wire Line
+	3300 4000 3500 4000
+Connection ~ 3500 4000
+Wire Wire Line
+	3950 3900 3950 4000
+Wire Wire Line
+	3950 4000 3800 4000
+Connection ~ 3800 4000
 $EndSCHEMATC

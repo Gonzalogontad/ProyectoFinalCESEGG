@@ -128,7 +128,7 @@ Wire Wire Line
 	6650 4600 6650 4650
 Wire Wire Line
 	6650 4650 6650 4750
-Text HLabel 3600 3450 0    50   Output ~ 0
+Text HLabel 3600 3750 0    50   Output ~ 0
 ModPowerOut
 Text HLabel 3600 3150 0    50   Output ~ 0
 ModOut0
@@ -143,61 +143,23 @@ Wire Wire Line
 Wire Wire Line
 	3600 3350 3900 3350
 Wire Wire Line
-	3600 3450 3900 3450
-Text HLabel 5750 3050 2    50   Input ~ 0
+	3600 3750 3900 3750
+Text HLabel 3550 3450 0    50   Input ~ 0
 ModIn0
-Text HLabel 5750 3150 2    50   Input ~ 0
+Text HLabel 3550 3550 0    50   Input ~ 0
 ModIn1
-Text HLabel 5750 3250 2    50   Input ~ 0
+Text HLabel 3550 3650 0    50   Input ~ 0
 ModIn2
 Wire Wire Line
-	5750 3050 5400 3050
+	3550 3650 3900 3650
 Wire Wire Line
-	5400 3150 5750 3150
+	3900 3550 3550 3550
 Wire Wire Line
-	5750 3250 5400 3250
+	3550 3450 3900 3450
 Text HLabel 6300 2950 2    50   Output ~ 0
 SCL
 Text HLabel 6300 2850 2    50   BiDi ~ 0
 SDA
-$Comp
-L Connector_Generic:Conn_01x06 J801
-U 1 1 5EDBAA35
-P 2350 3750
-F 0 "J801" H 2268 3225 50  0000 C CNN
-F 1 "Conn_01x06" H 2268 3316 50  0000 C CNN
-F 2 "Connector_PinHeader_2.54mm:PinHeader_1x06_P2.54mm_Vertical" H 2350 3750 50  0001 C CNN
-F 3 "~" H 2350 3750 50  0001 C CNN
-	1    2350 3750
-	-1   0    0    1   
-$EndComp
-Wire Wire Line
-	2550 3550 3900 3550
-Wire Wire Line
-	3900 3650 2550 3650
-Wire Wire Line
-	2550 3750 3900 3750
-Wire Wire Line
-	3900 3850 2550 3850
-Wire Wire Line
-	2700 3250 2700 3450
-Wire Wire Line
-	2700 3450 2550 3450
-$Comp
-L power:GND #PWR0802
-U 1 1 5EDC14E8
-P 2700 4100
-F 0 "#PWR0802" H 2700 3850 50  0001 C CNN
-F 1 "GND" H 2705 3927 50  0000 C CNN
-F 2 "" H 2700 4100 50  0001 C CNN
-F 3 "" H 2700 4100 50  0001 C CNN
-	1    2700 4100
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	2700 4100 2700 3950
-Wire Wire Line
-	2700 3950 2550 3950
 $Comp
 L Connector:TestPoint TP?
 U 1 1 5ED3083E
@@ -375,14 +337,91 @@ F 3 "" H 6650 3350 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L power:+3.3VA #PWR0110
-U 1 1 5EDEB176
-P 2700 3250
-F 0 "#PWR0110" H 2700 3100 50  0001 C CNN
-F 1 "+3.3VA" H 2715 3423 50  0000 C CNN
-F 2 "" H 2700 3250 50  0001 C CNN
-F 3 "" H 2700 3250 50  0001 C CNN
-	1    2700 3250
+L power:GND #PWR?
+U 1 1 5EE3F126
+P 2450 2250
+AR Path="/5ECD8445/5EE3F126" Ref="#PWR?"  Part="1" 
+AR Path="/5ED9C9D6/5EE3F126" Ref="#PWR0808"  Part="1" 
+F 0 "#PWR0808" H 2450 2000 50  0001 C CNN
+F 1 "GND" H 2455 2077 50  0000 C CNN
+F 2 "" H 2450 2250 50  0001 C CNN
+F 3 "" H 2450 2250 50  0001 C CNN
+	1    2450 2250
 	1    0    0    -1  
 $EndComp
+$Comp
+L pspice:C C?
+U 1 1 5EE3F12C
+P 2450 1800
+AR Path="/5EC7150D/5EE3F12C" Ref="C?"  Part="1" 
+AR Path="/5ECD8445/5EE3F12C" Ref="C?"  Part="1" 
+AR Path="/5ED9C9D6/5EE3F12C" Ref="C802"  Part="1" 
+F 0 "C802" H 2250 1650 50  0000 L CNN
+F 1 "100nF" H 2550 1650 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 2450 1800 50  0001 C CNN
+F 3 "~" H 2450 1800 50  0001 C CNN
+	1    2450 1800
+	1    0    0    -1  
+$EndComp
+$Comp
+L pspice:C C?
+U 1 1 5EE3F132
+P 2000 1800
+AR Path="/5EC7150D/5EE3F132" Ref="C?"  Part="1" 
+AR Path="/5ECD8445/5EE3F132" Ref="C?"  Part="1" 
+AR Path="/5ED9C9D6/5EE3F132" Ref="C801"  Part="1" 
+F 0 "C801" H 1800 1650 50  0000 L CNN
+F 1 "100nF" H 2100 1650 50  0000 L CNN
+F 2 "Capacitor_SMD:C_0805_2012Metric_Pad1.15x1.40mm_HandSolder" H 2000 1800 50  0001 C CNN
+F 3 "~" H 2000 1800 50  0001 C CNN
+	1    2000 1800
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 5EE3F138
+P 2000 2250
+AR Path="/5ECD8445/5EE3F138" Ref="#PWR?"  Part="1" 
+AR Path="/5ED9C9D6/5EE3F138" Ref="#PWR0806"  Part="1" 
+F 0 "#PWR0806" H 2000 2000 50  0001 C CNN
+F 1 "GND" H 2005 2077 50  0000 C CNN
+F 2 "" H 2000 2250 50  0001 C CNN
+F 3 "" H 2000 2250 50  0001 C CNN
+	1    2000 2250
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2000 2250 2000 2050
+Wire Wire Line
+	2450 2050 2450 2250
+Wire Wire Line
+	2450 1550 2450 1350
+Wire Wire Line
+	2000 1350 2000 1550
+$Comp
+L power:+5V #PWR0801
+U 1 1 5EE419C5
+P 2000 1350
+F 0 "#PWR0801" H 2000 1200 50  0001 C CNN
+F 1 "+5V" H 2015 1523 50  0000 C CNN
+F 2 "" H 2000 1350 50  0001 C CNN
+F 3 "" H 2000 1350 50  0001 C CNN
+	1    2000 1350
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+5V #PWR0807
+U 1 1 5EE4C9B5
+P 2450 1350
+F 0 "#PWR0807" H 2450 1200 50  0001 C CNN
+F 1 "+5V" H 2465 1523 50  0000 C CNN
+F 2 "" H 2450 1350 50  0001 C CNN
+F 3 "" H 2450 1350 50  0001 C CNN
+	1    2450 1350
+	1    0    0    -1  
+$EndComp
+NoConn ~ 3900 3850
+NoConn ~ 5400 3250
+NoConn ~ 5400 3150
+NoConn ~ 5400 3050
 $EndSCHEMATC

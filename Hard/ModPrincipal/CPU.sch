@@ -4,11 +4,11 @@ EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
 Sheet 8 8
-Title ""
-Date ""
-Rev ""
-Comp ""
-Comment1 ""
+Title "Probado - Modulo Principal"
+Date "2020-05-31"
+Rev "1.0"
+Comp "CESE - FIUBA"
+Comment1 "Gonzalo Gontad"
 Comment2 ""
 Comment3 ""
 Comment4 ""
@@ -128,7 +128,7 @@ Wire Wire Line
 	6650 4600 6650 4650
 Wire Wire Line
 	6650 4650 6650 4750
-Text HLabel 3600 3450 0    50   Output ~ 0
+Text HLabel 3600 3750 0    50   Output ~ 0
 ModPowerOut
 Text HLabel 3600 3150 0    50   Output ~ 0
 ModOut0
@@ -143,61 +143,23 @@ Wire Wire Line
 Wire Wire Line
 	3600 3350 3900 3350
 Wire Wire Line
-	3600 3450 3900 3450
-Text HLabel 5750 3050 2    50   Input ~ 0
+	3600 3750 3900 3750
+Text HLabel 3550 3450 0    50   Input ~ 0
 ModIn0
-Text HLabel 5750 3150 2    50   Input ~ 0
+Text HLabel 3550 3550 0    50   Input ~ 0
 ModIn1
-Text HLabel 5750 3250 2    50   Input ~ 0
+Text HLabel 3550 3650 0    50   Input ~ 0
 ModIn2
 Wire Wire Line
-	5750 3050 5400 3050
+	3550 3650 3900 3650
 Wire Wire Line
-	5400 3150 5750 3150
+	3900 3550 3550 3550
 Wire Wire Line
-	5750 3250 5400 3250
+	3550 3450 3900 3450
 Text HLabel 6300 2950 2    50   Output ~ 0
 SCL
 Text HLabel 6300 2850 2    50   BiDi ~ 0
 SDA
-$Comp
-L Connector_Generic:Conn_01x06 J801
-U 1 1 5EDBAA35
-P 2350 3750
-F 0 "J801" H 2268 3225 50  0000 C CNN
-F 1 "Conn_01x06" H 2268 3316 50  0000 C CNN
-F 2 "Connector_PinHeader_2.54mm:PinHeader_1x06_P2.54mm_Vertical" H 2350 3750 50  0001 C CNN
-F 3 "~" H 2350 3750 50  0001 C CNN
-	1    2350 3750
-	-1   0    0    1   
-$EndComp
-Wire Wire Line
-	2550 3550 3900 3550
-Wire Wire Line
-	3900 3650 2550 3650
-Wire Wire Line
-	2550 3750 3900 3750
-Wire Wire Line
-	3900 3850 2550 3850
-Wire Wire Line
-	2700 3250 2700 3450
-Wire Wire Line
-	2700 3450 2550 3450
-$Comp
-L power:GND #PWR0802
-U 1 1 5EDC14E8
-P 2700 4100
-F 0 "#PWR0802" H 2700 3850 50  0001 C CNN
-F 1 "GND" H 2705 3927 50  0000 C CNN
-F 2 "" H 2700 4100 50  0001 C CNN
-F 3 "" H 2700 4100 50  0001 C CNN
-	1    2700 4100
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	2700 4100 2700 3950
-Wire Wire Line
-	2700 3950 2550 3950
 $Comp
 L Connector:TestPoint TP?
 U 1 1 5ED3083E
@@ -375,17 +337,6 @@ F 3 "" H 6650 3350 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L power:+3.3VA #PWR0110
-U 1 1 5EDEB176
-P 2700 3250
-F 0 "#PWR0110" H 2700 3100 50  0001 C CNN
-F 1 "+3.3VA" H 2715 3423 50  0000 C CNN
-F 2 "" H 2700 3250 50  0001 C CNN
-F 3 "" H 2700 3250 50  0001 C CNN
-	1    2700 3250
-	1    0    0    -1  
-$EndComp
-$Comp
 L power:GND #PWR?
 U 1 1 5EE3F126
 P 2450 2250
@@ -469,4 +420,8 @@ F 3 "" H 2450 1350 50  0001 C CNN
 	1    2450 1350
 	1    0    0    -1  
 $EndComp
+NoConn ~ 3900 3850
+NoConn ~ 5400 3250
+NoConn ~ 5400 3150
+NoConn ~ 5400 3050
 $EndSCHEMATC
