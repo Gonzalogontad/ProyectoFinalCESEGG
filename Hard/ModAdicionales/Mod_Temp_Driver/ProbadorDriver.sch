@@ -1,0 +1,530 @@
+EESchema Schematic File Version 4
+LIBS:Mod_Temp_Driver-cache
+EELAYER 30 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 2 3
+Title ""
+Date ""
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L Connector_Generic:Conn_02x10_Odd_Even J?
+U 1 1 5ED5A0E0
+P 9650 4500
+F 0 "J?" H 9700 5117 50  0000 C CNN
+F 1 "Conn_02x10_Odd_Even" H 9700 5026 50  0000 C CNN
+F 2 "" H 9650 4500 50  0001 C CNN
+F 3 "~" H 9650 4500 50  0001 C CNN
+	1    9650 4500
+	1    0    0    -1  
+$EndComp
+$Comp
+L Connector_Generic:Conn_02x05_Odd_Even J?
+U 1 1 5ED5A0E6
+P 10300 1750
+F 0 "J?" H 10350 2167 50  0000 C CNN
+F 1 "Conn_02x05_Odd_Even" H 10350 2076 50  0000 C CNN
+F 2 "" H 10300 1750 50  0001 C CNN
+F 3 "~" H 10300 1750 50  0001 C CNN
+	1    10300 1750
+	1    0    0    -1  
+$EndComp
+Text Label 9400 1750 0    50   ~ 0
+In_N_220
+Text Label 9400 1550 0    50   ~ 0
+In_L_220
+$Comp
+L power:GNDPWR #PWR?
+U 1 1 5ED5A0EE
+P 9850 2050
+F 0 "#PWR?" H 9850 1850 50  0001 C CNN
+F 1 "GNDPWR" H 9854 1896 50  0000 C CNN
+F 2 "" H 9850 2000 50  0001 C CNN
+F 3 "" H 9850 2000 50  0001 C CNN
+	1    9850 2050
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	9850 2050 9850 1950
+Wire Wire Line
+	9850 1950 10100 1950
+Wire Wire Line
+	10100 1950 10600 1950
+Connection ~ 10100 1950
+Wire Wire Line
+	10600 1750 10100 1750
+Wire Wire Line
+	10100 1750 9400 1750
+Connection ~ 10100 1750
+Wire Wire Line
+	10600 1550 10100 1550
+Wire Wire Line
+	10100 1550 9400 1550
+Connection ~ 10100 1550
+Text Label 8800 4100 0    50   ~ 0
+Out_Analog0
+Text Label 8800 4300 0    50   ~ 0
+Out_Analog1
+Text Label 8800 4500 0    50   ~ 0
+In_Digital0
+Text Label 8800 4600 0    50   ~ 0
+In_Digital1
+Text Label 8800 4700 0    50   ~ 0
+In_Digital2
+Text Label 8800 4800 0    50   ~ 0
+Out_Digital0
+Text Label 8800 4900 0    50   ~ 0
+Out_Digital1
+Text Label 8800 5000 0    50   ~ 0
+Out_Digital2
+Text Label 10600 4200 2    50   ~ 0
+In_Analog0
+$Comp
+L power:+12V #PWR?
+U 1 1 5ED5A107
+P 10350 4550
+F 0 "#PWR?" H 10350 4400 50  0001 C CNN
+F 1 "+12V" H 10365 4723 50  0000 C CNN
+F 2 "" H 10350 4550 50  0001 C CNN
+F 3 "" H 10350 4550 50  0001 C CNN
+	1    10350 4550
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+5V #PWR?
+U 1 1 5ED5A10D
+P 10500 4750
+F 0 "#PWR?" H 10500 4600 50  0001 C CNN
+F 1 "+5V" H 10515 4923 50  0000 C CNN
+F 2 "" H 10500 4750 50  0001 C CNN
+F 3 "" H 10500 4750 50  0001 C CNN
+	1    10500 4750
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+3.3V #PWR?
+U 1 1 5ED5A113
+P 10650 4950
+F 0 "#PWR?" H 10650 4800 50  0001 C CNN
+F 1 "+3.3V" H 10665 5123 50  0000 C CNN
+F 2 "" H 10650 4950 50  0001 C CNN
+F 3 "" H 10650 4950 50  0001 C CNN
+	1    10650 4950
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 5ED5A119
+P 10150 5100
+F 0 "#PWR?" H 10150 4850 50  0001 C CNN
+F 1 "GND" H 10155 4927 50  0000 C CNN
+F 2 "" H 10150 5100 50  0001 C CNN
+F 3 "" H 10150 5100 50  0001 C CNN
+	1    10150 5100
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GNDA #PWR?
+U 1 1 5ED5A11F
+P 8450 4450
+F 0 "#PWR?" H 8450 4200 50  0001 C CNN
+F 1 "GNDA" H 8455 4277 50  0000 C CNN
+F 2 "" H 8450 4450 50  0001 C CNN
+F 3 "" H 8450 4450 50  0001 C CNN
+	1    8450 4450
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	9450 4200 8450 4200
+Wire Wire Line
+	8450 4200 8450 4400
+Wire Wire Line
+	9450 4400 8450 4400
+Connection ~ 8450 4400
+Wire Wire Line
+	8450 4400 8450 4450
+$Comp
+L power:GNDA #PWR?
+U 1 1 5ED5A12A
+P 10800 4350
+F 0 "#PWR?" H 10800 4100 50  0001 C CNN
+F 1 "GNDA" H 10805 4177 50  0000 C CNN
+F 2 "" H 10800 4350 50  0001 C CNN
+F 3 "" H 10800 4350 50  0001 C CNN
+	1    10800 4350
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	10800 4350 10800 4300
+Wire Wire Line
+	10800 4100 9950 4100
+Wire Wire Line
+	9950 4300 10800 4300
+Connection ~ 10800 4300
+Wire Wire Line
+	10800 4300 10800 4100
+Wire Wire Line
+	9950 4400 10150 4400
+Wire Wire Line
+	10150 4400 10150 4500
+Wire Wire Line
+	9950 4500 10150 4500
+Connection ~ 10150 4500
+Wire Wire Line
+	10150 4500 10150 4700
+Wire Wire Line
+	9950 4700 10150 4700
+Connection ~ 10150 4700
+Wire Wire Line
+	10150 4700 10150 4900
+Wire Wire Line
+	9950 4900 10150 4900
+Connection ~ 10150 4900
+Wire Wire Line
+	10150 4900 10150 5100
+Wire Wire Line
+	9950 5000 10650 5000
+Wire Wire Line
+	10650 5000 10650 4950
+Wire Wire Line
+	9950 4800 10500 4800
+Wire Wire Line
+	10500 4800 10500 4750
+Wire Wire Line
+	9950 4600 10350 4600
+Wire Wire Line
+	10350 4600 10350 4550
+Wire Wire Line
+	9950 4200 10600 4200
+Wire Wire Line
+	9450 4100 8800 4100
+Wire Wire Line
+	9450 4300 8800 4300
+Wire Wire Line
+	8800 4500 9450 4500
+Wire Wire Line
+	9450 4600 8800 4600
+Wire Wire Line
+	8800 4700 9450 4700
+Wire Wire Line
+	9450 4800 8800 4800
+Wire Wire Line
+	8800 4900 9450 4900
+Wire Wire Line
+	9450 5000 8800 5000
+NoConn ~ 10100 1650
+NoConn ~ 10600 1650
+NoConn ~ 10600 1850
+NoConn ~ 10100 1850
+$Comp
+L Amplifier_Operational:LM324 U?
+U 1 1 5ED5F057
+P 6700 1950
+F 0 "U?" H 6700 2317 50  0000 C CNN
+F 1 "LM324" H 6700 2226 50  0000 C CNN
+F 2 "" H 6650 2050 50  0001 C CNN
+F 3 "http://www.ti.com/lit/ds/symlink/lm2902-n.pdf" H 6750 2150 50  0001 C CNN
+	1    6700 1950
+	1    0    0    -1  
+$EndComp
+$Comp
+L Amplifier_Operational:LM324 U?
+U 2 1 5ED60EBA
+P 5800 3050
+F 0 "U?" H 5800 3417 50  0000 C CNN
+F 1 "LM324" H 5800 3326 50  0000 C CNN
+F 2 "" H 5750 3150 50  0001 C CNN
+F 3 "http://www.ti.com/lit/ds/symlink/lm2902-n.pdf" H 5850 3250 50  0001 C CNN
+	2    5800 3050
+	1    0    0    -1  
+$EndComp
+$Comp
+L Amplifier_Operational:LM324 U?
+U 3 1 5ED62CBE
+P 4650 4050
+F 0 "U?" H 4650 4417 50  0000 C CNN
+F 1 "LM324" H 4650 4326 50  0000 C CNN
+F 2 "" H 4600 4150 50  0001 C CNN
+F 3 "http://www.ti.com/lit/ds/symlink/lm2902-n.pdf" H 4700 4250 50  0001 C CNN
+	3    4650 4050
+	1    0    0    -1  
+$EndComp
+$Comp
+L Amplifier_Operational:LM324 U?
+U 4 1 5ED64981
+P 5850 4100
+F 0 "U?" H 5850 4467 50  0000 C CNN
+F 1 "LM324" H 5850 4376 50  0000 C CNN
+F 2 "" H 5800 4200 50  0001 C CNN
+F 3 "http://www.ti.com/lit/ds/symlink/lm2902-n.pdf" H 5900 4300 50  0001 C CNN
+	4    5850 4100
+	1    0    0    -1  
+$EndComp
+$Comp
+L Amplifier_Operational:LM324 U?
+U 5 1 5ED66455
+P 1700 5700
+F 0 "U?" H 1658 5746 50  0000 L CNN
+F 1 "LM324" H 1658 5655 50  0000 L CNN
+F 2 "" H 1650 5800 50  0001 C CNN
+F 3 "http://www.ti.com/lit/ds/symlink/lm2902-n.pdf" H 1750 5900 50  0001 C CNN
+	5    1700 5700
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R R?
+U 1 1 5ED8A73B
+P 3900 2400
+F 0 "R?" H 3950 2400 50  0000 L CNN
+F 1 "0.47 1/4w" V 3800 2200 50  0000 L CNN
+F 2 "Resistor_THT:R_Axial_DIN0309_L9.0mm_D3.2mm_P12.70mm_Horizontal" V 3830 2400 50  0001 C CNN
+F 3 "~" H 3900 2400 50  0001 C CNN
+	1    3900 2400
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R R?
+U 1 1 5ED916B6
+P 4200 2400
+F 0 "R?" H 4250 2400 50  0000 L CNN
+F 1 "0.47 1/4w" V 4100 2200 50  0000 L CNN
+F 2 "Resistor_THT:R_Axial_DIN0309_L9.0mm_D3.2mm_P12.70mm_Horizontal" V 4130 2400 50  0001 C CNN
+F 3 "~" H 4200 2400 50  0001 C CNN
+	1    4200 2400
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R R?
+U 1 1 5ED91F86
+P 4500 2400
+F 0 "R?" H 4550 2400 50  0000 L CNN
+F 1 "0.47 1/4w" V 4400 2200 50  0000 L CNN
+F 2 "Resistor_THT:R_Axial_DIN0309_L9.0mm_D3.2mm_P12.70mm_Horizontal" V 4430 2400 50  0001 C CNN
+F 3 "~" H 4500 2400 50  0001 C CNN
+	1    4500 2400
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R R?
+U 1 1 5ED92913
+P 4800 2400
+F 0 "R?" H 4850 2400 50  0000 L CNN
+F 1 "0.47 1/4w" V 4700 2200 50  0000 L CNN
+F 2 "Resistor_THT:R_Axial_DIN0309_L9.0mm_D3.2mm_P12.70mm_Horizontal" V 4730 2400 50  0001 C CNN
+F 3 "~" H 4800 2400 50  0001 C CNN
+	1    4800 2400
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R R?
+U 1 1 5ED93331
+P 5100 2400
+F 0 "R?" H 5150 2400 50  0000 L CNN
+F 1 "0.47 1/4w" V 5000 2200 50  0000 L CNN
+F 2 "Resistor_THT:R_Axial_DIN0309_L9.0mm_D3.2mm_P12.70mm_Horizontal" V 5030 2400 50  0001 C CNN
+F 3 "~" H 5100 2400 50  0001 C CNN
+	1    5100 2400
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5100 2250 5100 2100
+Wire Wire Line
+	5100 2100 4800 2100
+Wire Wire Line
+	3900 2100 3900 2250
+Wire Wire Line
+	4200 2100 4200 2250
+Connection ~ 4200 2100
+Wire Wire Line
+	4200 2100 3900 2100
+Wire Wire Line
+	4500 2100 4500 2250
+Connection ~ 4500 2100
+Wire Wire Line
+	4500 2100 4200 2100
+Wire Wire Line
+	4800 2100 4800 2250
+Connection ~ 4800 2100
+Wire Wire Line
+	4800 2100 4500 2100
+Wire Wire Line
+	3900 2550 3900 2700
+Wire Wire Line
+	3900 2700 4200 2700
+Wire Wire Line
+	5100 2700 5100 2550
+Wire Wire Line
+	4800 2550 4800 2700
+Connection ~ 4800 2700
+Wire Wire Line
+	4800 2700 5100 2700
+Wire Wire Line
+	4500 2550 4500 2700
+Connection ~ 4500 2700
+Wire Wire Line
+	4500 2700 4800 2700
+Wire Wire Line
+	4200 2550 4200 2700
+Connection ~ 4200 2700
+Wire Wire Line
+	4200 2700 4500 2700
+$Comp
+L power:GNDA #PWR?
+U 1 1 5ED9BB1A
+P 4500 2900
+F 0 "#PWR?" H 4500 2650 50  0001 C CNN
+F 1 "GNDA" H 4505 2727 50  0000 C CNN
+F 2 "" H 4500 2900 50  0001 C CNN
+F 3 "" H 4500 2900 50  0001 C CNN
+	1    4500 2900
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4500 2900 4500 2700
+Text Label 1400 3150 0    50   ~ 0
+(+)Drive_In
+Wire Wire Line
+	4700 1200 4500 1200
+$Comp
+L Connector:Conn_01x11_Female J?
+U 1 1 5EDA75F8
+P 1200 3350
+F 0 "J?" H 1092 2625 50  0000 C CNN
+F 1 "Conn_01x11_Female" H 1092 2716 50  0000 C CNN
+F 2 "" H 1200 3350 50  0001 C CNN
+F 3 "~" H 1200 3350 50  0001 C CNN
+	1    1200 3350
+	-1   0    0    1   
+$EndComp
+Text Label 2100 2950 2    50   ~ 0
+In_N_220
+Text Label 2100 3050 2    50   ~ 0
+In_L_220
+Wire Wire Line
+	1400 2950 2100 2950
+Wire Wire Line
+	1400 3050 2100 3050
+Wire Wire Line
+	1850 2750 1850 2850
+$Comp
+L power:GNDPWR #PWR?
+U 1 1 5EDAAA7D
+P 1850 2750
+F 0 "#PWR?" H 1850 2550 50  0001 C CNN
+F 1 "GNDPWR" H 1854 2596 50  0000 C CNN
+F 2 "" H 1850 2700 50  0001 C CNN
+F 3 "" H 1850 2700 50  0001 C CNN
+	1    1850 2750
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	1400 2850 1850 2850
+Text Label 1400 3250 0    50   ~ 0
+(-)Drive_In
+Wire Wire Line
+	1400 3250 2050 3250
+Wire Wire Line
+	2150 3250 2150 3400
+$Comp
+L power:GNDA #PWR?
+U 1 1 5EDB7AE8
+P 2150 3400
+F 0 "#PWR?" H 2150 3150 50  0001 C CNN
+F 1 "GNDA" H 2155 3227 50  0000 C CNN
+F 2 "" H 2150 3400 50  0001 C CNN
+F 3 "" H 2150 3400 50  0001 C CNN
+	1    2150 3400
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1400 3150 2350 3150
+Wire Wire Line
+	2350 3150 2350 3750
+Wire Wire Line
+	2350 3750 1400 3750
+Text Label 1850 3750 2    50   ~ 0
+(+)Load
+Wire Wire Line
+	1400 3850 1850 3850
+Text Label 1850 3850 2    50   ~ 0
+(-)Load
+Text Label 1950 3350 2    50   ~ 0
+(+)R_Dimmer
+Wire Wire Line
+	1400 3350 1950 3350
+Wire Wire Line
+	1400 3450 1950 3450
+Text Label 1950 3450 2    50   ~ 0
+(-)R_Dimmer
+Text Label 1950 3550 2    50   ~ 0
+(+)V_Dimmer
+Wire Wire Line
+	1400 3550 1950 3550
+Text Label 1950 3650 2    50   ~ 0
+(-)V_Dimmer
+Wire Wire Line
+	2050 3650 2050 3250
+Wire Wire Line
+	1400 3650 2050 3650
+Connection ~ 2050 3250
+Wire Wire Line
+	2050 3250 2150 3250
+Text Label 4700 1200 2    50   ~ 0
+(-)Load
+Wire Wire Line
+	4500 1200 4500 1850
+$Comp
+L Device:R R?
+U 1 1 5EDE8801
+P 5000 1850
+F 0 "R?" V 4793 1850 50  0000 C CNN
+F 1 "220v 1/4w" V 4884 1850 50  0000 C CNN
+F 2 "" V 4930 1850 50  0001 C CNN
+F 3 "~" H 5000 1850 50  0001 C CNN
+	1    5000 1850
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:D_Zener D?
+U 1 1 5EDE9893
+P 5500 2100
+F 0 "D?" V 5454 2179 50  0000 L CNN
+F 1 "D_Zener 12v" V 5545 2179 50  0000 L CNN
+F 2 "" H 5500 2100 50  0001 C CNN
+F 3 "~" H 5500 2100 50  0001 C CNN
+	1    5500 2100
+	0    1    1    0   
+$EndComp
+$Comp
+L power:GNDA #PWR?
+U 1 1 5EDEA4B5
+P 5500 2250
+F 0 "#PWR?" H 5500 2000 50  0001 C CNN
+F 1 "GNDA" H 5505 2077 50  0000 C CNN
+F 2 "" H 5500 2250 50  0001 C CNN
+F 3 "" H 5500 2250 50  0001 C CNN
+	1    5500 2250
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	5150 1850 5500 1850
+Wire Wire Line
+	5500 1950 5500 1850
+Wire Wire Line
+	4850 1850 4500 1850
+Connection ~ 4500 1850
+Wire Wire Line
+	4500 1850 4500 2100
+Wire Wire Line
+	5500 1850 6400 1850
+Connection ~ 5500 1850
+Text Notes 6450 1350 0    50   ~ 0
+Ganancia 42.55
+$EndSCHEMATC

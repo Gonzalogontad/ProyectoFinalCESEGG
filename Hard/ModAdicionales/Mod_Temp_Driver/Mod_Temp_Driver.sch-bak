@@ -222,4 +222,15 @@ NoConn ~ 3650 2550
 NoConn ~ 4150 2550
 NoConn ~ 4150 2750
 NoConn ~ 3650 2750
+$Comp
+L Relay:G5LE-1 K?
+U 1 1 5EEBE0CB
+P 8000 3800
+F 0 "K?" H 8430 3846 50  0000 L CNN
+F 1 "G5LE-1" H 8430 3755 50  0000 L CNN
+F 2 "Relay_THT:Relay_SPDT_Omron-G5LE-1" H 8450 3750 50  0001 L CNN
+F 3 "http://www.omron.com/ecb/products/pdf/en-g5le.pdf" H 8000 3800 50  0001 C CNN
+	1    8000 3800
+	1    0    0    -1  
+$EndComp
 $EndSCHEMATC
