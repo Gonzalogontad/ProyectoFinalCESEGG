@@ -1,4 +1,5 @@
 EESchema Schematic File Version 4
+LIBS:ModPrincipal-cache
 EELAYER 30 0
 EELAYER END
 $Descr A4 11693 8268
@@ -20,21 +21,6 @@ CPU_Out1
 Text HLabel 2100 4250 0    50   Input ~ 0
 CPU_Out2
 $Comp
-L Transistor_FET:2N7002 Q?
-U 1 1 5EE76D0E
-P 2950 1500
-AR Path="/5ED20EE2/5EE76D0E" Ref="Q?"  Part="1" 
-AR Path="/5EE6B2B0/5EE76D0E" Ref="Q702"  Part="1" 
-F 0 "Q702" H 3156 1546 50  0000 L CNN
-F 1 "2N7002" H 3156 1455 50  0000 L CNN
-F 2 "Package_TO_SOT_SMD:SOT-23" H 3150 1425 50  0001 L CIN
-F 3 "https://www.fairchildsemi.com/datasheets/2N/2N7002.pdf" H 2950 1500 50  0001 L CNN
-	1    2950 1500
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	3050 1300 3050 1250
-$Comp
 L Device:R R?
 U 1 1 5EE76D16
 P 2500 1500
@@ -42,7 +28,7 @@ AR Path="/5EC7150D/5EE76D16" Ref="R?"  Part="1"
 AR Path="/5ED20EE2/5EE76D16" Ref="R?"  Part="1" 
 AR Path="/5EE6B2B0/5EE76D16" Ref="R703"  Part="1" 
 F 0 "R703" V 2600 1450 50  0000 L CNN
-F 1 "10k" V 2400 1450 50  0000 L CNN
+F 1 "330" V 2400 1450 50  0000 L CNN
 F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder" V 2430 1500 50  0001 C CNN
 F 3 "~" H 2500 1500 50  0001 C CNN
 	1    2500 1500
@@ -50,221 +36,14 @@ F 3 "~" H 2500 1500 50  0001 C CNN
 $EndComp
 Wire Wire Line
 	2100 1500 2350 1500
-$Comp
-L Device:R R?
-U 1 1 5EE76D1E
-P 2700 1850
-AR Path="/5EC7150D/5EE76D1E" Ref="R?"  Part="1" 
-AR Path="/5ED20EE2/5EE76D1E" Ref="R?"  Part="1" 
-AR Path="/5EE6B2B0/5EE76D1E" Ref="R706"  Part="1" 
-F 0 "R706" V 2800 1800 50  0000 L CNN
-F 1 "330 k" V 2600 1800 50  0000 L CNN
-F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder" V 2630 1850 50  0001 C CNN
-F 3 "~" H 2700 1850 50  0001 C CNN
-	1    2700 1850
-	-1   0    0    1   
-$EndComp
-Wire Wire Line
-	2700 1700 2700 1500
-$Comp
-L power:GND #PWR0703
-U 1 1 5EE7ABCF
-P 2700 2150
-F 0 "#PWR0703" H 2700 1900 50  0001 C CNN
-F 1 "GND" H 2705 1977 50  0000 C CNN
-F 2 "" H 2700 2150 50  0001 C CNN
-F 3 "" H 2700 2150 50  0001 C CNN
-	1    2700 2150
-	1    0    0    -1  
-$EndComp
-$Comp
-L power:GND #PWR0708
-U 1 1 5EE7C10C
-P 3050 1900
-F 0 "#PWR0708" H 3050 1650 50  0001 C CNN
-F 1 "GND" H 3055 1727 50  0000 C CNN
-F 2 "" H 3050 1900 50  0001 C CNN
-F 3 "" H 3050 1900 50  0001 C CNN
-	1    3050 1900
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	2650 1500 2700 1500
-Connection ~ 2700 1500
-Wire Wire Line
-	2700 1500 2750 1500
-Wire Wire Line
-	3050 1700 3050 1900
-Wire Wire Line
-	2700 2000 2700 2150
-$Comp
-L Transistor_FET:2N7002 Q?
-U 1 1 5EE8E735
-P 2950 2800
-AR Path="/5ED20EE2/5EE8E735" Ref="Q?"  Part="1" 
-AR Path="/5EE6B2B0/5EE8E735" Ref="Q703"  Part="1" 
-F 0 "Q703" H 3156 2846 50  0000 L CNN
-F 1 "2N7002" H 3156 2755 50  0000 L CNN
-F 2 "Package_TO_SOT_SMD:SOT-23" H 3150 2725 50  0001 L CIN
-F 3 "https://www.fairchildsemi.com/datasheets/2N/2N7002.pdf" H 2950 2800 50  0001 L CNN
-	1    2950 2800
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	3050 2600 3050 2550
-$Comp
-L Device:R R?
-U 1 1 5EE8E73C
-P 2500 2800
-AR Path="/5EC7150D/5EE8E73C" Ref="R?"  Part="1" 
-AR Path="/5ED20EE2/5EE8E73C" Ref="R?"  Part="1" 
-AR Path="/5EE6B2B0/5EE8E73C" Ref="R704"  Part="1" 
-F 0 "R704" V 2600 2750 50  0000 L CNN
-F 1 "10k" V 2400 2750 50  0000 L CNN
-F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder" V 2430 2800 50  0001 C CNN
-F 3 "~" H 2500 2800 50  0001 C CNN
-	1    2500 2800
-	0    -1   -1   0   
-$EndComp
 Wire Wire Line
 	2100 2800 2350 2800
-$Comp
-L Device:R R?
-U 1 1 5EE8E743
-P 2700 3150
-AR Path="/5EC7150D/5EE8E743" Ref="R?"  Part="1" 
-AR Path="/5ED20EE2/5EE8E743" Ref="R?"  Part="1" 
-AR Path="/5EE6B2B0/5EE8E743" Ref="R707"  Part="1" 
-F 0 "R707" V 2800 3100 50  0000 L CNN
-F 1 "330 k" V 2600 3100 50  0000 L CNN
-F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder" V 2630 3150 50  0001 C CNN
-F 3 "~" H 2700 3150 50  0001 C CNN
-	1    2700 3150
-	-1   0    0    1   
-$EndComp
-Wire Wire Line
-	2700 3000 2700 2800
-$Comp
-L power:GND #PWR0704
-U 1 1 5EE8E74A
-P 2700 3450
-F 0 "#PWR0704" H 2700 3200 50  0001 C CNN
-F 1 "GND" H 2705 3277 50  0000 C CNN
-F 2 "" H 2700 3450 50  0001 C CNN
-F 3 "" H 2700 3450 50  0001 C CNN
-	1    2700 3450
-	1    0    0    -1  
-$EndComp
-$Comp
-L power:GND #PWR0709
-U 1 1 5EE8E750
-P 3050 3200
-F 0 "#PWR0709" H 3050 2950 50  0001 C CNN
-F 1 "GND" H 3055 3027 50  0000 C CNN
-F 2 "" H 3050 3200 50  0001 C CNN
-F 3 "" H 3050 3200 50  0001 C CNN
-	1    3050 3200
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	2650 2800 2700 2800
-Connection ~ 2700 2800
-Wire Wire Line
-	2700 2800 2750 2800
-Wire Wire Line
-	3050 3000 3050 3200
-Wire Wire Line
-	2700 3300 2700 3450
-$Comp
-L Transistor_FET:2N7002 Q?
-U 1 1 5EE98A51
-P 2950 4250
-AR Path="/5ED20EE2/5EE98A51" Ref="Q?"  Part="1" 
-AR Path="/5EE6B2B0/5EE98A51" Ref="Q704"  Part="1" 
-F 0 "Q704" H 3156 4296 50  0000 L CNN
-F 1 "2N7002" H 3156 4205 50  0000 L CNN
-F 2 "Package_TO_SOT_SMD:SOT-23" H 3150 4175 50  0001 L CIN
-F 3 "https://www.fairchildsemi.com/datasheets/2N/2N7002.pdf" H 2950 4250 50  0001 L CNN
-	1    2950 4250
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	3050 4050 3050 4000
-$Comp
-L Device:R R?
-U 1 1 5EE98A58
-P 2500 4250
-AR Path="/5EC7150D/5EE98A58" Ref="R?"  Part="1" 
-AR Path="/5ED20EE2/5EE98A58" Ref="R?"  Part="1" 
-AR Path="/5EE6B2B0/5EE98A58" Ref="R705"  Part="1" 
-F 0 "R705" V 2600 4200 50  0000 L CNN
-F 1 "10k" V 2400 4200 50  0000 L CNN
-F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder" V 2430 4250 50  0001 C CNN
-F 3 "~" H 2500 4250 50  0001 C CNN
-	1    2500 4250
-	0    -1   -1   0   
-$EndComp
 Wire Wire Line
 	2100 4250 2350 4250
-$Comp
-L Device:R R?
-U 1 1 5EE98A5F
-P 2700 4600
-AR Path="/5EC7150D/5EE98A5F" Ref="R?"  Part="1" 
-AR Path="/5ED20EE2/5EE98A5F" Ref="R?"  Part="1" 
-AR Path="/5EE6B2B0/5EE98A5F" Ref="R708"  Part="1" 
-F 0 "R708" V 2800 4550 50  0000 L CNN
-F 1 "330 k" V 2600 4550 50  0000 L CNN
-F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder" V 2630 4600 50  0001 C CNN
-F 3 "~" H 2700 4600 50  0001 C CNN
-	1    2700 4600
-	-1   0    0    1   
-$EndComp
-Wire Wire Line
-	2700 4450 2700 4250
-$Comp
-L power:GND #PWR0705
-U 1 1 5EE98A66
-P 2700 4900
-F 0 "#PWR0705" H 2700 4650 50  0001 C CNN
-F 1 "GND" H 2705 4727 50  0000 C CNN
-F 2 "" H 2700 4900 50  0001 C CNN
-F 3 "" H 2700 4900 50  0001 C CNN
-	1    2700 4900
-	1    0    0    -1  
-$EndComp
-$Comp
-L power:GND #PWR0710
-U 1 1 5EE98A6C
-P 3050 4650
-F 0 "#PWR0710" H 3050 4400 50  0001 C CNN
-F 1 "GND" H 3055 4477 50  0000 C CNN
-F 2 "" H 3050 4650 50  0001 C CNN
-F 3 "" H 3050 4650 50  0001 C CNN
-	1    3050 4650
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	2650 4250 2700 4250
-Connection ~ 2700 4250
-Wire Wire Line
-	2700 4250 2750 4250
-Wire Wire Line
-	3050 4450 3050 4650
-Wire Wire Line
-	2700 4750 2700 4900
-Text HLabel 3500 1250 2    50   Output ~ 0
-Salida0
-Text HLabel 3500 2550 2    50   Output ~ 0
+Text HLabel 3400 2800 2    50   Output ~ 0
 Salida1
-Text HLabel 3500 4000 2    50   Output ~ 0
+Text HLabel 3400 4250 2    50   Output ~ 0
 Salida2
-Wire Wire Line
-	3500 4000 3050 4000
-Wire Wire Line
-	3500 2550 3050 2550
-Wire Wire Line
-	3050 1250 3500 1250
 Text HLabel 9850 1550 2    50   Output ~ 0
 CPU_In0
 $Comp
@@ -910,4 +689,151 @@ F 3 "http://www.te.com/commerce/DocumentDelivery/DDEController?Action=showdoc&Do
 	1    3250 6000
 	1    0    0    -1  
 $EndComp
+$Comp
+L Isolator:PC817 U701
+U 1 1 5ED8017C
+P 2950 1600
+F 0 "U701" H 2950 1925 50  0000 C CNN
+F 1 "PC817" H 2950 1834 50  0000 C CNN
+F 2 "Package_SO:SO-4_7.6x3.6mm_P2.54mm" H 2750 1400 50  0001 L CIN
+F 3 "http://www.soselectronic.cz/a_info/resource/d/pc817.pdf" H 2950 1600 50  0001 L CNN
+	1    2950 1600
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2650 1700 2500 1700
+Wire Wire Line
+	2500 1700 2500 1950
+Wire Wire Line
+	2500 1950 2900 1950
+Wire Wire Line
+	3400 1950 3400 1700
+Wire Wire Line
+	3400 1700 3250 1700
+Text HLabel 3400 1500 2    50   Output ~ 0
+Salida0
+$Comp
+L power:GND #PWR0113
+U 1 1 5ED85533
+P 2900 2000
+F 0 "#PWR0113" H 2900 1750 50  0001 C CNN
+F 1 "GND" H 2905 1827 50  0000 C CNN
+F 2 "" H 2900 2000 50  0001 C CNN
+F 3 "" H 2900 2000 50  0001 C CNN
+	1    2900 2000
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R R?
+U 1 1 5ED8C366
+P 2500 2800
+AR Path="/5EC7150D/5ED8C366" Ref="R?"  Part="1" 
+AR Path="/5ED20EE2/5ED8C366" Ref="R?"  Part="1" 
+AR Path="/5EE6B2B0/5ED8C366" Ref="R704"  Part="1" 
+F 0 "R704" V 2600 2750 50  0000 L CNN
+F 1 "330" V 2400 2750 50  0000 L CNN
+F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder" V 2430 2800 50  0001 C CNN
+F 3 "~" H 2500 2800 50  0001 C CNN
+	1    2500 2800
+	0    -1   -1   0   
+$EndComp
+$Comp
+L Isolator:PC817 U702
+U 1 1 5ED8C36C
+P 2950 2900
+F 0 "U702" H 2950 3225 50  0000 C CNN
+F 1 "PC817" H 2950 3134 50  0000 C CNN
+F 2 "Package_SO:SO-4_7.6x3.6mm_P2.54mm" H 2750 2700 50  0001 L CIN
+F 3 "http://www.soselectronic.cz/a_info/resource/d/pc817.pdf" H 2950 2900 50  0001 L CNN
+	1    2950 2900
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2650 3000 2500 3000
+Wire Wire Line
+	2500 3000 2500 3250
+Wire Wire Line
+	2500 3250 2900 3250
+Wire Wire Line
+	3400 3250 3400 3000
+Wire Wire Line
+	3400 3000 3250 3000
+$Comp
+L power:GND #PWR0114
+U 1 1 5ED8C378
+P 2900 3300
+F 0 "#PWR0114" H 2900 3050 50  0001 C CNN
+F 1 "GND" H 2905 3127 50  0000 C CNN
+F 2 "" H 2900 3300 50  0001 C CNN
+F 3 "" H 2900 3300 50  0001 C CNN
+	1    2900 3300
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R R?
+U 1 1 5ED950A7
+P 2500 4250
+AR Path="/5EC7150D/5ED950A7" Ref="R?"  Part="1" 
+AR Path="/5ED20EE2/5ED950A7" Ref="R?"  Part="1" 
+AR Path="/5EE6B2B0/5ED950A7" Ref="R705"  Part="1" 
+F 0 "R705" V 2600 4200 50  0000 L CNN
+F 1 "330" V 2400 4200 50  0000 L CNN
+F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder" V 2430 4250 50  0001 C CNN
+F 3 "~" H 2500 4250 50  0001 C CNN
+	1    2500 4250
+	0    -1   -1   0   
+$EndComp
+$Comp
+L Isolator:PC817 U703
+U 1 1 5ED950AD
+P 2950 4350
+F 0 "U703" H 2950 4675 50  0000 C CNN
+F 1 "PC817" H 2950 4584 50  0000 C CNN
+F 2 "Package_SO:SO-4_7.6x3.6mm_P2.54mm" H 2750 4150 50  0001 L CIN
+F 3 "http://www.soselectronic.cz/a_info/resource/d/pc817.pdf" H 2950 4350 50  0001 L CNN
+	1    2950 4350
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2650 4450 2500 4450
+Wire Wire Line
+	2500 4450 2500 4700
+Wire Wire Line
+	2500 4700 2900 4700
+Wire Wire Line
+	3400 4700 3400 4450
+Wire Wire Line
+	3400 4450 3250 4450
+$Comp
+L power:GND #PWR0115
+U 1 1 5ED950B9
+P 2900 4750
+F 0 "#PWR0115" H 2900 4500 50  0001 C CNN
+F 1 "GND" H 2905 4577 50  0000 C CNN
+F 2 "" H 2900 4750 50  0001 C CNN
+F 3 "" H 2900 4750 50  0001 C CNN
+	1    2900 4750
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3250 4250 3400 4250
+Wire Wire Line
+	3250 2800 3400 2800
+Wire Wire Line
+	3250 1500 3400 1500
+Wire Wire Line
+	2900 4750 2900 4700
+Connection ~ 2900 4700
+Wire Wire Line
+	2900 4700 3400 4700
+Wire Wire Line
+	2900 3300 2900 3250
+Connection ~ 2900 3250
+Wire Wire Line
+	2900 3250 3400 3250
+Wire Wire Line
+	2900 1950 2900 2000
+Connection ~ 2900 1950
+Wire Wire Line
+	2900 1950 3400 1950
 $EndSCHEMATC
