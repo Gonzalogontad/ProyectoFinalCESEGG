@@ -1,10 +1,9 @@
 EESchema Schematic File Version 4
-LIBS:Mod_Temp_Driver-cache
 EELAYER 30 0
 EELAYER END
 $Descr A4 11693 8268
 encoding utf-8
-Sheet 1 3
+Sheet 1 5
 Title ""
 Date ""
 Rev ""
@@ -15,13 +14,13 @@ Comment3 ""
 Comment4 ""
 $EndDescr
 $Sheet
-S 5350 1000 1800 1550
+S 2800 2650 1800 1550
 U 5ED5374F
 F0 "ProbadorDriver" 118
 F1 "ProbadorDriver.sch" 118
 $EndSheet
 $Sheet
-S 8350 1100 1800 1700
+S 6800 2600 1800 1700
 U 5ED538D0
 F0 "ProbadorTemporizador" 118
 F1 "ProbadorTemporizador.sch" 118
