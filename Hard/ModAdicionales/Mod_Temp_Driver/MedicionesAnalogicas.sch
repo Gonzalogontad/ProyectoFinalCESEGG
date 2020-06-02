@@ -148,7 +148,7 @@ AR Path="/5ED5374F/5F185249" Ref="R?"  Part="1"
 AR Path="/5ED5374F/5F0ECABF/5F185249" Ref="R310"  Part="1" 
 F 0 "R310" V 3443 2150 50  0000 C CNN
 F 1 "220 1/4w" V 3534 2150 50  0000 C CNN
-F 2 "" V 3580 2150 50  0001 C CNN
+F 2 "Resistor_THT:R_Axial_DIN0309_L9.0mm_D3.2mm_P12.70mm_Horizontal" V 3580 2150 50  0001 C CNN
 F 3 "~" H 3650 2150 50  0001 C CNN
 	1    3650 2150
 	0    1    1    0   
@@ -161,7 +161,7 @@ AR Path="/5ED5374F/5F18524F" Ref="D?"  Part="1"
 AR Path="/5ED5374F/5F0ECABF/5F18524F" Ref="D301"  Part="1" 
 F 0 "D301" V 4104 2479 50  0000 L CNN
 F 1 "D_Zener 12v" V 4195 2479 50  0000 L CNN
-F 2 "" H 4150 2400 50  0001 C CNN
+F 2 "Diode_THT:D_DO-35_SOD27_P7.62mm_Horizontal" H 4150 2400 50  0001 C CNN
 F 3 "~" H 4150 2400 50  0001 C CNN
 	1    4150 2400
 	0    1    1    0   
@@ -201,7 +201,7 @@ AR Path="/5ED5374F/5F185263" Ref="U?"  Part="1"
 AR Path="/5ED5374F/5F0ECABF/5F185263" Ref="U302"  Part="1" 
 F 0 "U302" H 5350 2617 50  0000 C CNN
 F 1 "LM2904" H 5350 2526 50  0000 C CNN
-F 2 "" H 5350 2250 50  0001 C CNN
+F 2 "Package_SO:SO-8_3.9x4.9mm_P1.27mm" H 5350 2250 50  0001 C CNN
 F 3 "http://www.ti.com/lit/ds/symlink/lm358.pdf" H 5350 2250 50  0001 C CNN
 	1    5350 2250
 	1    0    0    -1  
@@ -214,7 +214,7 @@ AR Path="/5ED5374F/5F185269" Ref="U?"  Part="2"
 AR Path="/5ED5374F/5F0ECABF/5F185269" Ref="U302"  Part="2" 
 F 0 "U302" H 7000 2717 50  0000 C CNN
 F 1 "LM2904" H 7000 2626 50  0000 C CNN
-F 2 "" H 7000 2350 50  0001 C CNN
+F 2 "Package_SO:SO-8_3.9x4.9mm_P1.27mm" H 7000 2350 50  0001 C CNN
 F 3 "http://www.ti.com/lit/ds/symlink/lm358.pdf" H 7000 2350 50  0001 C CNN
 	2    7000 2350
 	1    0    0    -1  
@@ -227,7 +227,7 @@ AR Path="/5ED5374F/5F18526F" Ref="U?"  Part="3"
 AR Path="/5ED5374F/5F0ECABF/5F18526F" Ref="U301"  Part="3" 
 F 0 "U301" H 7108 1346 50  0000 L CNN
 F 1 "LM2904" H 7108 1255 50  0000 L CNN
-F 2 "" H 7150 1300 50  0001 C CNN
+F 2 "Package_SO:SO-8_3.9x4.9mm_P1.27mm" H 7150 1300 50  0001 C CNN
 F 3 "http://www.ti.com/lit/ds/symlink/lm358.pdf" H 7150 1300 50  0001 C CNN
 	3    7150 1300
 	1    0    0    -1  
@@ -481,7 +481,7 @@ AR Path="/5ED5374F/5F19BC33" Ref="U?"  Part="1"
 AR Path="/5ED5374F/5F0ECABF/5F19BC33" Ref="U301"  Part="1" 
 F 0 "U301" H 3400 6217 50  0000 C CNN
 F 1 "LM2904" H 3400 6126 50  0000 C CNN
-F 2 "" H 3400 5850 50  0001 C CNN
+F 2 "Package_SO:SO-8_3.9x4.9mm_P1.27mm" H 3400 5850 50  0001 C CNN
 F 3 "http://www.ti.com/lit/ds/symlink/lm358.pdf" H 3400 5850 50  0001 C CNN
 	1    3400 5850
 	1    0    0    -1  
@@ -494,7 +494,7 @@ AR Path="/5ED5374F/5F19BC39" Ref="U?"  Part="2"
 AR Path="/5ED5374F/5F0ECABF/5F19BC39" Ref="U301"  Part="2" 
 F 0 "U301" H 5100 6317 50  0000 C CNN
 F 1 "LM2904" H 5100 6226 50  0000 C CNN
-F 2 "" H 5100 5950 50  0001 C CNN
+F 2 "Package_SO:SO-8_3.9x4.9mm_P1.27mm" H 5100 5950 50  0001 C CNN
 F 3 "http://www.ti.com/lit/ds/symlink/lm358.pdf" H 5100 5950 50  0001 C CNN
 	2    5100 5950
 	1    0    0    -1  
@@ -507,7 +507,7 @@ AR Path="/5ED5374F/5F19BC3F" Ref="U?"  Part="3"
 AR Path="/5ED5374F/5F0ECABF/5F19BC3F" Ref="U302"  Part="3" 
 F 0 "U302" H 8108 5046 50  0000 L CNN
 F 1 "LM2904" H 8108 4955 50  0000 L CNN
-F 2 "" H 8150 5000 50  0001 C CNN
+F 2 "Package_SO:SO-8_3.9x4.9mm_P1.27mm" H 8150 5000 50  0001 C CNN
 F 3 "http://www.ti.com/lit/ds/symlink/lm358.pdf" H 8150 5000 50  0001 C CNN
 	3    8150 5000
 	1    0    0    -1  

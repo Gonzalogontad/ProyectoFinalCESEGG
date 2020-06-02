@@ -20,7 +20,7 @@ U 1 1 5ED5A0E0
 P 9600 4650
 F 0 "J203" H 9650 5267 50  0000 C CNN
 F 1 "Conn_02x10_Odd_Even" H 9650 5176 50  0000 C CNN
-F 2 "" H 9600 4650 50  0001 C CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_2x10_P2.54mm_Horizontal" H 9600 4650 50  0001 C CNN
 F 3 "~" H 9600 4650 50  0001 C CNN
 	1    9600 4650
 	1    0    0    -1  
@@ -162,7 +162,7 @@ U 1 1 5EDA75F8
 P 950 2050
 F 0 "J201" H 842 1325 50  0000 C CNN
 F 1 "Conn_01x11_Female" H 842 1416 50  0000 C CNN
-F 2 "" H 950 2050 50  0001 C CNN
+F 2 "TerminalBlock_Altech:Altech_AK300_1x11_P5.00mm_45-Degree" H 950 2050 50  0001 C CNN
 F 3 "~" H 950 2050 50  0001 C CNN
 	1    950  2050
 	-1   0    0    1   
@@ -254,7 +254,7 @@ AR Path="/5ED5374F/5F1BC542" Ref="J202"  Part="1"
 AR Path="/5ED5374F/5F0ECABF/5F1BC542" Ref="J?"  Part="1" 
 F 0 "J202" H 9400 2517 50  0000 C CNN
 F 1 "Conn_02x05_Odd_Even" H 9400 2426 50  0000 C CNN
-F 2 "" H 9350 2100 50  0001 C CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_2x05_P2.54mm_Horizontal" H 9350 2100 50  0001 C CNN
 F 3 "~" H 9350 2100 50  0001 C CNN
 	1    9350 2100
 	1    0    0    -1  
