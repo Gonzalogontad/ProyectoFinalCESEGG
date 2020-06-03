@@ -1,5 +1,4 @@
 EESchema Schematic File Version 4
-LIBS:Mod_Temp_Driver-cache
 EELAYER 30 0
 EELAYER END
 $Descr A4 11693 8268
@@ -20,7 +19,7 @@ U 1 1 5ED5CC20
 P 2150 2400
 F 0 "J501" H 2200 3017 50  0000 C CNN
 F 1 "Conn_02x10_Odd_Even" H 2200 2926 50  0000 C CNN
-F 2 "" H 2150 2400 50  0001 C CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_2x10_P2.54mm_Horizontal" H 2150 2400 50  0001 C CNN
 F 3 "~" H 2150 2400 50  0001 C CNN
 	1    2150 2400
 	1    0    0    -1  
@@ -31,7 +30,7 @@ U 1 1 5ED5CC26
 P 1900 6450
 F 0 "J502" H 1950 6867 50  0000 C CNN
 F 1 "Conn_02x05_Odd_Even" H 1950 6776 50  0000 C CNN
-F 2 "" H 1900 6450 50  0001 C CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_2x05_P2.54mm_Horizontal" H 1900 6450 50  0001 C CNN
 F 3 "~" H 1900 6450 50  0001 C CNN
 	1    1900 6450
 	1    0    0    -1  
@@ -160,7 +159,7 @@ U 1 1 5F47216D
 P 8850 4250
 F 0 "J503" H 8958 4631 50  0000 C CNN
 F 1 "Conn_01x06_Male" H 8958 4540 50  0000 C CNN
-F 2 "" H 8850 4250 50  0001 C CNN
+F 2 "Conectores:TerminalBlock_bornier-6_P5.00mm" H 8850 4250 50  0001 C CNN
 F 3 "~" H 8850 4250 50  0001 C CNN
 	1    8850 4250
 	-1   0    0    -1  
@@ -190,49 +189,49 @@ $EndComp
 $Comp
 L Device:R R?
 U 1 1 5F49E33D
-P 6650 5200
+P 6650 4450
 AR Path="/5ED5374F/5F49E33D" Ref="R?"  Part="1" 
 AR Path="/5ED5374F/5F0ECABF/5F49E33D" Ref="R?"  Part="1" 
 AR Path="/5ED538D0/5F49E33D" Ref="R506"  Part="1" 
-F 0 "R506" H 6700 5200 50  0000 L CNN
-F 1 "22K 1/4w (carbón)" H 5750 5200 50  0000 L CNN
-F 2 "Resistor_THT:R_Axial_DIN0309_L9.0mm_D3.2mm_P12.70mm_Horizontal" V 6580 5200 50  0001 C CNN
-F 3 "~" H 6650 5200 50  0001 C CNN
-	1    6650 5200
+F 0 "R506" H 6700 4450 50  0000 L CNN
+F 1 "22K 1/4w (carbón)" H 5750 4450 50  0000 L CNN
+F 2 "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal" V 6580 4450 50  0001 C CNN
+F 3 "~" H 6650 4450 50  0001 C CNN
+	1    6650 4450
 	0    -1   -1   0   
 $EndComp
 $Comp
 L Device:R R?
 U 1 1 5F49E343
-P 6250 5200
+P 6250 4450
 AR Path="/5ED5374F/5F49E343" Ref="R?"  Part="1" 
 AR Path="/5ED5374F/5F0ECABF/5F49E343" Ref="R?"  Part="1" 
 AR Path="/5ED538D0/5F49E343" Ref="R505"  Part="1" 
-F 0 "R505" H 6300 5200 50  0000 L CNN
-F 1 "22K 1/4w (carbón)" H 5350 5200 50  0000 L CNN
-F 2 "Resistor_THT:R_Axial_DIN0309_L9.0mm_D3.2mm_P12.70mm_Horizontal" V 6180 5200 50  0001 C CNN
-F 3 "~" H 6250 5200 50  0001 C CNN
-	1    6250 5200
+F 0 "R505" H 6300 4450 50  0000 L CNN
+F 1 "22K 1/4w (carbón)" H 5350 4450 50  0000 L CNN
+F 2 "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal" V 6180 4450 50  0001 C CNN
+F 3 "~" H 6250 4450 50  0001 C CNN
+	1    6250 4450
 	0    -1   -1   0   
 $EndComp
 $Comp
 L Device:R R?
 U 1 1 5F49E349
-P 5850 5200
+P 5850 4450
 AR Path="/5ED5374F/5F49E349" Ref="R?"  Part="1" 
 AR Path="/5ED5374F/5F0ECABF/5F49E349" Ref="R?"  Part="1" 
 AR Path="/5ED538D0/5F49E349" Ref="R504"  Part="1" 
-F 0 "R504" H 5900 5200 50  0000 L CNN
-F 1 "22K 1/4w (carbón)" H 4950 5200 50  0000 L CNN
-F 2 "Resistor_THT:R_Axial_DIN0309_L9.0mm_D3.2mm_P12.70mm_Horizontal" V 5780 5200 50  0001 C CNN
-F 3 "~" H 5850 5200 50  0001 C CNN
-	1    5850 5200
+F 0 "R504" H 5900 4450 50  0000 L CNN
+F 1 "22K 1/4w (carbón)" H 4950 4450 50  0000 L CNN
+F 2 "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal" V 5780 4450 50  0001 C CNN
+F 3 "~" H 5850 4450 50  0001 C CNN
+	1    5850 4450
 	0    -1   -1   0   
 $EndComp
 Wire Wire Line
-	6000 5200 6100 5200
+	6000 4450 6100 4450
 Wire Wire Line
-	6400 5200 6500 5200
+	6400 4450 6500 4450
 Wire Wire Line
 	8650 4350 8450 4350
 Wire Wire Line
@@ -385,8 +384,7 @@ Disparo temporizador\nde 4 cables
 Wire Wire Line
 	8650 4150 7950 4150
 Wire Wire Line
-	5550 4450 7350 4450
-Connection ~ 5550 4450
+	5550 5200 7350 5200
 Wire Wire Line
 	8650 4550 7950 4550
 $Comp
@@ -537,12 +535,12 @@ Wire Wire Line
 Wire Wire Line
 	3250 1000 3250 1100
 $Comp
-L Device:R R?
+L Device:R R501
 U 1 1 5EE569B7
 P 5400 1400
-AR Path="/5ED538D0/5EE569B7" Ref="R?"  Part="1" 
+AR Path="/5ED538D0/5EE569B7" Ref="R501"  Part="1" 
 AR Path="/5ED5374F/5F20E931/5EE569B7" Ref="R?"  Part="1" 
-F 0 "R?" H 5470 1446 50  0000 L CNN
+F 0 "R501" H 5470 1446 50  0000 L CNN
 F 1 "10k" H 5470 1355 50  0000 L CNN
 F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder" V 5330 1400 50  0001 C CNN
 F 3 "~" H 5400 1400 50  0001 C CNN
@@ -550,12 +548,12 @@ F 3 "~" H 5400 1400 50  0001 C CNN
 	0    -1   -1   0   
 $EndComp
 $Comp
-L Device:R R?
+L Device:R R502
 U 1 1 5EE569BD
 P 5650 1150
-AR Path="/5ED538D0/5EE569BD" Ref="R?"  Part="1" 
+AR Path="/5ED538D0/5EE569BD" Ref="R502"  Part="1" 
 AR Path="/5ED5374F/5F20E931/5EE569BD" Ref="R?"  Part="1" 
-F 0 "R?" H 5720 1196 50  0000 L CNN
+F 0 "R502" H 5720 1196 50  0000 L CNN
 F 1 "1M" H 5720 1105 50  0000 L CNN
 F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder" V 5580 1150 50  0001 C CNN
 F 3 "~" H 5650 1150 50  0001 C CNN
@@ -567,8 +565,8 @@ L Transistor_BJT:BC857 Q?
 U 1 1 5EE569C9
 P 5950 1400
 AR Path="/5ED5374F/5F20E931/5EE569C9" Ref="Q?"  Part="1" 
-AR Path="/5ED538D0/5EE569C9" Ref="Q?"  Part="1" 
-F 0 "Q?" H 6141 1354 50  0000 L CNN
+AR Path="/5ED538D0/5EE569C9" Ref="Q501"  Part="1" 
+F 0 "Q501" H 6141 1354 50  0000 L CNN
 F 1 "BC857" H 6141 1445 50  0000 L CNN
 F 2 "Package_TO_SOT_SMD:SOT-23" H 6150 1325 50  0001 L CIN
 F 3 "http://www.fairchildsemi.com/ds/BC/BC856.pdf" H 5950 1400 50  0001 L CNN
@@ -587,10 +585,10 @@ Wire Wire Line
 Wire Wire Line
 	5650 900  5650 1000
 $Comp
-L power:+12VA #PWR?
+L power:+12VA #PWR0118
 U 1 1 5EE5A34E
 P 6050 1100
-F 0 "#PWR?" H 6050 950 50  0001 C CNN
+F 0 "#PWR0118" H 6050 950 50  0001 C CNN
 F 1 "+12VA" H 6065 1273 50  0000 C CNN
 F 2 "" H 6050 1100 50  0001 C CNN
 F 3 "" H 6050 1100 50  0001 C CNN
@@ -598,10 +596,10 @@ F 3 "" H 6050 1100 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L power:+12VA #PWR?
+L power:+12VA #PWR0119
 U 1 1 5EE5BF0B
 P 5650 900
-F 0 "#PWR?" H 5650 750 50  0001 C CNN
+F 0 "#PWR0119" H 5650 750 50  0001 C CNN
 F 1 "+12VA" H 5665 1073 50  0000 C CNN
 F 2 "" H 5650 900 50  0001 C CNN
 F 3 "" H 5650 900 50  0001 C CNN
@@ -612,10 +610,10 @@ Connection ~ 6350 2800
 Wire Wire Line
 	6350 2800 6050 2800
 $Comp
-L Device:CP C?
+L Device:CP C501
 U 1 1 5EE6C262
 P 4050 5150
-F 0 "C?" H 4168 5196 50  0000 L CNN
+F 0 "C501" H 4168 5196 50  0000 L CNN
 F 1 "2.2uf" H 4168 5105 50  0000 L CNN
 F 2 "Capacitor_THT:CP_Radial_D5.0mm_P2.00mm" H 4088 5000 50  0001 C CNN
 F 3 "~" H 4050 5150 50  0001 C CNN
@@ -623,12 +621,12 @@ F 3 "~" H 4050 5150 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Diode:1N4148 D?
+L Diode:1N4148 D503
 U 1 1 5EE6D4EA
 P 3850 4850
-F 0 "D?" H 3850 5066 50  0000 C CNN
+F 0 "D503" H 3850 5066 50  0000 C CNN
 F 1 "1N4148" H 3850 4975 50  0000 C CNN
-F 2 "Diode_THT:D_DO-35_SOD27_P7.62mm_Horizontal" H 3850 4675 50  0001 C CNN
+F 2 "Diode_SMD:D_MiniMELF" H 3850 4675 50  0001 C CNN
 F 3 "https://assets.nexperia.com/documents/data-sheet/1N4148_1N4448.pdf" H 3850 4850 50  0001 C CNN
 	1    3850 4850
 	1    0    0    -1  
@@ -641,10 +639,10 @@ Connection ~ 4050 4850
 Wire Wire Line
 	4050 4850 4000 4850
 $Comp
-L power:GNDS #PWR?
+L power:GNDS #PWR0120
 U 1 1 5EE72FB6
 P 4050 5350
-F 0 "#PWR?" H 4050 5100 50  0001 C CNN
+F 0 "#PWR0120" H 4050 5100 50  0001 C CNN
 F 1 "GNDS" H 4055 5177 50  0000 C CNN
 F 2 "" H 4050 5350 50  0001 C CNN
 F 3 "" H 4050 5350 50  0001 C CNN
@@ -656,23 +654,23 @@ Wire Wire Line
 Text Notes 2550 5150 0    59   ~ 0
 Indica cuando hay\ntensión sobre la carga
 $Comp
-L Device:C C?
+L Device:C C502
 U 1 1 5EE845F8
 P 7350 4650
-F 0 "C?" H 7465 4696 50  0000 L CNN
+F 0 "C502" H 7465 4696 50  0000 L CNN
 F 1 "470nF x 400v" H 7465 4605 50  0000 L CNN
-F 2 "" H 7388 4500 50  0001 C CNN
+F 2 "Capacitor_THT:C_Rect_L16.5mm_W8.7mm_P15.00mm_MKT" H 7388 4500 50  0001 C CNN
 F 3 "~" H 7350 4650 50  0001 C CNN
 	1    7350 4650
 	1    0    0    -1  
 $EndComp
 $Comp
-L Device:R R?
+L Device:R R507
 U 1 1 5EE8542E
 P 7350 5000
-F 0 "R?" H 7420 5046 50  0000 L CNN
+F 0 "R507" H 7420 5046 50  0000 L CNN
 F 1 "270 2w" H 7420 4955 50  0000 L CNN
-F 2 "" V 7280 5000 50  0001 C CNN
+F 2 "Resistor_THT:R_Axial_DIN0516_L15.5mm_D5.0mm_P20.32mm_Horizontal" V 7280 5000 50  0001 C CNN
 F 3 "~" H 7350 5000 50  0001 C CNN
 	1    7350 5000
 	1    0    0    -1  
@@ -681,7 +679,6 @@ Wire Wire Line
 	7350 4800 7350 4850
 Wire Wire Line
 	7350 4500 7350 4450
-Connection ~ 7350 4450
 Wire Wire Line
 	7350 4450 8450 4450
 Connection ~ 8450 4450
@@ -696,11 +693,65 @@ Wire Wire Line
 Wire Wire Line
 	5200 4850 5200 5200
 Wire Wire Line
-	6800 5200 7350 5200
-Connection ~ 7350 5200
+	6800 4450 7350 4450
 Wire Wire Line
 	5550 4900 5550 5200
-Connection ~ 5550 5200
 Wire Wire Line
-	5550 5200 5700 5200
+	5550 4450 5700 4450
+$Comp
+L Mechanical:MountingHole H?
+U 1 1 5ED84BD0
+P 9300 1150
+AR Path="/5ED5374F/5ED84BD0" Ref="H?"  Part="1" 
+AR Path="/5ED538D0/5ED84BD0" Ref="H501"  Part="1" 
+F 0 "H501" H 9400 1196 50  0000 L CNN
+F 1 "MountingHole" H 9400 1105 50  0000 L CNN
+F 2 "MountingHole:MountingHole_3.2mm_M3" H 9300 1150 50  0001 C CNN
+F 3 "~" H 9300 1150 50  0001 C CNN
+	1    9300 1150
+	1    0    0    -1  
+$EndComp
+$Comp
+L Mechanical:MountingHole H?
+U 1 1 5ED84BD6
+P 10300 1150
+AR Path="/5ED5374F/5ED84BD6" Ref="H?"  Part="1" 
+AR Path="/5ED538D0/5ED84BD6" Ref="H503"  Part="1" 
+F 0 "H503" H 10400 1196 50  0000 L CNN
+F 1 "MountingHole" H 10400 1105 50  0000 L CNN
+F 2 "MountingHole:MountingHole_3.2mm_M3" H 10300 1150 50  0001 C CNN
+F 3 "~" H 10300 1150 50  0001 C CNN
+	1    10300 1150
+	1    0    0    -1  
+$EndComp
+$Comp
+L Mechanical:MountingHole H?
+U 1 1 5ED84BDC
+P 9300 1550
+AR Path="/5ED5374F/5ED84BDC" Ref="H?"  Part="1" 
+AR Path="/5ED538D0/5ED84BDC" Ref="H502"  Part="1" 
+F 0 "H502" H 9400 1596 50  0000 L CNN
+F 1 "MountingHole" H 9400 1505 50  0000 L CNN
+F 2 "MountingHole:MountingHole_3.2mm_M3" H 9300 1550 50  0001 C CNN
+F 3 "~" H 9300 1550 50  0001 C CNN
+	1    9300 1550
+	1    0    0    -1  
+$EndComp
+$Comp
+L Mechanical:MountingHole H?
+U 1 1 5ED84BE2
+P 10300 1550
+AR Path="/5ED5374F/5ED84BE2" Ref="H?"  Part="1" 
+AR Path="/5ED538D0/5ED84BE2" Ref="H504"  Part="1" 
+F 0 "H504" H 10400 1596 50  0000 L CNN
+F 1 "MountingHole" H 10400 1505 50  0000 L CNN
+F 2 "MountingHole:MountingHole_3.2mm_M3" H 10300 1550 50  0001 C CNN
+F 3 "~" H 10300 1550 50  0001 C CNN
+	1    10300 1550
+	1    0    0    -1  
+$EndComp
+Connection ~ 7350 4450
+Connection ~ 5550 4450
+Connection ~ 5550 5200
+Connection ~ 7350 5200
 $EndSCHEMATC

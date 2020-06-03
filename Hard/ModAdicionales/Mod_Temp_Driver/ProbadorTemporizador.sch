@@ -1,5 +1,4 @@
 EESchema Schematic File Version 4
-LIBS:Mod_Temp_Driver-cache
 EELAYER 30 0
 EELAYER END
 $Descr A4 11693 8268
@@ -160,7 +159,7 @@ U 1 1 5F47216D
 P 8850 4250
 F 0 "J503" H 8958 4631 50  0000 C CNN
 F 1 "Conn_01x06_Male" H 8958 4540 50  0000 C CNN
-F 2 "TerminalBlock_Altech:Altech_AK300_1x06_P5.00mm_45-Degree" H 8850 4250 50  0001 C CNN
+F 2 "Conectores:TerminalBlock_bornier-6_P5.00mm" H 8850 4250 50  0001 C CNN
 F 3 "~" H 8850 4250 50  0001 C CNN
 	1    8850 4250
 	-1   0    0    -1  
@@ -190,49 +189,49 @@ $EndComp
 $Comp
 L Device:R R?
 U 1 1 5F49E33D
-P 6650 5200
+P 6650 4450
 AR Path="/5ED5374F/5F49E33D" Ref="R?"  Part="1" 
 AR Path="/5ED5374F/5F0ECABF/5F49E33D" Ref="R?"  Part="1" 
 AR Path="/5ED538D0/5F49E33D" Ref="R506"  Part="1" 
-F 0 "R506" H 6700 5200 50  0000 L CNN
-F 1 "22K 1/4w (carbón)" H 5750 5200 50  0000 L CNN
-F 2 "Resistor_THT:R_Axial_DIN0309_L9.0mm_D3.2mm_P12.70mm_Horizontal" V 6580 5200 50  0001 C CNN
-F 3 "~" H 6650 5200 50  0001 C CNN
-	1    6650 5200
+F 0 "R506" H 6700 4450 50  0000 L CNN
+F 1 "22K 1/4w (carbón)" H 5750 4450 50  0000 L CNN
+F 2 "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal" V 6580 4450 50  0001 C CNN
+F 3 "~" H 6650 4450 50  0001 C CNN
+	1    6650 4450
 	0    -1   -1   0   
 $EndComp
 $Comp
 L Device:R R?
 U 1 1 5F49E343
-P 6250 5200
+P 6250 4450
 AR Path="/5ED5374F/5F49E343" Ref="R?"  Part="1" 
 AR Path="/5ED5374F/5F0ECABF/5F49E343" Ref="R?"  Part="1" 
 AR Path="/5ED538D0/5F49E343" Ref="R505"  Part="1" 
-F 0 "R505" H 6300 5200 50  0000 L CNN
-F 1 "22K 1/4w (carbón)" H 5350 5200 50  0000 L CNN
-F 2 "Resistor_THT:R_Axial_DIN0309_L9.0mm_D3.2mm_P12.70mm_Horizontal" V 6180 5200 50  0001 C CNN
-F 3 "~" H 6250 5200 50  0001 C CNN
-	1    6250 5200
+F 0 "R505" H 6300 4450 50  0000 L CNN
+F 1 "22K 1/4w (carbón)" H 5350 4450 50  0000 L CNN
+F 2 "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal" V 6180 4450 50  0001 C CNN
+F 3 "~" H 6250 4450 50  0001 C CNN
+	1    6250 4450
 	0    -1   -1   0   
 $EndComp
 $Comp
 L Device:R R?
 U 1 1 5F49E349
-P 5850 5200
+P 5850 4450
 AR Path="/5ED5374F/5F49E349" Ref="R?"  Part="1" 
 AR Path="/5ED5374F/5F0ECABF/5F49E349" Ref="R?"  Part="1" 
 AR Path="/5ED538D0/5F49E349" Ref="R504"  Part="1" 
-F 0 "R504" H 5900 5200 50  0000 L CNN
-F 1 "22K 1/4w (carbón)" H 4950 5200 50  0000 L CNN
-F 2 "Resistor_THT:R_Axial_DIN0309_L9.0mm_D3.2mm_P12.70mm_Horizontal" V 5780 5200 50  0001 C CNN
-F 3 "~" H 5850 5200 50  0001 C CNN
-	1    5850 5200
+F 0 "R504" H 5900 4450 50  0000 L CNN
+F 1 "22K 1/4w (carbón)" H 4950 4450 50  0000 L CNN
+F 2 "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal" V 5780 4450 50  0001 C CNN
+F 3 "~" H 5850 4450 50  0001 C CNN
+	1    5850 4450
 	0    -1   -1   0   
 $EndComp
 Wire Wire Line
-	6000 5200 6100 5200
+	6000 4450 6100 4450
 Wire Wire Line
-	6400 5200 6500 5200
+	6400 4450 6500 4450
 Wire Wire Line
 	8650 4350 8450 4350
 Wire Wire Line
@@ -385,8 +384,7 @@ Disparo temporizador\nde 4 cables
 Wire Wire Line
 	8650 4150 7950 4150
 Wire Wire Line
-	5550 4450 7350 4450
-Connection ~ 5550 4450
+	5550 5200 7350 5200
 Wire Wire Line
 	8650 4550 7950 4550
 $Comp
@@ -628,7 +626,7 @@ U 1 1 5EE6D4EA
 P 3850 4850
 F 0 "D503" H 3850 5066 50  0000 C CNN
 F 1 "1N4148" H 3850 4975 50  0000 C CNN
-F 2 "Diode_THT:D_DO-35_SOD27_P7.62mm_Horizontal" H 3850 4675 50  0001 C CNN
+F 2 "Diode_SMD:D_MiniMELF" H 3850 4675 50  0001 C CNN
 F 3 "https://assets.nexperia.com/documents/data-sheet/1N4148_1N4448.pdf" H 3850 4850 50  0001 C CNN
 	1    3850 4850
 	1    0    0    -1  
@@ -681,7 +679,6 @@ Wire Wire Line
 	7350 4800 7350 4850
 Wire Wire Line
 	7350 4500 7350 4450
-Connection ~ 7350 4450
 Wire Wire Line
 	7350 4450 8450 4450
 Connection ~ 8450 4450
@@ -696,11 +693,65 @@ Wire Wire Line
 Wire Wire Line
 	5200 4850 5200 5200
 Wire Wire Line
-	6800 5200 7350 5200
-Connection ~ 7350 5200
+	6800 4450 7350 4450
 Wire Wire Line
 	5550 4900 5550 5200
-Connection ~ 5550 5200
 Wire Wire Line
-	5550 5200 5700 5200
+	5550 4450 5700 4450
+$Comp
+L Mechanical:MountingHole H?
+U 1 1 5ED84BD0
+P 9300 1150
+AR Path="/5ED5374F/5ED84BD0" Ref="H?"  Part="1" 
+AR Path="/5ED538D0/5ED84BD0" Ref="H501"  Part="1" 
+F 0 "H501" H 9400 1196 50  0000 L CNN
+F 1 "MountingHole" H 9400 1105 50  0000 L CNN
+F 2 "MountingHole:MountingHole_3.2mm_M3" H 9300 1150 50  0001 C CNN
+F 3 "~" H 9300 1150 50  0001 C CNN
+	1    9300 1150
+	1    0    0    -1  
+$EndComp
+$Comp
+L Mechanical:MountingHole H?
+U 1 1 5ED84BD6
+P 10300 1150
+AR Path="/5ED5374F/5ED84BD6" Ref="H?"  Part="1" 
+AR Path="/5ED538D0/5ED84BD6" Ref="H503"  Part="1" 
+F 0 "H503" H 10400 1196 50  0000 L CNN
+F 1 "MountingHole" H 10400 1105 50  0000 L CNN
+F 2 "MountingHole:MountingHole_3.2mm_M3" H 10300 1150 50  0001 C CNN
+F 3 "~" H 10300 1150 50  0001 C CNN
+	1    10300 1150
+	1    0    0    -1  
+$EndComp
+$Comp
+L Mechanical:MountingHole H?
+U 1 1 5ED84BDC
+P 9300 1550
+AR Path="/5ED5374F/5ED84BDC" Ref="H?"  Part="1" 
+AR Path="/5ED538D0/5ED84BDC" Ref="H502"  Part="1" 
+F 0 "H502" H 9400 1596 50  0000 L CNN
+F 1 "MountingHole" H 9400 1505 50  0000 L CNN
+F 2 "MountingHole:MountingHole_3.2mm_M3" H 9300 1550 50  0001 C CNN
+F 3 "~" H 9300 1550 50  0001 C CNN
+	1    9300 1550
+	1    0    0    -1  
+$EndComp
+$Comp
+L Mechanical:MountingHole H?
+U 1 1 5ED84BE2
+P 10300 1550
+AR Path="/5ED5374F/5ED84BE2" Ref="H?"  Part="1" 
+AR Path="/5ED538D0/5ED84BE2" Ref="H504"  Part="1" 
+F 0 "H504" H 10400 1596 50  0000 L CNN
+F 1 "MountingHole" H 10400 1505 50  0000 L CNN
+F 2 "MountingHole:MountingHole_3.2mm_M3" H 10300 1550 50  0001 C CNN
+F 3 "~" H 10300 1550 50  0001 C CNN
+	1    10300 1550
+	1    0    0    -1  
+$EndComp
+Connection ~ 7350 4450
+Connection ~ 5550 4450
+Connection ~ 5550 5200
+Connection ~ 7350 5200
 $EndSCHEMATC

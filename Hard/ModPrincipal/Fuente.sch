@@ -1,5 +1,4 @@
 EESchema Schematic File Version 4
-LIBS:ModPrincipal-cache
 EELAYER 30 0
 EELAYER END
 $Descr A4 11693 8268
@@ -20,7 +19,7 @@ U 1 1 5ECEE55D
 P 2100 1600
 F 0 "J501" H 2018 1275 50  0000 C CNN
 F 1 "Conn_01x03" H 2018 1366 50  0000 C CNN
-F 2 "TerminalBlock:TerminalBlock_bornier-3_P5.08mm" H 2100 1600 50  0001 C CNN
+F 2 "Conectores:TerminalBlock_bornier-3_P5.00mm" H 2100 1600 50  0001 C CNN
 F 3 "~" H 2100 1600 50  0001 C CNN
 	1    2100 1600
 	-1   0    0    1   
@@ -48,7 +47,7 @@ U 1 1 5ED063FA
 P 6450 1850
 F 0 "J503" V 6530 1842 50  0000 L CNN
 F 1 "Conn_01x02" H 6530 1751 50  0000 L CNN
-F 2 "TerminalBlock:TerminalBlock_bornier-2_P5.08mm" H 6450 1850 50  0001 C CNN
+F 2 "Conectores:TerminalBlock_bornier-2_P5.00mm" H 6450 1850 50  0001 C CNN
 F 3 "~" H 6450 1850 50  0001 C CNN
 	1    6450 1850
 	-1   0    0    -1  

@@ -690,12 +690,12 @@ F 3 "http://www.te.com/commerce/DocumentDelivery/DDEController?Action=showdoc&Do
 	1    0    0    -1  
 $EndComp
 $Comp
-L Isolator:PC817 U?
+L Isolator:PC817 U701
 U 1 1 5ED8017C
 P 2950 1600
-F 0 "U?" H 2950 1925 50  0000 C CNN
+F 0 "U701" H 2950 1925 50  0000 C CNN
 F 1 "PC817" H 2950 1834 50  0000 C CNN
-F 2 "Package_DIP:DIP-4_W7.62mm" H 2750 1400 50  0001 L CIN
+F 2 "Package_SO:SO-4_7.6x3.6mm_P2.54mm" H 2750 1400 50  0001 L CIN
 F 3 "http://www.soselectronic.cz/a_info/resource/d/pc817.pdf" H 2950 1600 50  0001 L CNN
 	1    2950 1600
 	1    0    0    -1  
@@ -705,7 +705,7 @@ Wire Wire Line
 Wire Wire Line
 	2500 1700 2500 1950
 Wire Wire Line
-	2500 1950 3400 1950
+	2500 1950 2900 1950
 Wire Wire Line
 	3400 1950 3400 1700
 Wire Wire Line
@@ -713,14 +713,14 @@ Wire Wire Line
 Text HLabel 3400 1500 2    50   Output ~ 0
 Salida0
 $Comp
-L power:GND #PWR?
+L power:GND #PWR0113
 U 1 1 5ED85533
-P 2900 1950
-F 0 "#PWR?" H 2900 1700 50  0001 C CNN
-F 1 "GND" H 2905 1777 50  0000 C CNN
-F 2 "" H 2900 1950 50  0001 C CNN
-F 3 "" H 2900 1950 50  0001 C CNN
-	1    2900 1950
+P 2900 2000
+F 0 "#PWR0113" H 2900 1750 50  0001 C CNN
+F 1 "GND" H 2905 1827 50  0000 C CNN
+F 2 "" H 2900 2000 50  0001 C CNN
+F 3 "" H 2900 2000 50  0001 C CNN
+	1    2900 2000
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -729,8 +729,8 @@ U 1 1 5ED8C366
 P 2500 2800
 AR Path="/5EC7150D/5ED8C366" Ref="R?"  Part="1" 
 AR Path="/5ED20EE2/5ED8C366" Ref="R?"  Part="1" 
-AR Path="/5EE6B2B0/5ED8C366" Ref="R?"  Part="1" 
-F 0 "R?" V 2600 2750 50  0000 L CNN
+AR Path="/5EE6B2B0/5ED8C366" Ref="R704"  Part="1" 
+F 0 "R704" V 2600 2750 50  0000 L CNN
 F 1 "330" V 2400 2750 50  0000 L CNN
 F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder" V 2430 2800 50  0001 C CNN
 F 3 "~" H 2500 2800 50  0001 C CNN
@@ -738,12 +738,12 @@ F 3 "~" H 2500 2800 50  0001 C CNN
 	0    -1   -1   0   
 $EndComp
 $Comp
-L Isolator:PC817 U?
+L Isolator:PC817 U702
 U 1 1 5ED8C36C
 P 2950 2900
-F 0 "U?" H 2950 3225 50  0000 C CNN
+F 0 "U702" H 2950 3225 50  0000 C CNN
 F 1 "PC817" H 2950 3134 50  0000 C CNN
-F 2 "Package_DIP:DIP-4_W7.62mm" H 2750 2700 50  0001 L CIN
+F 2 "Package_SO:SO-4_7.6x3.6mm_P2.54mm" H 2750 2700 50  0001 L CIN
 F 3 "http://www.soselectronic.cz/a_info/resource/d/pc817.pdf" H 2950 2900 50  0001 L CNN
 	1    2950 2900
 	1    0    0    -1  
@@ -753,20 +753,20 @@ Wire Wire Line
 Wire Wire Line
 	2500 3000 2500 3250
 Wire Wire Line
-	2500 3250 3400 3250
+	2500 3250 2900 3250
 Wire Wire Line
 	3400 3250 3400 3000
 Wire Wire Line
 	3400 3000 3250 3000
 $Comp
-L power:GND #PWR?
+L power:GND #PWR0114
 U 1 1 5ED8C378
-P 2900 3250
-F 0 "#PWR?" H 2900 3000 50  0001 C CNN
-F 1 "GND" H 2905 3077 50  0000 C CNN
-F 2 "" H 2900 3250 50  0001 C CNN
-F 3 "" H 2900 3250 50  0001 C CNN
-	1    2900 3250
+P 2900 3300
+F 0 "#PWR0114" H 2900 3050 50  0001 C CNN
+F 1 "GND" H 2905 3127 50  0000 C CNN
+F 2 "" H 2900 3300 50  0001 C CNN
+F 3 "" H 2900 3300 50  0001 C CNN
+	1    2900 3300
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -775,8 +775,8 @@ U 1 1 5ED950A7
 P 2500 4250
 AR Path="/5EC7150D/5ED950A7" Ref="R?"  Part="1" 
 AR Path="/5ED20EE2/5ED950A7" Ref="R?"  Part="1" 
-AR Path="/5EE6B2B0/5ED950A7" Ref="R?"  Part="1" 
-F 0 "R?" V 2600 4200 50  0000 L CNN
+AR Path="/5EE6B2B0/5ED950A7" Ref="R705"  Part="1" 
+F 0 "R705" V 2600 4200 50  0000 L CNN
 F 1 "330" V 2400 4200 50  0000 L CNN
 F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder" V 2430 4250 50  0001 C CNN
 F 3 "~" H 2500 4250 50  0001 C CNN
@@ -784,12 +784,12 @@ F 3 "~" H 2500 4250 50  0001 C CNN
 	0    -1   -1   0   
 $EndComp
 $Comp
-L Isolator:PC817 U?
+L Isolator:PC817 U703
 U 1 1 5ED950AD
 P 2950 4350
-F 0 "U?" H 2950 4675 50  0000 C CNN
+F 0 "U703" H 2950 4675 50  0000 C CNN
 F 1 "PC817" H 2950 4584 50  0000 C CNN
-F 2 "Package_DIP:DIP-4_W7.62mm" H 2750 4150 50  0001 L CIN
+F 2 "Package_SO:SO-4_7.6x3.6mm_P2.54mm" H 2750 4150 50  0001 L CIN
 F 3 "http://www.soselectronic.cz/a_info/resource/d/pc817.pdf" H 2950 4350 50  0001 L CNN
 	1    2950 4350
 	1    0    0    -1  
@@ -799,20 +799,20 @@ Wire Wire Line
 Wire Wire Line
 	2500 4450 2500 4700
 Wire Wire Line
-	2500 4700 3400 4700
+	2500 4700 2900 4700
 Wire Wire Line
 	3400 4700 3400 4450
 Wire Wire Line
 	3400 4450 3250 4450
 $Comp
-L power:GND #PWR?
+L power:GND #PWR0115
 U 1 1 5ED950B9
-P 2900 4700
-F 0 "#PWR?" H 2900 4450 50  0001 C CNN
-F 1 "GND" H 2905 4527 50  0000 C CNN
-F 2 "" H 2900 4700 50  0001 C CNN
-F 3 "" H 2900 4700 50  0001 C CNN
-	1    2900 4700
+P 2900 4750
+F 0 "#PWR0115" H 2900 4500 50  0001 C CNN
+F 1 "GND" H 2905 4577 50  0000 C CNN
+F 2 "" H 2900 4750 50  0001 C CNN
+F 3 "" H 2900 4750 50  0001 C CNN
+	1    2900 4750
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
@@ -821,4 +821,19 @@ Wire Wire Line
 	3250 2800 3400 2800
 Wire Wire Line
 	3250 1500 3400 1500
+Wire Wire Line
+	2900 4750 2900 4700
+Connection ~ 2900 4700
+Wire Wire Line
+	2900 4700 3400 4700
+Wire Wire Line
+	2900 3300 2900 3250
+Connection ~ 2900 3250
+Wire Wire Line
+	2900 3250 3400 3250
+Wire Wire Line
+	2900 1950 2900 2000
+Connection ~ 2900 1950
+Wire Wire Line
+	2900 1950 3400 1950
 $EndSCHEMATC

@@ -1,5 +1,4 @@
 EESchema Schematic File Version 4
-LIBS:Mod_Temp_Driver-cache
 EELAYER 30 0
 EELAYER END
 $Descr A4 11693 8268
@@ -22,7 +21,7 @@ AR Path="/5ED5374F/5F185209" Ref="R?"  Part="1"
 AR Path="/5ED5374F/5F0ECABF/5F185209" Ref="R302"  Part="1" 
 F 0 "R302" H 2600 2700 50  0000 L CNN
 F 1 "1ohm 1/4w" V 2450 2500 50  0000 L CNN
-F 2 "Resistor_THT:R_Axial_DIN0309_L9.0mm_D3.2mm_P12.70mm_Horizontal" V 2480 2700 50  0001 C CNN
+F 2 "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal" V 2480 2700 50  0001 C CNN
 F 3 "~" H 2550 2700 50  0001 C CNN
 	1    2550 2700
 	1    0    0    -1  
@@ -35,7 +34,7 @@ AR Path="/5ED5374F/5F18520F" Ref="R?"  Part="1"
 AR Path="/5ED5374F/5F0ECABF/5F18520F" Ref="R307"  Part="1" 
 F 0 "R307" H 2900 2700 50  0000 L CNN
 F 1 "1ohm 1/4w" V 2750 2500 50  0000 L CNN
-F 2 "Resistor_THT:R_Axial_DIN0309_L9.0mm_D3.2mm_P12.70mm_Horizontal" V 2780 2700 50  0001 C CNN
+F 2 "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal" V 2780 2700 50  0001 C CNN
 F 3 "~" H 2850 2700 50  0001 C CNN
 	1    2850 2700
 	1    0    0    -1  
@@ -48,7 +47,7 @@ AR Path="/5ED5374F/5F185215" Ref="R?"  Part="1"
 AR Path="/5ED5374F/5F0ECABF/5F185215" Ref="R308"  Part="1" 
 F 0 "R308" H 3200 2700 50  0000 L CNN
 F 1 "1ohm 1/4w" V 3050 2500 50  0000 L CNN
-F 2 "Resistor_THT:R_Axial_DIN0309_L9.0mm_D3.2mm_P12.70mm_Horizontal" V 3080 2700 50  0001 C CNN
+F 2 "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal" V 3080 2700 50  0001 C CNN
 F 3 "~" H 3150 2700 50  0001 C CNN
 	1    3150 2700
 	1    0    0    -1  
@@ -61,7 +60,7 @@ AR Path="/5ED5374F/5F18521B" Ref="R?"  Part="1"
 AR Path="/5ED5374F/5F0ECABF/5F18521B" Ref="R309"  Part="1" 
 F 0 "R309" H 3500 2700 50  0000 L CNN
 F 1 "1ohm 1/4w" V 3350 2500 50  0000 L CNN
-F 2 "Resistor_THT:R_Axial_DIN0309_L9.0mm_D3.2mm_P12.70mm_Horizontal" V 3380 2700 50  0001 C CNN
+F 2 "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal" V 3380 2700 50  0001 C CNN
 F 3 "~" H 3450 2700 50  0001 C CNN
 	1    3450 2700
 	1    0    0    -1  
@@ -74,7 +73,7 @@ AR Path="/5ED5374F/5F185221" Ref="R?"  Part="1"
 AR Path="/5ED5374F/5F0ECABF/5F185221" Ref="R311"  Part="1" 
 F 0 "R311" H 3800 2700 50  0000 L CNN
 F 1 "1ohm 1/4w" V 3650 2500 50  0000 L CNN
-F 2 "Resistor_THT:R_Axial_DIN0309_L9.0mm_D3.2mm_P12.70mm_Horizontal" V 3680 2700 50  0001 C CNN
+F 2 "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal" V 3680 2700 50  0001 C CNN
 F 3 "~" H 3750 2700 50  0001 C CNN
 	1    3750 2700
 	1    0    0    -1  
@@ -148,7 +147,7 @@ AR Path="/5ED5374F/5F185249" Ref="R?"  Part="1"
 AR Path="/5ED5374F/5F0ECABF/5F185249" Ref="R310"  Part="1" 
 F 0 "R310" V 3443 2150 50  0000 C CNN
 F 1 "220 1/4w" V 3534 2150 50  0000 C CNN
-F 2 "Resistor_THT:R_Axial_DIN0309_L9.0mm_D3.2mm_P12.70mm_Horizontal" V 3580 2150 50  0001 C CNN
+F 2 "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal" V 3580 2150 50  0001 C CNN
 F 3 "~" H 3650 2150 50  0001 C CNN
 	1    3650 2150
 	0    1    1    0   
@@ -579,7 +578,7 @@ AR Path="/5ED5374F/5F19BC62" Ref="R?"  Part="1"
 AR Path="/5ED5374F/5F0ECABF/5F19BC62" Ref="R305"  Part="1" 
 F 0 "R305" H 2650 5450 50  0000 L CNN
 F 1 " 330K 1/4w (carbón)" H 1700 5450 50  0000 L CNN
-F 2 "Resistor_THT:R_Axial_DIN0309_L9.0mm_D3.2mm_P12.70mm_Horizontal" V 2530 5450 50  0001 C CNN
+F 2 "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal" V 2530 5450 50  0001 C CNN
 F 3 "~" H 2600 5450 50  0001 C CNN
 	1    2600 5450
 	1    0    0    -1  
@@ -592,7 +591,7 @@ AR Path="/5ED5374F/5F19BC68" Ref="R?"  Part="1"
 AR Path="/5ED5374F/5F0ECABF/5F19BC68" Ref="R304"  Part="1" 
 F 0 "R304" H 2650 5050 50  0000 L CNN
 F 1 " 330K 1/4w (carbón)" H 1700 5050 50  0000 L CNN
-F 2 "Resistor_THT:R_Axial_DIN0309_L9.0mm_D3.2mm_P12.70mm_Horizontal" V 2530 5050 50  0001 C CNN
+F 2 "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal" V 2530 5050 50  0001 C CNN
 F 3 "~" H 2600 5050 50  0001 C CNN
 	1    2600 5050
 	1    0    0    -1  
@@ -605,7 +604,7 @@ AR Path="/5ED5374F/5F19BC6E" Ref="R?"  Part="1"
 AR Path="/5ED5374F/5F0ECABF/5F19BC6E" Ref="R303"  Part="1" 
 F 0 "R303" H 2650 4650 50  0000 L CNN
 F 1 " 330K 1/4w (carbón)" H 1700 4650 50  0000 L CNN
-F 2 "Resistor_THT:R_Axial_DIN0309_L9.0mm_D3.2mm_P12.70mm_Horizontal" V 2530 4650 50  0001 C CNN
+F 2 "Resistor_THT:R_Axial_DIN0207_L6.3mm_D2.5mm_P7.62mm_Horizontal" V 2530 4650 50  0001 C CNN
 F 3 "~" H 2600 4650 50  0001 C CNN
 	1    2600 4650
 	1    0    0    -1  
@@ -635,8 +634,8 @@ P 2600 6100
 AR Path="/5ED5374F/5F19BC7D" Ref="R?"  Part="1" 
 AR Path="/5ED5374F/5F0ECABF/5F19BC7D" Ref="R306"  Part="1" 
 F 0 "R306" H 2650 6100 50  0000 L CNN
-F 1 "22K 1/4w (carbón)" V 2800 5450 50  0000 L CNN
-F 2 "Resistor_THT:R_Axial_DIN0309_L9.0mm_D3.2mm_P12.70mm_Horizontal" V 2530 6100 50  0001 C CNN
+F 1 "22K " V 2800 5450 50  0000 L CNN
+F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder" V 2530 6100 50  0001 C CNN
 F 3 "~" H 2600 6100 50  0001 C CNN
 	1    2600 6100
 	1    0    0    -1  
@@ -648,8 +647,8 @@ P 2250 6100
 AR Path="/5ED5374F/5F19BC83" Ref="R?"  Part="1" 
 AR Path="/5ED5374F/5F0ECABF/5F19BC83" Ref="R301"  Part="1" 
 F 0 "R301" H 2300 6100 50  0000 L CNN
-F 1 "220K 1/4w (carbón)" V 2050 5450 50  0000 L CNN
-F 2 "Resistor_THT:R_Axial_DIN0309_L9.0mm_D3.2mm_P12.70mm_Horizontal" V 2180 6100 50  0001 C CNN
+F 1 "220K" V 2050 5450 50  0000 L CNN
+F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder" V 2180 6100 50  0001 C CNN
 F 3 "~" H 2250 6100 50  0001 C CNN
 	1    2250 6100
 	1    0    0    -1  
