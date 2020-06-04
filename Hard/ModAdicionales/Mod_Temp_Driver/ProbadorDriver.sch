@@ -279,18 +279,18 @@ Wire Wire Line
 	6550 3850 10550 3850
 Wire Wire Line
 	10550 3850 10550 4350
-Text Label 7200 4650 2    50   ~ 0
-In_Digital0
 Text Label 7200 4750 2    50   ~ 0
-In_Digital1
+In_Digital0
 Text Label 7200 4850 2    50   ~ 0
+In_Digital1
+Text Label 7200 4650 2    50   ~ 0
 In_Digital2
 Wire Wire Line
+	7200 4750 6550 4750
+Wire Wire Line
+	6550 4850 7200 4850
+Wire Wire Line
 	7200 4650 6550 4650
-Wire Wire Line
-	6550 4750 7200 4750
-Wire Wire Line
-	7200 4850 6550 4850
 Wire Wire Line
 	3950 3700 3300 3700
 Wire Wire Line

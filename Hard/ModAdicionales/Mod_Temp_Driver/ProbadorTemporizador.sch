@@ -122,19 +122,6 @@ F 3 "http://www.omron.com/ecb/products/pdf/en-g5le.pdf" H 6850 2150 50  0001 C C
 	1    6850 2150
 	1    0    0    -1  
 $EndComp
-$Comp
-L Diode:1N4148 D?
-U 1 1 5F40154B
-P 6050 2150
-AR Path="/5ED5374F/5F20E931/5F40154B" Ref="D?"  Part="1" 
-AR Path="/5ED538D0/5F40154B" Ref="D501"  Part="1" 
-F 0 "D501" V 6004 2229 50  0000 L CNN
-F 1 "1N4148" V 6095 2229 50  0000 L CNN
-F 2 "Diode_THT:D_DO-35_SOD27_P7.62mm_Horizontal" H 6050 1975 50  0001 C CNN
-F 3 "https://assets.nexperia.com/documents/data-sheet/1N4148_1N4448.pdf" H 6050 2150 50  0001 C CNN
-	1    6050 2150
-	0    1    1    0   
-$EndComp
 Wire Wire Line
 	6050 2000 6050 1600
 Wire Wire Line
@@ -754,4 +741,17 @@ Connection ~ 7350 4450
 Connection ~ 5550 4450
 Connection ~ 5550 5200
 Connection ~ 7350 5200
+$Comp
+L Diode:1N4007 D?
+U 1 1 5EEDCA26
+P 6050 2150
+AR Path="/5ED5374F/5F20E931/5EEDCA26" Ref="D?"  Part="1" 
+AR Path="/5ED538D0/5EEDCA26" Ref="D501"  Part="1" 
+F 0 "D501" V 6004 2229 50  0000 L CNN
+F 1 "1N4007" V 6095 2229 50  0000 L CNN
+F 2 "Diode_THT:D_DO-41_SOD81_P10.16mm_Horizontal" H 6050 1975 50  0001 C CNN
+F 3 "http://www.vishay.com/docs/88503/1n4001.pdf" H 6050 2150 50  0001 C CNN
+	1    6050 2150
+	0    1    1    0   
+$EndComp
 $EndSCHEMATC

@@ -25,17 +25,6 @@ F 3 "http://www.omron.com/ecb/products/pdf/en-g5le.pdf" H 3150 3050 50  0001 C C
 	1    0    0    -1  
 $EndComp
 $Comp
-L Diode:1N4148 D401
-U 1 1 5F2515E6
-P 2350 3050
-F 0 "D401" V 2304 3129 50  0000 L CNN
-F 1 "1N4148" V 2395 3129 50  0000 L CNN
-F 2 "Diode_THT:D_DO-35_SOD27_P7.62mm_Horizontal" H 2350 2875 50  0001 C CNN
-F 3 "https://assets.nexperia.com/documents/data-sheet/1N4148_1N4448.pdf" H 2350 3050 50  0001 C CNN
-	1    2350 3050
-	0    1    1    0   
-$EndComp
-$Comp
 L power:+12V #PWR0407
 U 1 1 5F252CC9
 P 2950 1750
@@ -86,17 +75,6 @@ F 3 "http://www.omron.com/ecb/products/pdf/en-g5le.pdf" H 8500 2100 50  0001 C C
 	1    8500 2100
 	1    0    0    -1  
 $EndComp
-$Comp
-L Diode:1N4148 D402
-U 1 1 5F25BECC
-P 7700 2100
-F 0 "D402" V 7654 2179 50  0000 L CNN
-F 1 "1N4148" V 7745 2179 50  0000 L CNN
-F 2 "Diode_THT:D_DO-35_SOD27_P7.62mm_Horizontal" H 7700 1925 50  0001 C CNN
-F 3 "https://assets.nexperia.com/documents/data-sheet/1N4148_1N4448.pdf" H 7700 2100 50  0001 C CNN
-	1    7700 2100
-	0    1    1    0   
-$EndComp
 Wire Wire Line
 	7700 1950 7700 1550
 Wire Wire Line
@@ -109,9 +87,9 @@ Wire Wire Line
 	8300 2750 8000 2750
 Wire Wire Line
 	7700 2750 7700 2250
-Text HLabel 10100 1450 2    50   BiDi ~ 0
+Text HLabel 10050 4700 2    50   BiDi ~ 0
 (+)DimmerRes
-Text HLabel 6400 1250 0    50   Input ~ 0
+Text HLabel 6400 3450 0    50   Input ~ 0
 DimRelay0
 $Comp
 L Relay:G5LE-1 K403
@@ -123,17 +101,6 @@ F 2 "Relay_THT:Relay_SPDT_Omron-G5LE-1" H 8950 4200 50  0001 L CNN
 F 3 "http://www.omron.com/ecb/products/pdf/en-g5le.pdf" H 8500 4250 50  0001 C CNN
 	1    8500 4250
 	1    0    0    -1  
-$EndComp
-$Comp
-L Diode:1N4148 D403
-U 1 1 5F25E36F
-P 7700 4250
-F 0 "D403" V 7654 4329 50  0000 L CNN
-F 1 "1N4148" V 7745 4329 50  0000 L CNN
-F 2 "Diode_THT:D_DO-35_SOD27_P7.62mm_Horizontal" H 7700 4075 50  0001 C CNN
-F 3 "https://assets.nexperia.com/documents/data-sheet/1N4148_1N4448.pdf" H 7700 4250 50  0001 C CNN
-	1    7700 4250
-	0    1    1    0   
 $EndComp
 Wire Wire Line
 	7700 4100 7700 3700
@@ -147,69 +114,55 @@ Wire Wire Line
 	8300 4900 8000 4900
 Wire Wire Line
 	7700 4900 7700 4400
-Text HLabel 10050 4700 2    50   BiDi ~ 0
+Text HLabel 10100 1450 2    50   BiDi ~ 0
 (-)DimmerRes
 Wire Wire Line
 	8700 4700 8700 4550
-Text HLabel 6400 3450 0    50   Input ~ 0
+Text HLabel 6400 1250 0    50   Input ~ 0
 DimRelay1
 $Comp
 L Device:R R?
 U 1 1 5F281365
-P 8900 1250
+P 9300 1300
 AR Path="/5ED5374F/5F281365" Ref="R?"  Part="1" 
 AR Path="/5ED5374F/5F0ECABF/5F281365" Ref="R?"  Part="1" 
 AR Path="/5ED5374F/5F20E931/5F281365" Ref="R410"  Part="1" 
-F 0 "R410" V 8693 1250 50  0000 C CNN
-F 1 "100k" V 8784 1250 50  0000 C CNN
-F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder" V 8830 1250 50  0001 C CNN
-F 3 "~" H 8900 1250 50  0001 C CNN
-	1    8900 1250
-	0    1    1    0   
+F 0 "R410" V 9093 1300 50  0000 C CNN
+F 1 "100k" V 9184 1300 50  0000 C CNN
+F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder" V 9230 1300 50  0001 C CNN
+F 3 "~" H 9300 1300 50  0001 C CNN
+	1    9300 1300
+	0    -1   -1   0   
 $EndComp
 $Comp
 L Device:R R?
 U 1 1 5F2819C2
-P 8900 950
+P 9300 1600
 AR Path="/5ED5374F/5F2819C2" Ref="R?"  Part="1" 
 AR Path="/5ED5374F/5F0ECABF/5F2819C2" Ref="R?"  Part="1" 
 AR Path="/5ED5374F/5F20E931/5F2819C2" Ref="R409"  Part="1" 
-F 0 "R409" V 8693 950 50  0000 C CNN
-F 1 "100K" V 8784 950 50  0000 C CNN
-F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder" V 8830 950 50  0001 C CNN
-F 3 "~" H 8900 950 50  0001 C CNN
-	1    8900 950 
-	0    1    1    0   
+F 0 "R409" V 9093 1600 50  0000 C CNN
+F 1 "100K" V 9184 1600 50  0000 C CNN
+F 2 "Resistor_SMD:R_0805_2012Metric_Pad1.15x1.40mm_HandSolder" V 9230 1600 50  0001 C CNN
+F 3 "~" H 9300 1600 50  0001 C CNN
+	1    9300 1600
+	0    -1   -1   0   
 $EndComp
 Wire Wire Line
-	9050 950  9150 950 
+	9150 1600 9050 1600
 Wire Wire Line
-	9150 950  9150 1100
+	9050 1600 9050 1450
 Wire Wire Line
-	9150 1250 9050 1250
+	9050 1300 9150 1300
 Wire Wire Line
-	8750 950  8600 950 
+	9450 1600 9600 1600
 Wire Wire Line
-	8600 950  8600 1250
-Wire Wire Line
-	8600 1250 8750 1250
-Wire Wire Line
-	8600 1800 8600 1250
-Connection ~ 8600 1250
-Wire Wire Line
-	8800 1450 9400 1450
+	9600 1300 9450 1300
 Wire Wire Line
 	8800 1450 8800 1800
+Connection ~ 9050 1450
 Wire Wire Line
-	9150 1100 9400 1100
-Wire Wire Line
-	9400 1100 9400 1450
-Connection ~ 9150 1100
-Wire Wire Line
-	9150 1100 9150 1250
-Connection ~ 9400 1450
-Wire Wire Line
-	9400 1450 10100 1450
+	9050 1450 9050 1300
 $Comp
 L Device:R R?
 U 1 1 5F290CC9
@@ -792,4 +745,55 @@ Wire Wire Line
 Wire Wire Line
 	7350 1550 7350 1450
 Connection ~ 7700 1550
+Wire Wire Line
+	8600 950  8600 1800
+Wire Wire Line
+	9600 1600 9600 1450
+Wire Wire Line
+	9800 1450 9600 1450
+Connection ~ 9600 1450
+Wire Wire Line
+	9600 1450 9600 1300
+Wire Wire Line
+	9050 1450 8800 1450
+Wire Wire Line
+	8600 950  9800 950 
+Wire Wire Line
+	9800 950  9800 1450
+Connection ~ 9800 1450
+Wire Wire Line
+	9800 1450 10100 1450
+$Comp
+L Diode:1N4007 D401
+U 1 1 5EEA7718
+P 2350 3050
+F 0 "D401" V 2304 3129 50  0000 L CNN
+F 1 "1N4007" V 2395 3129 50  0000 L CNN
+F 2 "Diode_THT:D_DO-41_SOD81_P10.16mm_Horizontal" H 2350 2875 50  0001 C CNN
+F 3 "http://www.vishay.com/docs/88503/1n4001.pdf" H 2350 3050 50  0001 C CNN
+	1    2350 3050
+	0    1    1    0   
+$EndComp
+$Comp
+L Diode:1N4007 D402
+U 1 1 5EEBB598
+P 7700 2100
+F 0 "D402" V 7654 2179 50  0000 L CNN
+F 1 "1N4007" V 7745 2179 50  0000 L CNN
+F 2 "Diode_THT:D_DO-41_SOD81_P10.16mm_Horizontal" H 7700 1925 50  0001 C CNN
+F 3 "http://www.vishay.com/docs/88503/1n4001.pdf" H 7700 2100 50  0001 C CNN
+	1    7700 2100
+	0    1    1    0   
+$EndComp
+$Comp
+L Diode:1N4007 D403
+U 1 1 5EEC0377
+P 7700 4250
+F 0 "D403" V 7654 4329 50  0000 L CNN
+F 1 "1N4007" V 7745 4329 50  0000 L CNN
+F 2 "Diode_THT:D_DO-41_SOD81_P10.16mm_Horizontal" H 7700 4075 50  0001 C CNN
+F 3 "http://www.vishay.com/docs/88503/1n4001.pdf" H 7700 4250 50  0001 C CNN
+	1    7700 4250
+	0    1    1    0   
+$EndComp
 $EndSCHEMATC
