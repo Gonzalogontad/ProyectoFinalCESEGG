@@ -1,19 +1,24 @@
 /*=============================================================================
- * Author: Gonzalo Gontad <gonzalogontad@gmail.com>
+ * Copyright (c) 2020, Gonzalo Gontad <gonzalogontad@gmail.com>
+ * All rights reserved.
+ * License: mit (see LICENSE.txt)
  * Date: 2020/06/14
- * Version: 1.0
+ * Version: v1.0
  *===========================================================================*/
 
 /*=====[Avoid multiple inclusion - begin]====================================*/
 
-#ifndef __USER_TASKS_H__
-#define __USER_TASKS_H__
+#ifndef UART_ESP_DRIVER_H_
+#define UART_ESP_DRIVER_H_
 
 /*=====[Inclusions of public function dependencies]==========================*/
 
 #include "FreeRTOS.h"
+#include "queue.h"
 #include "task.h"
+#include "string.h"
 #include "sapi.h"
+#include "timers.h"
 
 /*=====[C++ - begin]=========================================================*/
 
@@ -23,14 +28,34 @@ extern "C" {
 
 /*=====[Definition macros of public constants]===============================*/
 
+
+#define IN_QUEUE_LEN 30 //30 muestras en cola de entrada
+#define OUT_QUEUE_LEN 30 //30 muestras en cola de saluda
+
+
 /*=====[Public function-like macros]=========================================*/
 
 /*=====[Definitions of public data types]====================================*/
 
+
+
+typedef struct
+{
+uartMap_t uartValue; //Numero de UART a utilizar
+uint32_t baudRate; //velocidad de transmision
+QueueHandle_t onTxQueue; //cola de transmision
+QueueHandle_t onRxQueue; //cola de recepcion
+} UARTData_t;
+
+
 /*=====[Prototypes (declarations) of public functions]=======================*/
 
-void myTask( void* taskParmPtr );  // Task declaration
-void myTask2( void* taskParmPtr );  // Task declaration
+
+bool_t UARTEspInit(UARTData_t *UARTData);
+void EspTxCallback(void*param);
+void EspRxCallback(void *param);
+bool_t sendEspByte(UARTData_t* UARTData,uint8_t byteToSend,TickType_t timeout);
+bool_t receiveEspByte(UARTData_t* UARTData,uint8_t *receivedByte,TickType_t timeout);
 
 /*=====[Prototypes (declarations) of public interrupt functions]=============*/
 
@@ -42,4 +67,4 @@ void myTask2( void* taskParmPtr );  // Task declaration
 
 /*=====[Avoid multiple inclusion - end]======================================*/
 
-#endif /* __USER_TASKS_H__ */
+#endif /* MYPROJECTS_RTOS2_TP1_INC_DRIVER_H_ */

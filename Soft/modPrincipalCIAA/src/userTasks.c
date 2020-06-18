@@ -8,6 +8,7 @@
 
 #include "userTasks.h"
 #include "portsDriver.h"
+#include "UARTEspDriver.h"
  
 /*=====[Inclusions of private function dependencies]=========================*/
 
@@ -32,8 +33,9 @@ void myTask( void* taskParmPtr )
 {
 	portsData_t *port = (portsData_t*) taskParmPtr;
 	txData_t portData;
+	uint16_t DAC=0;
+	uint8_t digitalOuts=0;
 	// ----- Task setup -----------------------------------
-   printf( "Blinky with freeRTOS y sAPI.\r\n" );
 
    gpioWrite( LED, ON );
 
@@ -49,15 +51,36 @@ void myTask( void* taskParmPtr )
    // ----- Task repeat for ever -------------------------
    while(TRUE) {
       gpioToggle( LED );
-      printf( "Blink!\r\n" );
-		portData.txData[0]=(port->portAddr<<4)|0x80; //Armo el primer byte con el primer bit en uno y el address
-		portData.txData[1]=0x0F;
-		portData.txData[2]=0x0F;
-		xQueueSend( port->onTxQueue, ( void * ) &portData, ( TickType_t ) portMAX_DELAY ); //Pongo en cola el primer dato a enviar
 
+      sendDataPort(port, DAC, digitalOuts,(TickType_t) portMAX_DELAY);
+      DAC++;
+      if (digitalOuts==0)
+    	  digitalOuts=0x0F;
+      else
+    	  digitalOuts=0x00;
       // Send the task to the locked state during xPeriodicity
       // (periodical delay)
       vTaskDelayUntil( &xLastWakeTime, xPeriodicity );
+   }
+}
+
+
+void myTask2( void* taskParmPtr )
+{
+	UARTData_t *UARTData = (UARTData_t *) taskParmPtr;
+	uint8_t data='A';
+
+   gpioWrite( LED, ON );
+
+   // Send the task to the locked state for 1 s (delay)
+   vTaskDelay( 1000 / portTICK_RATE_MS );
+
+    // ----- Task repeat for ever -------------------------
+   while(TRUE) {
+
+		sendEspByte(UARTData,data,(TickType_t) portMAX_DELAY);
+		receiveEspByte(UARTData,&data,(TickType_t) portMAX_DELAY);
+
    }
 }
 

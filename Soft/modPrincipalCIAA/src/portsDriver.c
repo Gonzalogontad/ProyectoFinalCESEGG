@@ -62,7 +62,7 @@ bool_t portsdriverInit(portsConfig_t *ports)
 	// Creo el timer que dispara la comunicacion con los puertos cada 1ms
 
 	ports->onTxTimeOut = xTimerCreate("Transmit", pdMS_TO_TICKS(1),pdTRUE, (void*) ports, onTxTimeOutCallback);
-	//ports->onTxTimeOut = xTimerCreate("Transmit", pdMS_TO_TICKS(1),pdTRUE, (void*) &ports->uartValue, onTxTimeOutCallback);
+
 
 	//Verifico la correcta creacion del timer
 	if (ports->onTxTimeOut==NULL)
@@ -75,7 +75,7 @@ bool_t portsdriverInit(portsConfig_t *ports)
 	uartConfig(ports->uartValue, ports->baudRate);
 
 	//Configuro el callback de la recepcion de UART
-//	uartCallbackSet(ports->uartValue, UART_RECEIVE, onRxCallback,(void*) ports);
+	uartCallbackSet(ports->uartValue, UART_RECEIVE, onRxCallback,(void*) ports);
 
 	//Inicializo el vector de datos de salida
 	portsDataInit (ports->port);
@@ -89,6 +89,57 @@ bool_t portsdriverInit(portsConfig_t *ports)
 	// Si todos los elementos fueron creados e inicializados correctamente,
 	// indicamos que el driver está listo para ser utilizado.
 	return(true);
+}
+
+
+// Callback para la recepción serie a través de la UART USB.
+void onRxCallback(void *param)
+{
+	UBaseType_t uxSavedInterruptStatus;
+	BaseType_t xHigherPriorityTaskWoken;
+	uint8_t aux;
+	static rxData_t receivedData;
+	static uint8_t byteNumber=0;
+
+	//Paso por param los datos del puerto
+	portsConfig_t* ports = (portsConfig_t*) param;
+
+	//Inicio seccion critica
+	uxSavedInterruptStatus = taskENTER_CRITICAL_FROM_ISR();	//
+
+	aux = uartRxRead(ports->uartValue);
+
+	if(aux & 0x80) //Si el primer bit es 1 significa que estoy recibiendo el primer byte
+		{
+		byteNumber=1;
+		receivedData.rxData [0]=aux;
+		}
+	else
+	{
+		if(byteNumber==1)
+		{
+			byteNumber=2;
+			receivedData.rxData [1]= aux;
+		}
+		else
+		{
+			byteNumber==0;
+			receivedData.rxData [2] = aux;
+			aux=(receivedData.rxData[0]>>4)&0x07; //Obtengo el address del puerto que envio el dato
+			xQueueSendFromISR( ports->port[aux].onRxQueue, ( void * ) &receivedData, &xHigherPriorityTaskWoken );//Pongo en cola los datos recividos en la cola correspondiente
+		}
+	}
+
+
+	taskEXIT_CRITICAL_FROM_ISR(uxSavedInterruptStatus);
+
+	//Chequeo de cambio de contexto
+	if (xHigherPriorityTaskWoken)
+	{
+		/* Actual macro used here is port specific. */
+		taskYIELD();
+	}
+
 }
 
 //Callback del timer de transmision
@@ -189,7 +240,41 @@ void onTxCallback(void*param)
 }
 
 
+bool_t sendDataPort(portsData_t * port,uint16_t DAC, uint8_t digitalOuts,TickType_t timeout)
+{
+	txData_t portData;
+	uint8_t aux;
+	if(DAC>1023)
+		DAC=1023;
+	aux= (uint8_t)(DAC>>7);
+	portData.txData[0]=(port->portAddr<<4)|0x80|aux; //Armo el primer byte con el primer bit en uno, el address y la parte alta del dac
+	portData.txData[1]=(uint8_t)(DAC & 0x007F); //Armo el segundo byte (parte baja del DAC)
+	portData.txData[2]=digitalOuts & 0x0F;
+	if (pdTRUE==xQueueSend( port->onTxQueue, ( void * ) &portData, timeout )) //Pongo en cola los datos a enviar
+		return true;
+	else
+		return false;
 
+}
+
+
+bool_t receiveDataPort(portsData_t * port,uint16_t *ADC1,uint16_t *ADC2, uint8_t *digitalIn,TickType_t timeout)
+{
+	rxData_t portData;
+	uint8_t aux;
+	aux= (uint8_t)(DAC>>7);
+
+	if (pdTRUE==xQueueReceive( port->onRxQueue, ( void * ) &portData, timeout )) //Leo de la cola el dato recibido
+	{
+		*ADC1 = (((uint16_t)portData.rxData[0] & 0x0F)<<7) | (uint16_t)portData.rxData[1];
+		*ADC1 = (((uint16_t)portData.rxData[2] & 0x0F)<<7) | (uint16_t)portData.rxData[3];
+		*digitalIn= (portData.rxData[2]>>4) & 0x07;
+		return true;
+	}
+	else
+		return false;
+
+}
 
 
 //	packetTX(driverConfig_t* selectedUart, char *txBlock) transmite el bloque

@@ -16,6 +16,7 @@
 #include "sapi.h"
 #include "userTasks.h"
 #include "portsDriver.h"
+#include "UARTEspDriver.h"
 
 /*=====[Definition macros of private constants]==============================*/
 
@@ -31,29 +32,44 @@ int main( void )
 {
 
 	static portsConfig_t ports;
+	static UARTData_t UARTData;
 
 	ports.uartValue = UART_GPIO;
 	ports.baudRate = 460800;
+
+
+
+	UARTData.uartValue = UART_USB;
+	UARTData.baudRate = 115200;
+
+
 
    boardInit();
 
    gpioInit( GPIO0, GPIO_OUTPUT );
 
    portsdriverInit(&ports);
+   UARTEspInit(&UARTData);
 
    // Create a task in freeRTOS with dynamic memory
    xTaskCreate(
       myTask,                     // Function that implements the task.
       (const char *)"myTask",     // Text name for the task.
       configMINIMAL_STACK_SIZE*2, // Stack size in words, not bytes.
-      (void*)&ports.port[1],                          // Parameter passed into the task.
+      (void*)&ports.port[0],                          // Parameter passed into the task.
       tskIDLE_PRIORITY+1,         // Priority at which the task is created.
       0                           // Pointer to the task created in the system
    );
 
-   //Creo timer de 1ms para sincronizacion de puertos
-//   ports.onTxTimeOut = xTimerCreate("Transmit", pdMS_TO_TICKS(1),pdTRUE, (void*) &ports, onTxTimeOutCallback);
-//   xTimerStart( ports.onTxTimeOut, 0 );
+   // Create a task in freeRTOS with dynamic memory
+   xTaskCreate(
+      myTask2,                     // Function that implements the task.
+      (const char *)"myTask",     // Text name for the task.
+      configMINIMAL_STACK_SIZE*2, // Stack size in words, not bytes.
+      (void*)&UARTData,                          // Parameter passed into the task.
+      tskIDLE_PRIORITY+1,         // Priority at which the task is created.
+      0                           // Pointer to the task created in the system
+   );
 
 
    vTaskStartScheduler(); // Initialize scheduler

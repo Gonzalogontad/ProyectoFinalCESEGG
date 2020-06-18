@@ -132,4 +132,5 @@ proyectos_cese/ProyectoFinalGG/ProyectoFinalCESEGG/Soft/modPrincipalCIAA/out/pro
  libs/sapi/sapi_v0.5.2/external_peripherals/ultrasonic/hcsr04/inc/sapi_ultrasonic_hcsr04.h \
  proyectos_cese/ProyectoFinalGG/ProyectoFinalCESEGG/Soft/modPrincipalCIAA/inc/portsDriver.h \
  libs/freertos/include/queue.h libs/freertos/include/timers.h \
- libs/freertos/include/task.h
+ libs/freertos/include/task.h \
+ proyectos_cese/ProyectoFinalGG/ProyectoFinalCESEGG/Soft/modPrincipalCIAA/inc/UARTEspDriver.h
