@@ -34,8 +34,8 @@
 
 /* Date: 2017-14-11 */
 
-#ifndef _GAPI_ESP8266_
-#define _GAPI_ESP8266_
+#ifndef _ESP8266_FreeRTOS_
+#define _ESP8266_FreeRTOS_
 
 /*==================[inclusions]=============================================*/
 
@@ -54,12 +54,12 @@ extern "C" {
 /*==================[typedef]================================================*/
 
 /*==================[external data declaration]==============================*/
-
+extern char * requestAnswer;
 /*==================[external functions declaration]=========================*/
 
 bool_t gesp8266InitHttpServer(char * wifiName, char * wifiPass);
 bool_t gesp8266ReadHttpServer();
-bool_t gesp8266WriteHttpServer(const char * webHttpHeader, char * webHttpBody, const char * webHttpEnd);
+bool_t gesp8266WriteHttpServer(const char * HttpWebPage);
 
 char * gesp8266GetIpAddress();
 char * gesp8266GetWifiName();
@@ -67,7 +67,7 @@ char * gesp8266GetWifiPass();
 uint8_t gesp8266GetConnectionId();
 void requestCallback(char *, uint8_t );
 void requestSeparate(char *, char **,char **,char **);
-
+uint32_t stringToInt (char *str);
 /*==================[cplusplus]==============================================*/
 
 #ifdef __cplusplus

@@ -29,8 +29,8 @@ extern "C" {
 /*=====[Definition macros of public constants]===============================*/
 
 
-#define IN_QUEUE_LEN 30 //30 muestras en cola de entrada
-#define OUT_QUEUE_LEN 30 //30 muestras en cola de saluda
+#define ESP_IN_QUEUE_LEN 300 //30 muestras en cola de entrada
+#define ESP_OUT_QUEUE_LEN 30 //30 muestras en cola de saluda
 
 
 /*=====[Public function-like macros]=========================================*/
@@ -55,7 +55,9 @@ bool_t UARTEspInit(UARTData_t *UARTData);
 void EspTxCallback(void*param);
 void EspRxCallback(void *param);
 bool_t sendEspByte(UARTData_t* UARTData,uint8_t byteToSend,TickType_t timeout);
+bool_t sendEspString(UARTData_t* UARTData,char* string);
 bool_t receiveEspByte(UARTData_t* UARTData,uint8_t *receivedByte,TickType_t timeout);
+
 
 /*=====[Prototypes (declarations) of public interrupt functions]=============*/
 

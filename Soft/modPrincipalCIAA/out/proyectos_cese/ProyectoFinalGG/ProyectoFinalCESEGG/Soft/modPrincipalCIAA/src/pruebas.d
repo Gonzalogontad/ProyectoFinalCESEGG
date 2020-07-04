@@ -1,8 +1,9 @@
-proyectos_cese/ProyectoFinalGG/ProyectoFinalCESEGG/Soft/modPrincipalCIAA/out/proyectos_cese/ProyectoFinalGG/ProyectoFinalCESEGG/Soft/modPrincipalCIAA/src/gapi_esp8266.o: \
- proyectos_cese/ProyectoFinalGG/ProyectoFinalCESEGG/Soft/modPrincipalCIAA/src/gapi_esp8266.c \
- proyectos_cese/ProyectoFinalGG/ProyectoFinalCESEGG/Soft/modPrincipalCIAA/src/../inc/gapi_esp8266.h \
- libs/sapi/sapi_v0.5.2/base/inc/sapi.h \
- libs/sapi/sapi_v0.5.2/base/inc/sapi_datatypes.h \
+proyectos_cese/ProyectoFinalGG/ProyectoFinalCESEGG/Soft/modPrincipalCIAA/out/proyectos_cese/ProyectoFinalGG/ProyectoFinalCESEGG/Soft/modPrincipalCIAA/src/pruebas.o: \
+ proyectos_cese/ProyectoFinalGG/ProyectoFinalCESEGG/Soft/modPrincipalCIAA/src/pruebas.c \
+ proyectos_cese/ProyectoFinalGG/ProyectoFinalCESEGG/Soft/modPrincipalCIAA/inc/pruebas.h \
+ proyectos_cese/ProyectoFinalGG/ProyectoFinalCESEGG/Soft/modPrincipalCIAA/inc/portsDriver.h \
+ libs/freertos/include/FreeRTOS.h \
+ proyectos_cese/ProyectoFinalGG/ProyectoFinalCESEGG/Soft/modPrincipalCIAA/inc/FreeRTOSConfig.h \
  libs/lpc_open/lpc_chip_43xx/inc/chip.h \
  libs/lpc_open/lpc_chip_43xx/inc/sys_config.h \
  libs/lpc_open/lpc_chip_43xx/inc/cmsis.h \
@@ -63,6 +64,15 @@ proyectos_cese/ProyectoFinalGG/ProyectoFinalCESEGG/Soft/modPrincipalCIAA/out/pro
  libs/lpc_open/lpc_chip_43xx/inc/iap_18xx_43xx.h \
  libs/lpc_open/lpc_chip_43xx/inc/error.h \
  libs/lpc_open/lpc_chip_43xx/inc/i2cm_18xx_43xx.h \
+ libs/freertos/include/private/projdefs.h \
+ libs/freertos/include/private/portable.h \
+ libs/freertos/include/private/deprecated_definitions.h \
+ libs/freertos/source/portable/ARM_CM4F/portmacro.h \
+ libs/freertos/include/private/mpu_wrappers.h \
+ libs/freertos/include/queue.h libs/freertos/include/task.h \
+ libs/freertos/include/private/list.h \
+ libs/sapi/sapi_v0.5.2/base/inc/sapi.h \
+ libs/sapi/sapi_v0.5.2/base/inc/sapi_datatypes.h \
  libs/lpc_open/boards/edu_ciaa_nxp/inc/board.h \
  libs/lpc_open/boards/inc/board_api.h \
  libs/lpc_open/lpc_chip_43xx/inc/lpc_types.h \
@@ -121,4 +131,5 @@ proyectos_cese/ProyectoFinalGG/ProyectoFinalCESEGG/Soft/modPrincipalCIAA/out/pro
  libs/sapi/sapi_v0.5.2/external_peripherals/imu/mpu9250/inc/sapi_imu_mpu9250.h \
  libs/sapi/sapi_v0.5.2/external_peripherals/imu/mpu60X0/inc/sapi_imu_mpu60X0.h \
  libs/sapi/sapi_v0.5.2/external_peripherals/memory/eeprom/inc/sapi_eeprom24xx1025.h \
- libs/sapi/sapi_v0.5.2/external_peripherals/ultrasonic/hcsr04/inc/sapi_ultrasonic_hcsr04.h
+ libs/sapi/sapi_v0.5.2/external_peripherals/ultrasonic/hcsr04/inc/sapi_ultrasonic_hcsr04.h \
+ libs/freertos/include/timers.h libs/freertos/include/task.h

@@ -42,10 +42,10 @@ bool_t UARTEspInit(UARTData_t *UARTData)
 
 		// Creo la cola de recepcion
 
-		UARTData->onRxQueue = xQueueCreate(IN_QUEUE_LEN, sizeof(uint8_t));
+		UARTData->onRxQueue = xQueueCreate(ESP_IN_QUEUE_LEN, sizeof(uint8_t));
 
 		//	Creo una cola de transmision
-		UARTData->onTxQueue = xQueueCreate(OUT_QUEUE_LEN, sizeof(uint8_t));
+		UARTData->onTxQueue = xQueueCreate(ESP_OUT_QUEUE_LEN, sizeof(uint8_t));
 
 		//Verifico la correcta creacion de las colas
 		if((UARTData->onRxQueue == NULL)||(UARTData->onTxQueue == NULL))
@@ -60,7 +60,7 @@ bool_t UARTEspInit(UARTData_t *UARTData)
 	uartCallbackSet(UARTData->uartValue, UART_RECEIVE, EspRxCallback,(void*) UARTData);
 
 	//Configuro el callback de la transmision de UART
-	uartCallbackSet(UARTData->uartValue, UART_TRANSMITER_FREE,EspTxCallback, (void*) UARTData);
+//	uartCallbackSet(UARTData->uartValue, UART_TRANSMITER_FREE,EspTxCallback, (void*) UARTData);
 
 	// Habilitamos todas las interrupciones de la UART seleccionada.
 	uartInterrupt(UARTData->uartValue, true);
@@ -145,6 +145,19 @@ bool_t sendEspByte(UARTData_t* UARTData,uint8_t byteToSend,TickType_t timeout)
 
 }
 
+bool_t sendEspString(UARTData_t* UARTData,char* string)
+{
+	uint32_t i;
+	i=0;
+	while (string[i])
+	{
+		if (false == sendEspByte(UARTData,(uint8_t)string[i],portTICK_RATE_MS * 100))
+			return false;
+		else
+			i++;
+	}
+
+}
 
 bool_t receiveEspByte(UARTData_t* UARTData,uint8_t *receivedByte,TickType_t timeout)
 {

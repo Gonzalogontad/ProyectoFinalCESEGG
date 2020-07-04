@@ -31,7 +31,8 @@ extern "C" {
 
 void myTask( void* taskParmPtr );  // Task declaration
 void myTask2( void* taskParmPtr );  // Task declaration
-
+void myTask3( void* taskParmPtr );
+void myTask4( void* taskParmPtr );
 /*=====[Prototypes (declarations) of public interrupt functions]=============*/
 
 /*=====[C++ - end]===========================================================*/

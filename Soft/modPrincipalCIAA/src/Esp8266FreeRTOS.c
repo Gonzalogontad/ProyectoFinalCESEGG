@@ -1,46 +1,13 @@
-/* Copyright 2017, Pablo Gomez - Agustin Bassi.
- * Copyright 2016, Marcelo Vieytes.
- * All rights reserved.
- *
- * This file is part sAPI library for microcontrollers.
- *
- * Redistribution and use in source and binary forms, with or without
- * modification, are permitted provided that the following conditions are met:
- *
- * 1. Redistributions of source code must retain the above copyright notice,
- *    this list of conditions and the following disclaimer.
- *
- * 2. Redistributions in binary form must reproduce the above copyright notice,
- *    this list of conditions and the following disclaimer in the documentation
- *    and/or other materials provided with the distribution.
- *
- * 3. Neither the name of the copyright holder nor the names of its
- *    contributors may be used to endorse or promote products derived from this
- *    software without specific prior written permission.
- *
- * THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
- * AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
- * IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
- * ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE
- * LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
- * CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
- * SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
- * INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
- * CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
- * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
- * POSSIBILITY OF SUCH DAMAGE.
- *
- */
-
-/* Date: 2017-14-11 */
-
 /*==================[inlcusiones]============================================*/
 
-#include "../inc/gapi_esp8266.h"
+#include "Esp8266FreeRTOS.h"
 
 #include "sapi.h"
 #include <string.h>
 #include "sapi_stdio.h"
+#include "webPage.h"
+#include "sapi_convert.h"
+#include "UARTEspDriver.h"
 
 /*==================[definiciones y macros]==================================*/
 
@@ -51,7 +18,7 @@
 #define ESP8266_WAIT          1000
 
 #define MAX_COMMAND_LENGHT	   40
-#define MAX_HTTP_WEB_LENGHT   1500
+#define MAX_HTTP_WEB_LENGHT   2047
 
 typedef enum Esp8266State
 {
@@ -125,17 +92,17 @@ static const char Esp8266StatusToString[][MAX_COMMAND_LENGHT] =
 		"ESP_WAIT_IPD", "ESP_GET_REQUEST_ID", "ESP_WAIT_COMMA",
 		"ESP_GET_REQUEST_LENGTH", "ESP_GET_REQUEST", };
 // Respuestas del ESP8266
-static const char Response_OK[] = "OK";
-static const char Response_CWJAP_OK[] = "+CWJAP:";
-static const char Response_CWJAP_1[] = "WIFI CONNECTED";
-static const char Response_CWJAP_2[] = "WIFI GOT IP";
-static const char Response_SEND_OK[] = "SEND OK";
-static const char Response_STATUS_3[] = "STATUS:3";
-static const char Response_CIPSTATUS[] = "+CIPSTATUS:";
-static const char Response_CIPCLOSE[] = "CLOSED";
-static const char Response_CIFSR[] = "+CIFSR:STAIP,\"";
-static const char Response_IPD[] = "+IPD,";
-static const char Response_COMMA[] = ",";
+static const char Response_OK[] 		= "OK";
+static const char Response_CWJAP_OK[] 	= "+CWJAP:";
+static const char Response_CWJAP_1[] 	= "WIFI CONNECTED";
+static const char Response_CWJAP_2[] 	= "WIFI GOT IP";
+static const char Response_SEND_OK[] 	= "SEND OK";
+static const char Response_STATUS_3[] 	= "STATUS:3";
+static const char Response_CIPSTATUS[] 	= "+CIPSTATUS:";
+static const char Response_CIPCLOSE[] 	= "CLOSED";
+static const char Response_CIFSR[] 		= "+CIFSR:STAIP,\"";
+static const char Response_IPD[] 		= "+IPD,";
+static const char Response_COMMA[] 		= ",";
 
 // Memoria asociada a las conexiones
 static uint8_t CurrentConnectionId;
@@ -144,15 +111,15 @@ static char WifiName[30] = "";
 static char WifiPass[30] = "";
 static char WifiIp[20];
 // Punteros a la pagina web a mostrar
-static char * PointerOfHttpBody;
-static const char * PointerOfHttpHeader;
-static const char * PointerOfHttpEnd;
+static char * PointerOfHttpWebPage;
+char * requestAnswer;
 // Variables utilizadas en la maquina de estados.
 static const char * Esp8266ResponseToWait;
 static delay_t Esp8266Delay;
 static uint8_t Esp8266Status = ESP_INIT;
 static uartMap_t Esp8266DebugUart = UART_USB;
 static uint32_t Esp8266DebugBaudRate = 115200;
+static UARTData_t UARTEsp;
 
 static char rawRequest [256]; //string donde guardo el request
 
@@ -257,15 +224,13 @@ bool_t gesp8266ReadHttpServer()
  * @param webHttpEnd puntero al end http (debe ser parte de la aplicacion de usuario).
  * @return TRUE si pudo mandar la web correctamente, FALSE caso contrario.
  */
-bool_t gesp8266WriteHttpServer(const char * webHttpHeader, char * webHttpBody,
-		const char * webHttpEnd)
+bool_t gesp8266WriteHttpServer(const char * answer)
 {
 	//antes de enviar se asegura que haya datos pendientes para enviar
 	if (Esp8266Status == ESP_SEND_CIPSEND)
 	{
-		PointerOfHttpHeader = webHttpHeader;
-		PointerOfHttpBody = webHttpBody;
-		PointerOfHttpEnd = webHttpEnd;
+		PointerOfHttpWebPage = answer;
+
 	}
 	ExcecuteHttpServerFsm();
 
@@ -286,15 +251,22 @@ static void ExcecuteHttpServerFsm(void)
 	static uint16_t i;
 	static uint8_t byteReceived, auxIndex;
 
+	UARTEsp.uartValue=ESP8266_UART;
+	UARTEsp.baudRate=ESP8266_BAUD_RATE;
 
 	switch (Esp8266Status)
 	{
 
 	case ESP_INIT:
-		uartConfig(ESP8266_UART, ESP8266_BAUD_RATE);
+
+
 		if (Esp8266DebugBaudRate > 0)
 		{
 			uartConfig(Esp8266DebugUart, Esp8266DebugBaudRate);
+		}
+		if(UARTEspInit(&UARTEsp)==false)
+		{
+			stdioPrintf(Esp8266DebugUart, "Error al incializar UART ESP");
 		}
 		delayConfig(&Esp8266Delay, ESP8266_PAUSE);
 		SetEsp8622Status(ESP_SEND_AT);
@@ -531,7 +503,8 @@ static void ExcecuteHttpServerFsm(void)
 
 		//Recibe byte a byte la direccion IP y la almacena en WifiIp
 	case ESP_LOAD_IP:
-		if (uartReadByte(ESP8266_UART, &byteReceived))
+		//if (uartReadByte(ESP8266_UART, &byteReceived))
+		if ( receiveEspByte(&UARTEsp,&byteReceived,10))
 		{
 			if (byteReceived != '"')
 			{
@@ -566,7 +539,8 @@ static void ExcecuteHttpServerFsm(void)
 		break;
 
 	case ESP_GET_REQUEST_ID:
-		if (uartReadByte(ESP8266_UART, &byteReceived))
+		//if (uartReadByte(ESP8266_UART, &byteReceived))
+		if ( receiveEspByte(&UARTEsp,&byteReceived,10))
 		{	//leo el byte que corresponde al ID
 			CurrentConnectionId = byteReceived;
 			Esp8266ResponseToWait = Response_COMMA;
@@ -587,7 +561,8 @@ static void ExcecuteHttpServerFsm(void)
 		break;
 
 	case ESP_GET_REQUEST_LENGTH:
-		if (uartReadByte(ESP8266_UART, &byteReceived))
+		//if (uartReadByte(ESP8266_UART, &byteReceived))
+		if ( receiveEspByte(&UARTEsp,&byteReceived,10))
 		{	//leo un byte de la UART y me fijo si ya empieza la Request
 			if (byteReceived != ':'&& byteReceived >= '0' && byteReceived <= '9')
 			{
@@ -606,7 +581,8 @@ static void ExcecuteHttpServerFsm(void)
 		break;
 	case ESP_GET_REQUEST:
 
-			if (uartReadByte(ESP8266_UART, &byteReceived))
+			//if (uartReadByte(ESP8266_UART, &byteReceived))
+			if ( receiveEspByte(&UARTEsp,&byteReceived,10))
 			{	//leo los bytes de la Request
 
 				if (byteReceived != 0x0D && byteReceived != 0x0A ) //si es distinto de CR o LF (enter)
@@ -619,6 +595,7 @@ static void ExcecuteHttpServerFsm(void)
 				{
 					rawRequest[i]=0;
 					requestCallback(rawRequest, i); //envio al callback del request la request completa (GET + algo) y el tamaño de la request
+
 					//SetEsp8622Status(ESP_GET_REQUEST);
 					SetEsp8622Status(ESP_SEND_CIPSEND);
 				}
@@ -642,19 +619,18 @@ static void ExcecuteHttpServerFsm(void)
 		// de la conexion abierta, mas la cantidad en ASCII de los bytes
 		// que tiene la pagina web (o al menos los bytes de la primer linea).
 	case ESP_SEND_CIPSEND:
-		lenghtOfHttpLines = (strlen(PointerOfHttpHeader)
-				+ strlen(PointerOfHttpBody) + strlen(PointerOfHttpEnd));
+		lenghtOfHttpLines = (strlen(PointerOfHttpWebPage));
 		// Si se pasa del maximo largo permitido lo avisa en la web
 		if (lenghtOfHttpLines >= MAX_HTTP_WEB_LENGHT)
 		{
-			stdioSprintf(PointerOfHttpBody,
+			stdioSprintf(PointerOfHttpWebPage,
 					"ERROR: La longitud de datos HTTP supera el maximo permitido de %d bytes.",
 					MAX_HTTP_WEB_LENGHT);
-			lenghtOfHttpLines = (strlen(PointerOfHttpHeader)
-					+ strlen(PointerOfHttpBody) + strlen(PointerOfHttpEnd));
+			lenghtOfHttpLines = (strlen(PointerOfHttpWebPage));
 		}
 		stdioPrintf(ESP8266_UART, "AT+CIPSEND=%c,%d\r\n", CurrentConnectionId,
 				lenghtOfHttpLines);
+		delayConfig(&Esp8266Delay, ESP8266_PAUSE);
 		SetEsp8622Status(ESP_WAIT_CIPSEND);
 		Esp8266ResponseToWait = Response_OK;
 		break;
@@ -674,8 +650,7 @@ static void ExcecuteHttpServerFsm(void)
 		break;
 
 	case ESP_SEND_HTTP:
-		stdioPrintf(ESP8266_UART, "%s%s%s", PointerOfHttpHeader,
-				PointerOfHttpBody, PointerOfHttpEnd);
+		stdioPrintf(ESP8266_UART, "%s",PointerOfHttpWebPage);
 		SetEsp8622Status(ESP_WAIT_HTTP);
 		Esp8266ResponseToWait = Response_SEND_OK;
 		break;
@@ -694,20 +669,22 @@ static void ExcecuteHttpServerFsm(void)
 		break;
 
 	case ESP_SEND_CIPCLOSE:
-		if (delayRead(&Esp8266Delay))
-		{
+		//if (delayRead(&Esp8266Delay))
+		//{
 			stdioPrintf(ESP8266_UART, "AT+CIPCLOSE=%c\r\n",
 					CurrentConnectionId);
-			Esp8266ResponseToWait = Response_CIPCLOSE;
-			delayConfig(&Esp8266Delay, ESP8266_PAUSE);
-			SetEsp8622Status(ESP_WAIT_CIPCLOSE);
-		}
+			//Esp8266ResponseToWait = Response_CIPCLOSE;
+			delayConfig(&Esp8266Delay, 100);
+			Esp8266ResponseToWait = Response_IPD;
+			SetEsp8622Status(ESP_WAIT_IPD);
+			//SetEsp8622Status(ESP_WAIT_CIPCLOSE);
+		//}
 		break;
 
 	case ESP_WAIT_CIPCLOSE:
 		if (IsWaitedResponse())
 		{
-			delayConfig(&Esp8266Delay, ESP8266_PAUSE);
+			delayConfig(&Esp8266Delay, 1);
 			Esp8266ResponseToWait = Response_IPD;
 			SetEsp8622Status(ESP_WAIT_IPD);
 		}
@@ -734,7 +711,8 @@ static bool_t IsWaitedResponse(void)
 	uint8_t byteReceived;
 	bool_t moduleResponse = FALSE;
 
-	if (uartReadByte(ESP8266_UART, &byteReceived))
+	//if (uartReadByte(ESP8266_UART, &byteReceived))
+	if ( receiveEspByte(&UARTEsp,&byteReceived,10))
 	{
 		if (Esp8266DebugBaudRate > 0)
 		{
@@ -812,9 +790,84 @@ uint16_t i =0;
 char *methode; //puntero al metodo de la request
 char *request; //puntero al comienzo de la reqeuest
 char *HTTPVersion; //puntero al string de la version HTTP
-
+char *auxpointer1;
+char *auxpointer2;
+char auxString[10];
+uint32_t panel;
+uint32_t buttonId;
+actualPageData = pageData0;
+actualPanel=panel0;
 //separo la request completa en 3 bloques (metodo, request limpia y version de HTTP)
 requestSeparate(rawReq,&methode,&request,&HTTPVersion);
+
+if (!strcmp(methode,"GET"))
+{
+	if (!strcmp(request, "/"))
+			requestAnswer=HttpWebPage;
+	else
+		{
+		if (strstr(request, "/data"))
+				{
+			requestAnswer = actualPageData;
+				}
+		else
+			if (strstr(request, "/button"))
+							{
+						requestAnswer = ok;
+							}
+			else
+				if (strstr(request, "/panel"))
+								{
+							requestAnswer = panel0;
+								}
+				else
+					if (strstr(request, "/body"))
+									{
+								requestAnswer = HttpBody;
+									}
+					else
+						if (strstr(request, "/save"))
+								{
+							requestAnswer = actualPageData;
+								}
+						else
+							requestAnswer = requestError;
+		}
+}
+else
+	if (!strcmp(methode,"POST"))
+	{
+		if (strstr(request, "/button$"))
+		{
+			//reemplazo los "$" por fin de cadena
+			auxpointer1= strstr(request, "$");
+			auxpointer2= strstr(auxpointer1, "$");
+			auxpointer2[0]=0;
+			panel= stringToInt(&auxpointer1[1]);
+			buttonId= stringToInt(&auxpointer2[1]);
+//*****enviar orden y esperar a que se ejecute
+			requestAnswer=actualPageData;
+		}
+		else
+		{
+			if (strstr(request, "/save$"))
+			{
+				//reemplazo los "$" por fin de cadena
+				auxpointer1= strstr(request, "$");
+				auxpointer2= strstr(auxpointer1, "$");
+				auxpointer2[0]=0;
+				panel= stringToInt(&auxpointer1[1]);
+
+//*****enviar orden y esperar a que se ejecute
+				requestAnswer = actualPageData;
+			}
+			else
+				requestAnswer = requestError;
+		}
+	}
+	else
+
+		requestAnswer = requestError;
 
 stdioPrintf(UART_USB, "\n La request limpia es: %s \n",request);
 stdioPrintf(UART_USB, "\n El metodo es: %s \n",methode);
@@ -825,5 +878,23 @@ stdioPrintf(UART_USB, "\n La version de HTTP es: %s \n",HTTPVersion);
 
 	return;
 }
+
+
+uint32_t stringToInt (char *str)
+{
+	uint32_t i;
+	uint32_t result;
+	result =0;
+	for (i=0; i<(strlen(str));i++)
+	{
+		if ((str[i]<='9')&&(str[i]>='0'))
+			{
+			result=result*10;
+			result = result +(str[i]-'0');
+			}
+	}
+	return result;
+}
+
 
 /*==================[fin del archivo]========================================*/
