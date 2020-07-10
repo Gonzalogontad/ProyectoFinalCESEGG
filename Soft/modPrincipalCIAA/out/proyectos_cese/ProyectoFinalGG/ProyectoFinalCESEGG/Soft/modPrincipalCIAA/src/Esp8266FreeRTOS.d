@@ -133,4 +133,5 @@ proyectos_cese/ProyectoFinalGG/ProyectoFinalCESEGG/Soft/modPrincipalCIAA/out/pro
  libs/freertos/include/private/mpu_wrappers.h \
  libs/freertos/include/queue.h libs/freertos/include/task.h \
  libs/freertos/include/private/list.h libs/freertos/include/timers.h \
- libs/freertos/include/task.h
+ libs/freertos/include/task.h \
+ proyectos_cese/ProyectoFinalGG/ProyectoFinalCESEGG/Soft/modPrincipalCIAA/inc/interpreter.h

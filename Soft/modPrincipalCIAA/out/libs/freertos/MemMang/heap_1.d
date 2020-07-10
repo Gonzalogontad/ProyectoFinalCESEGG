@@ -1,5 +1,5 @@
-proyectos_cese/ProyectoFinalGG/ProyectoFinalCESEGG/Soft/modPrincipalCIAA/out/libs/freertos/MemMang/heap_4.o: \
- libs/freertos/MemMang/heap_4.c libs/freertos/include/FreeRTOS.h \
+proyectos_cese/ProyectoFinalGG/ProyectoFinalCESEGG/Soft/modPrincipalCIAA/out/libs/freertos/MemMang/heap_1.o: \
+ libs/freertos/MemMang/heap_1.c libs/freertos/include/FreeRTOS.h \
  proyectos_cese/ProyectoFinalGG/ProyectoFinalCESEGG/Soft/modPrincipalCIAA/inc/FreeRTOSConfig.h \
  libs/lpc_open/lpc_chip_43xx/inc/chip.h \
  libs/lpc_open/lpc_chip_43xx/inc/sys_config.h \

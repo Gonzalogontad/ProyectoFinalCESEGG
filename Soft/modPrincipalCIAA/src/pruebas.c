@@ -32,6 +32,126 @@
 #define maxLong 	FSMReg->param [3]
 
 
+bool_t pruebasInit ()
+{
+	//configuro la comunicacion con los puertos de prueba
+	static portsConfig_t ports;
+	//static UARTData_t UARTData;
+	uint8_t i;
+	ports.uartValue = UART_GPIO;
+	ports.baudRate = 460800;
+	portsdriverInit(&ports);
+
+	//Inicializo el vector de datos y comunicacion de los tests
+	for (i=0;i<PORTS_NUMBER;i++)
+	{
+		FSMRegisters[i].port = ports.port[i]; //Asigno las colas del puerto de pruebas
+		FSMRegisters[i].test = 0;
+		FSMRegisters[i].state = INIT;
+		FSMRegisters[i].testControlQueue = xQueueCreate(CONTROL_QUEUE_LEN,sizeof(testOrder_t)); //Creo la cola por donde llegan las ordenes para la tarea de pruebas
+
+
+		//Creo la tarea de la prueb y le paso el registro de datos
+		xTaskCreate(
+			testsTask,                     // Function that implements the task.
+			(const char *)"Test",     // Text name for the task.
+			configMINIMAL_STACK_SIZE, // Stack size in words, not bytes.
+			(void*)&FSMRegisters[i],    // Parameter passed into the task.
+			tskIDLE_PRIORITY+1,         // Priority at which the task is created.
+			0                           // Pointer to the task created in the system
+		);
+	}
+}
+
+
+void testsTask( void* taskParmPtr )
+{
+	testState_t *test = (testState_t*) taskParmPtr;
+
+// Send the task to the locked state for 1 s (delay)
+   vTaskDelay( 1000 / portTICK_RATE_MS );
+   test->state= INIT;
+   testOrder_t order;
+  // ----- Task repeat for ever -------------------------
+   while(TRUE) {
+	   if (gpioRead(TEC1)==0)
+	   {
+		   test->test=1;
+	   	   test->state= START;
+	   }
+	   if (gpioRead(TEC2)==0)
+	   {
+		   test->test=2;
+	   	   test->state= START;
+	   }
+	   //Si llega alguna instruccion por cola la ejecuto
+	   if (pdTRUE == xQueueReceive(test->testControlQueue, &order,0))
+	   {
+		   test->test=order.test;
+	   	   test->state= order.state;
+
+	   }
+
+	   //Checkeo si hay datos del puerto y ejecuto la FSM de la pueba
+	   if (uxQueueMessagesWaiting(test->port.onRxQueue))
+	   {
+		 switch(test->test){
+			 case 1:
+				 FSMPruebaDrivers(test);
+				 break;
+			 case 2:
+				 FSMPruebaTemporizadores(test);
+				 break;
+		 }
+	   }
+
+   }
+}
+
+
+bool_t setTestOrder (uint8_t portNum, uint8_t testNum, uint8_t testState )
+{
+	testOrder_t order;
+	order.state = testState;
+	order.test = testNum;
+
+	if (pdTRUE == xQueueSend(FSMRegisters[portNum].testControlQueue, &order,0))
+		return true;
+	else
+		return false;
+
+}
+
+bool_t sendToAllTests ( uint8_t testNum, uint8_t testState )
+{
+	bool_t ret;
+	testOrder_t order;
+	uint8_t portNum;
+	order.state = testState;
+	order.test = testNum;
+	ret= true;
+	for (portNum = 0;portNum<PORTS_NUMBER;portNum++)
+	{
+		if (pdTRUE != xQueueSend(FSMRegisters[portNum].testControlQueue, &order,0))
+			ret =false;
+	}
+	portNum = 0;
+	while (portNum <(PORTS_NUMBER-1))
+	{
+		if (FSMRegisters[portNum].state==STOP)
+			portNum++;
+		else
+			taskYIELD();
+	}
+
+return ret;
+}
+
+uint8_t getTestsState (uint8_t portNum)
+{
+	return FSMRegisters[portNum].state;
+}
+
 //Salidas digitales
 //0= dimrelay0
 //1= dimrelay1

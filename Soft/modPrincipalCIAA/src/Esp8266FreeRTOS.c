@@ -8,6 +8,7 @@
 #include "webPage.h"
 #include "sapi_convert.h"
 #include "UARTEspDriver.h"
+#include "interpreter.h"
 
 /*==================[definiciones y macros]==================================*/
 
@@ -787,16 +788,17 @@ stdioPrintf(UART_USB, "\n La request tiene una longitud de: %d \n",CurrentReqLen
 stdioPrintf(UART_USB, "\n La request completa es: %s \n",rawReq);
 	  // GET / HTTP1.1
 uint16_t i =0;
-char *methode; //puntero al metodo de la request
-char *request; //puntero al comienzo de la reqeuest
-char *HTTPVersion; //puntero al string de la version HTTP
-char *auxpointer1;
-char *auxpointer2;
+static char *methode; //puntero al metodo de la request
+static char *request; //puntero al comienzo de la reqeuest
+static char *HTTPVersion; //puntero al string de la version HTTP
+static char *auxpointer1;
+static char *auxpointer2;
 char auxString[10];
 uint32_t panel;
 uint32_t buttonId;
-actualPageData = pageData0;
-actualPanel=panel0;
+//actualPanel=panel0;
+command_t auxCommand; //Variable para guardar comandos que van a ser enviados al interprete
+
 //separo la request completa en 3 bloques (metodo, request limpia y version de HTTP)
 requestSeparate(rawReq,&methode,&request,&HTTPVersion);
 
@@ -818,7 +820,7 @@ if (!strcmp(methode,"GET"))
 			else
 				if (strstr(request, "/panel"))
 								{
-							requestAnswer = panel0;
+							requestAnswer = actualPanel;
 								}
 				else
 					if (strstr(request, "/body"))
@@ -840,13 +842,26 @@ else
 		if (strstr(request, "/button$"))
 		{
 			//reemplazo los "$" por fin de cadena
-			auxpointer1= strstr(request, "$");
-			auxpointer2= strstr(auxpointer1, "$");
-			auxpointer2[0]=0;
-			panel= stringToInt(&auxpointer1[1]);
-			buttonId= stringToInt(&auxpointer2[1]);
-//*****enviar orden y esperar a que se ejecute
-			requestAnswer=actualPageData;
+			auxpointer1= strstr(request, "$"); //llego al primer signo $
+			auxpointer1[0]=' ';
+			auxpointer2= strstr(request, "$");
+			//auxpointer2[0]=0;
+			//auxCommand.panelNum = stringToInt(&auxpointer1[2]); //capturo el numero de panel
+			auxCommand.panelNum = (uint8_t) (auxpointer1[1]-'0'); //capturo el numero de panel
+			i=1;
+			while ((i<4)&&(auxpointer2[i]!= 0))//
+			//while (auxpointer2[i])//
+					{
+					gpioToggle( LED1 );
+				//	gpioToggle( LED2 );
+				//	gpioToggle( LED3 );
+					auxCommand.buttonId[i-1]= auxpointer2[i];
+					//auxCommand.buttonId[1]= auxpointer2[2];
+//					auxCommand.buttonId[2]= auxpointer2[3];
+					i++;
+					}
+			sendCommand(auxCommand);
+			requestAnswer=ok;
 		}
 		else
 		{
@@ -854,11 +869,30 @@ else
 			{
 				//reemplazo los "$" por fin de cadena
 				auxpointer1= strstr(request, "$");
+				auxpointer1[0]=0;
 				auxpointer2= strstr(auxpointer1, "$");
 				auxpointer2[0]=0;
-				panel= stringToInt(&auxpointer1[1]);
+				auxCommand.panelNum = stringToInt(&auxpointer1[1]); //capturo el numero de panel
+				i=1;
+				while ((i<4)&&(auxpointer2[i]!= 0))//el modulo envia un espacio entre la uri y la version HTML
+						{
+						auxCommand.buttonId[i-1]= auxpointer2[i];
+						}
 
-//*****enviar orden y esperar a que se ejecute
+				//Capturo los parametros a guardar y los convierto a entero
+				auxpointer1= strstr(request, "$data:[");//busco el primer parametro
+				for (i=0;i<4;i++)
+				{
+					if (i=3)
+						auxpointer2= strstr(auxpointer1, "]"); //para el cuarto parametro busco un ]
+					else
+						auxpointer2= strstr(auxpointer1, ","); //busco una coma y la reemplazo por 0
+					auxpointer2[0]=0;
+					auxCommand.parameters[i] = stringToInt(&auxpointer1[1]);
+					auxpointer1=auxpointer2;
+				}
+
+
 				requestAnswer = actualPageData;
 			}
 			else
@@ -866,8 +900,9 @@ else
 		}
 	}
 	else
-
+	{
 		requestAnswer = requestError;
+	}
 
 stdioPrintf(UART_USB, "\n La request limpia es: %s \n",request);
 stdioPrintf(UART_USB, "\n El metodo es: %s \n",methode);

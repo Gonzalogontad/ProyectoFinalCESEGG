@@ -39,10 +39,6 @@
 // Task implementation
 void myTask( void* taskParmPtr )
 {
-	portsData_t *port = (portsData_t*) taskParmPtr;
-	txData_t portData;
-	uint16_t DAC=0;
-	uint8_t digitalOuts=0;
 	// ----- Task setup -----------------------------------
 
    gpioWrite( LED, ON );
@@ -73,24 +69,7 @@ void myTask( void* taskParmPtr )
 }
 
 
-void myTask2( void* taskParmPtr )
-{
-	UARTData_t *UARTData = (UARTData_t *) taskParmPtr;
-	uint8_t data='A';
 
-   gpioWrite( LED, ON );
-
-   // Send the task to the locked state for 1 s (delay)
-   vTaskDelay( 1000 / portTICK_RATE_MS );
-
-    // ----- Task repeat for ever -------------------------
-   while(TRUE) {
-
-		sendEspByte(UARTData,data,(TickType_t) portMAX_DELAY);
-		receiveEspByte(UARTData,&data,(TickType_t) portMAX_DELAY);
-
-   }
-}
 
 
 void myTask3( void* taskParmPtr )
@@ -173,40 +152,6 @@ void myTask3( void* taskParmPtr )
 }
 
 
-void myTask4( void* taskParmPtr )
-{
-	testState_t *test = (testState_t*) taskParmPtr;
-
-// Send the task to the locked state for 1 s (delay)
-   vTaskDelay( 1000 / portTICK_RATE_MS );
-   test->state= INIT;
-  // ----- Task repeat for ever -------------------------
-   while(TRUE) {
-	   if (gpioRead(TEC1)==0)
-	   {
-		   test->test=0;
-	   	   test->state= START;
-	   }
-	   if (gpioRead(TEC2)==0)
-	   {
-		   test->test=1;
-	   	   test->state= START;
-	   }
-	   //Checkeo si hay datos del puerto y ejecuto la FSM de la pueba
-	   if (uxQueueMessagesWaiting(test->port.onRxQueue))
-	   {
-		 switch(test->test){
-			 case 0:
-				 FSMPruebaDrivers(test);
-				 break;
-			 case 1:
-				 FSMPruebaTemporizadores(test);
-				 break;
-		 }
-	   }
-
-   }
-}
 
 /*=====[Implementations of interrupt functions]==============================*/
 
