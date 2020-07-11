@@ -12,10 +12,12 @@
 #include "webPage.h"
 
 char *panels [TESTS_QTY];
+uint32_t *params;
 
 
 bool_t interpreterInit()
 {
+
 	panels [0] = panel0;
 	panels [1] = panel1;
 	commandsQueue = xQueueCreate(INTERPRETER_QUEUE_LEN,sizeof(command_t));
@@ -32,7 +34,7 @@ bool_t interpreterInit()
 
 void interpreter ()
 {
-
+	uint8_t i;
 	command_t command;
 	uint8_t portNum;
 	uint8_t testState;
@@ -57,6 +59,7 @@ while (true)
 												actualPanelNumber = 1;
 											actualPanel = panels[actualPanelNumber-1];
 
+											updateAllParameters (actualPanelNumber-1);
 											break;
 										}
 										case '2':
@@ -67,6 +70,8 @@ while (true)
 											else
 												actualPanelNumber = TESTS_QTY;
 											actualPanel = panels[actualPanelNumber-1];
+											updateAllParameters (actualPanelNumber-1);
+
 											break;
 										}
 										case '4':
@@ -92,8 +97,17 @@ while (true)
 												setTestOrder (portNum, actualPanelNumber, STOP);
 											break;
 										}
-										case '7':
+										case '7':	//en la fina 7 estan los botones de guardar
 										{
+											sendToAllTests (actualPanelNumber , STOP); //envio la orden de detener todas las tareas y no continuo hasta que se detuvieron
+											params = getParameters ((uint32_t) actualPanelNumber-1,command.buttonId[2]-'0');
+											for (i=0;i<4;i++)
+											{
+
+												params[i]= command.parameters[i];
+
+											}
+											saveParameters ((uint32_t) actualPanelNumber-1);
 											break;
 										}
 										default:
@@ -106,17 +120,7 @@ while (true)
 						}
 		}
 	}
-	if (actualPageData == pageDataA)
-	{
-		refreshPageData(pageDataB);
-		actualPageData = pageDataB; //Unicamente cambio el puntero a los datos que se van a mandar cuando ya esta completa la informacion
-	}
-	else
-		{
-		refreshPageData(pageDataA);
-		actualPageData = pageDataA;
-		}
-
+	refreshPageData();
 }
 }
 
@@ -126,7 +130,16 @@ void sendCommand(command_t command)
 
 }
 
-void refreshPageData(char*pageData){
+void refreshPageData(){
+	char*pageData;
+	if (actualPageData == pageDataA)
+	{
+		pageData = pageDataB;
+	}
+	else
+		{
+		pageData = pageDataA;
+		}
 	uint8_t i,j;
 	uint8_t aux;
 	char auxStrig[60];
@@ -188,23 +201,10 @@ void refreshPageData(char*pageData){
 	}
 	pageData[strlen(pageData)-1]=0; //borro la ultima coma
 	strcat (pageData,"]}");
+
+	actualPageData = pageData; //Unicamente cambio el puntero a los datos que se van a mandar cuando ya esta completa la informacion
+
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

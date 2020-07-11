@@ -8,8 +8,8 @@
 #ifndef INC_PRUEBAS_H_
 #define INC_PRUEBAS_H_
 #include "portsDriver.h"
-#define PARAM_NUM 	5 //numero de parametros de entrada
-#define RESULT_NUM 	5 //numero de resultados
+#define PARAM_NUM 	4 //numero de parametros de entrada
+#define RESULT_NUM 	4 //numero de resultados
 #define CONTROL_QUEUE_LEN 10
 #define TESTS_QTY 2
 typedef struct
@@ -18,9 +18,10 @@ uint8_t test; //Test en curso
 uint8_t state; //estado de la maquina de estados
 uint32_t result[RESULT_NUM]; //resultados de la prueba (salida)
 uint8_t pasa;//indicador de pasa o no pasa
-uint32_t param[PARAM_NUM];	//parametros de la prueba ( entrada)
+uint32_t *param;	//parametros de la prueba ( entrada)
 QueueHandle_t testControlQueue; //Cola mediante la cual el interprete de la interfaz de usuario controla la prueba
 portsData_t port;//Puerto
+
 
 //Variables para calculos intermedios
 uint8_t i;// numero de iteracion
@@ -87,5 +88,11 @@ bool_t sendToAllTests ( uint8_t testNum, uint8_t testState );
 void FSMPruebaDrivers(testState_t *FSMReg);
 void FSMPruebaTemporizadores(testState_t *FSMReg);
 bool_t checkTimeout (uint32_t initialTick, uint32_t timeoutMS);
+
+void loadParameters (uint32_t testNumber);
+void saveParameters (uint32_t testNumber);
+void updateAllParameters (uint8_t testNum);
+uint32_t * getParameters (uint32_t testNumber,uint8_t port);
+void initEeprom(void);
 
 #endif /* PROYECTOS_CESE_PROYECTOFINALGG_PROYECTOFINALCESEGG_SOFT_MODPRINCIPALCIAA_INC_PRUEBAS_H_ */

@@ -33,6 +33,6 @@ QueueHandle_t commandsQueue;
 bool_t interpreterInit();
 void sendCommand(command_t command);
 void interpreter ();
-void refreshPageData(char*);
+void refreshPageData();
 
 #endif /*INTERPRETER_H_ */

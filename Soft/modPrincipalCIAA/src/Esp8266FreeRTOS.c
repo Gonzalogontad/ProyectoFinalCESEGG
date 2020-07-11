@@ -819,9 +819,9 @@ if (!strcmp(methode,"GET"))
 							}
 			else
 				if (strstr(request, "/panel"))
-								{
-							requestAnswer = actualPanel;
-								}
+						{
+						requestAnswer = actualPanel;
+						}
 				else
 					if (strstr(request, "/body"))
 									{
@@ -867,31 +867,31 @@ else
 		{
 			if (strstr(request, "/save$"))
 			{
-				//reemplazo los "$" por fin de cadena
-				auxpointer1= strstr(request, "$");
-				auxpointer1[0]=0;
-				auxpointer2= strstr(auxpointer1, "$");
-				auxpointer2[0]=0;
-				auxCommand.panelNum = stringToInt(&auxpointer1[1]); //capturo el numero de panel
+				auxpointer1= strstr(request, "$"); //llego al primer signo $
+				auxpointer1[0]=' ';
+				auxpointer2= strstr(request, "$");
+				auxCommand.panelNum = (uint8_t) (auxpointer1[1]-'0'); //capturo el numero de panel
 				i=1;
 				while ((i<4)&&(auxpointer2[i]!= 0))//el modulo envia un espacio entre la uri y la version HTML
 						{
 						auxCommand.buttonId[i-1]= auxpointer2[i];
+						i++;
 						}
 
 				//Capturo los parametros a guardar y los convierto a entero
-				auxpointer1= strstr(request, "$data:[");//busco el primer parametro
+				auxpointer1= strstr(request, "[");//busco el primer parametro
 				for (i=0;i<4;i++)
 				{
-					if (i=3)
+					if (i==3)
 						auxpointer2= strstr(auxpointer1, "]"); //para el cuarto parametro busco un ]
 					else
 						auxpointer2= strstr(auxpointer1, ","); //busco una coma y la reemplazo por 0
 					auxpointer2[0]=0;
 					auxCommand.parameters[i] = stringToInt(&auxpointer1[1]);
+					auxpointer2[0]=' ';
 					auxpointer1=auxpointer2;
 				}
-
+				sendCommand(auxCommand);
 
 				requestAnswer = actualPageData;
 			}

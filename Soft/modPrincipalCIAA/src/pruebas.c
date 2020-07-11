@@ -6,6 +6,7 @@
  */
 
 #include "pruebas.h"
+#include "task.h"
 //Defines Resultados prueba drivers
 #define digitalOuts	FSMReg->result[0]
 #define digitalIn  	FSMReg->result[1]
@@ -31,16 +32,30 @@
 #define minLong 	FSMReg->param [2]
 #define maxLong 	FSMReg->param [3]
 
+static uint32_t parametersROM[TESTS_QTY][PARAM_NUM*PORTS_NUMBER];//Creo una matriz donde van a estar todos los parametros de cada test
+
+
 
 bool_t pruebasInit ()
 {
 	//configuro la comunicacion con los puertos de prueba
 	static portsConfig_t ports;
 	//static UARTData_t UARTData;
-	uint8_t i;
+	initEeprom();
+	uint8_t i,j;
 	ports.uartValue = UART_GPIO;
 	ports.baudRate = 460800;
 	portsdriverInit(&ports);
+	for (i=0;i<TESTS_QTY;i++)
+	{
+		//for(j = 0; j < (PARAM_NUM * PORTS_NUMBER); j++) {
+		//	parametersROM[i][j]=0;
+		//}
+
+		//taskENTER_CRITICAL(  );
+			loadParameters ((uint32_t) i); //Cargo los parametros desde la EEPROM
+		//taskEXIT_CRITICAL(  );
+	}
 
 	//Inicializo el vector de datos y comunicacion de los tests
 	for (i=0;i<PORTS_NUMBER;i++)
@@ -91,6 +106,8 @@ void testsTask( void* taskParmPtr )
 	   	   test->state= order.state;
 
 	   }
+
+	   //test->param = &parametersROM[test->test-1][(test->port.portAddr)*PARAM_NUM]; //busco el punto donde estan los parametros del test actual en este puerto
 
 	   //Checkeo si hay datos del puerto y ejecuto la FSM de la pueba
 	   if (uxQueueMessagesWaiting(test->port.onRxQueue))
@@ -645,3 +662,70 @@ bool_t checkTimeout (uint32_t initialTick, uint32_t timeoutMS)
 	}
 	return ret;
 }
+
+
+void initEeprom(void)
+{
+	Chip_EEPROM_Init(LPC_EEPROM); //inicializar la eeprom
+	Chip_EEPROM_SetAutoProg(LPC_EEPROM,EEPROM_AUTOPROG_AFT_1WORDWRITTEN); //Habilito autoprogramacion
+}
+
+//Cargar parametros desde EEPROM
+void loadParameters (uint32_t testNumber)
+{
+	uint32_t* ptr = &parametersROM[testNumber][0];
+	uint32_t i = 0;
+	uint32_t *pEepromMem = (uint32_t*)EEPROM_ADDRESS(testNumber,0);
+	for(i = 0; i < PARAM_NUM * PORTS_NUMBER; i++) {
+		ptr[i] = pEepromMem[i];
+	}
+}
+
+//Obtener el puntero a los paramtros del test
+uint32_t * getParameters (uint32_t testNumber,uint8_t port)
+{
+	return (&parametersROM[testNumber][port*PARAM_NUM]);
+}
+
+//Guardar los parametros del test en EEPROM
+void saveParameters (uint32_t testNumber)
+{
+	uint32_t* ptr = &parametersROM[testNumber-1][0];
+	uint8_t i = 0;
+	uint32_t *pEepromMem = (uint32_t*)EEPROM_ADDRESS(testNumber,0);
+	uint32_t size =PARAM_NUM * PORTS_NUMBER;
+	if(size > EEPROM_PAGE_SIZE )
+	   size = EEPROM_PAGE_SIZE;
+
+	  for(i = 0; i < size/4; i++) {
+	   pEepromMem[i] = ptr[i];
+
+	   Chip_EEPROM_WaitForIntStatus(LPC_EEPROM, EEPROM_INT_ENDOFPROG);
+	  }
+}
+
+
+
+
+
+void updateAllParameters (uint8_t testNum){
+	uint8_t i;
+
+	for (i=0;i<PORTS_NUMBER;i++)
+		FSMRegisters[i].param = &parametersROM[testNum][i*PARAM_NUM]; //busco el punto donde estan los parametros del test actual en este puerto
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
