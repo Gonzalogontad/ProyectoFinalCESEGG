@@ -344,10 +344,10 @@ void FSMPruebaDrivers(testState_t *FSMReg)
 		if (FSMReg->adcSamples==20)		//una vez tomadas las 20 muestras evaluo el resultado
 		{
 			switch(FSMReg->i){
-			case 0://10%
+			case 0://10%														//multiplico los porcentajes por 1000 para no usar flotante
 				{
-				if ((Iin < 150 *testCurrent)&&(Iin > 80 *testCurrent)&&			//multiplico los porcentajes por 1000 para no usar flotante
-					(Vin < 1100 *testVoltage)&&(Vin > 900 *testVoltage))
+				if ((Iin < 150 *testCurrent)&&(Iin > 80 *testCurrent)&&			//Entre 8% y 15% de la corriente
+					(Vin < 1100 *testVoltage)&&(Vin > 900 *testVoltage))		//Entre 90% y 110% de la tension
 					FSMReg->i++;
 				else
 				{
@@ -358,8 +358,8 @@ void FSMPruebaDrivers(testState_t *FSMReg)
 				}
 			case 1://50%
 				{
-				if ((Iin < 550 *testCurrent)&&(Iin > 450 *testCurrent)&&
-					(Vin < 1100 *testVoltage)&&(Vin > 900 *testVoltage))
+				if ((Iin < 550 *testCurrent)&&(Iin > 450 *testCurrent)&&		//Entre 45% y 55% de la corriente
+					(Vin < 1100 *testVoltage)&&(Vin > 900 *testVoltage))		//Entre 90% y 110% de la tension
 					FSMReg->i++;
 				else
 				{
@@ -370,8 +370,8 @@ void FSMPruebaDrivers(testState_t *FSMReg)
 				}
 			case 2://100%
 				{
-				if ((Iin < 1100 *testCurrent)&&(Iin > 900 *testCurrent)&&
-					(Vin < 1100 *testVoltage)&&(Vin > 900 *testVoltage))
+				if ((Iin < 1100 *testCurrent)&&(Iin > 900 *testCurrent)&&		//Entre 9% y 110% de la corriente
+					(Vin < 1100 *testVoltage)&&(Vin > 900 *testVoltage))		//Entre 90% y 110% de la tension
 				{
 					FSMReg->i++;
 					FSMReg->pasa=1; //Cuando paso todas las pruebas marco como PASA

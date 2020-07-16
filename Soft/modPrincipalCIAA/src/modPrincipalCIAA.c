@@ -52,23 +52,13 @@ int main( void )
    gpioInit( T_COL1, GPIO_OUTPUT );
    gpioWrite( T_COL1, ON ); //Habilito el modulo wifi
 
-   //portsdriverInit(&ports);
-   //test.port=ports.port[0];
-   //test.state=INIT;
-   //test.param[0]=1250;
-   //test.param[1]=258;
-   //test.param[2]=150;
-   //test.param[3]=700;
-
-   //UARTEspInit(&UARTData);
-
 
    //Creo las tareas de test y al mismo tiempo inicializo los puertos de pruebas
-   interpreterInit();
-   pruebasInit ();
+   interpreterInit();	//Creo la tarea del interprete
+   pruebasInit ();		//Creo las tareas de las pruebas (una por cada puerto)
 
 
-
+	//Heart Bit
    xTaskCreate(
       myTask,                     // Function that implements the task.
       (const char *)"myTask",     // Text name for the task.
@@ -78,7 +68,7 @@ int main( void )
       0                           // Pointer to the task created in the system
    );
 
-
+	//Creo la tarea del servidor
    xTaskCreate(
          myTask3,                     // Function that implements the task.
          (const char *)"myTask3",     // Text name for the task.
