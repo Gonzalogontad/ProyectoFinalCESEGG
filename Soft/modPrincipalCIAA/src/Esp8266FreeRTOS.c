@@ -70,6 +70,8 @@ typedef enum Esp8266State
 	ESP_WAIT_COMMA,
 	ESP_GET_REQUEST_LENGTH,
 	ESP_GET_REQUEST,
+	ESP_CIPSTO_SEND,
+	ESP_WAIT_CIPSTO,
 
 } Esp8266Status_t;
 
@@ -442,7 +444,7 @@ static void ExcecuteHttpServerFsm(void)
 		if (IsWaitedResponse())
 		{
 			delayConfig(&Esp8266Delay, ESP8266_PAUSE);
-			SetEsp8622Status(ESP_SEND_CIPSERVER);
+			SetEsp8622Status(ESP_CIPSTO_SEND);
 		}
 		if (delayRead(&Esp8266Delay))
 		{
@@ -451,10 +453,44 @@ static void ExcecuteHttpServerFsm(void)
 			stdioPrintf(ESP8266_UART, "AT+CIPCLOSE=%d\r\n", auxIndex);
 			if (++auxIndex >= 4)
 			{
+				//SetEsp8622Status(ESP_CIPMUX_SEND);
+				SetEsp8622Status(ESP_CIPMUX_SEND);
+
+			}
+		}
+		break;
+
+		//*************************
+
+	case ESP_CIPSTO_SEND:
+		if (delayRead(&Esp8266Delay))
+		{
+			stdioPrintf(ESP8266_UART, "AT+CIPSTO?\r\n");
+			Esp8266ResponseToWait = Response_OK;
+			delayConfig(&Esp8266Delay, ESP8266_TMO);
+			SetEsp8622Status(ESP_WAIT_CIPSTO);
+			auxIndex = 0;
+		}
+		break;
+
+	case ESP_WAIT_CIPSTO:
+		if (IsWaitedResponse())
+		{
+			delayConfig(&Esp8266Delay, ESP8266_PAUSE);
+			SetEsp8622Status(ESP_SEND_CIPSERVER);
+		}
+		if (delayRead(&Esp8266Delay))
+		{
+			delayConfig(&Esp8266Delay, ESP8266_PAUSE);
+			// cierra todas las posibles conexioes
+			if (++auxIndex >= 4)
+			{
 				SetEsp8622Status(ESP_CIPMUX_SEND);
 			}
 		}
 		break;
+
+		////*****
 
 	case ESP_SEND_CIPSERVER:
 		if (delayRead(&Esp8266Delay))

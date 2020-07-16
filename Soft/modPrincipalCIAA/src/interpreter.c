@@ -30,10 +30,13 @@ bool_t interpreterInit()
 	      0                           // Pointer to the task created in the system
 	   );
 	actualPanelNumber=1;
+
+
 }
 
 void interpreter ()
 {
+	updateAllParameters (actualPanelNumber-1); 		//Cargo los parametros en los registros
 	uint8_t i;
 	command_t command;
 	uint8_t portNum;
@@ -100,7 +103,7 @@ while (true)
 										case '7':	//en la fina 7 estan los botones de guardar
 										{
 											sendToAllTests (actualPanelNumber , STOP); //envio la orden de detener todas las tareas y no continuo hasta que se detuvieron
-											params = getParameters ((uint32_t) actualPanelNumber-1,command.buttonId[2]-'0');
+											params = getParameters ((uint32_t) actualPanelNumber-1,command.buttonId[2]-'0'); //Pido los parametros del panel actual para el puerto correspondiente al boton
 											for (i=0;i<4;i++)
 											{
 
@@ -142,6 +145,7 @@ void refreshPageData(){
 		}
 	uint8_t i,j;
 	uint8_t aux;
+	uint8_t * auxPointer;
 	char auxStrig[60];
 	stdioSprintf(pageData, "{\"panel\":%d,\"data\":[",actualPanelNumber);
 	for (j=0;j<8;j++)

@@ -53,7 +53,8 @@ bool_t pruebasInit ()
 		//}
 
 		//taskENTER_CRITICAL(  );
-			loadParameters ((uint32_t) i); //Cargo los parametros desde la EEPROM
+			loadParameters ((uint32_t) i); 	//Cargo los parametros desde la EEPROM
+
 		//taskEXIT_CRITICAL(  );
 	}
 
@@ -681,7 +682,7 @@ void loadParameters (uint32_t testNumber)
 	}
 }
 
-//Obtener el puntero a los paramtros del test
+//Obtener el puntero a los paramtros del test en RAM
 uint32_t * getParameters (uint32_t testNumber,uint8_t port)
 {
 	return (&parametersROM[testNumber][port*PARAM_NUM]);
@@ -690,14 +691,16 @@ uint32_t * getParameters (uint32_t testNumber,uint8_t port)
 //Guardar los parametros del test en EEPROM
 void saveParameters (uint32_t testNumber)
 {
-	uint32_t* ptr = &parametersROM[testNumber-1][0];
+	//uint32_t* ptr = &parametersROM[testNumber-1][0];
+	uint32_t* ptr = &parametersROM[testNumber][0];
 	uint8_t i = 0;
 	uint32_t *pEepromMem = (uint32_t*)EEPROM_ADDRESS(testNumber,0);
 	uint32_t size =PARAM_NUM * PORTS_NUMBER;
 	if(size > EEPROM_PAGE_SIZE )
 	   size = EEPROM_PAGE_SIZE;
 
-	  for(i = 0; i < size/4; i++) {
+	  //for(i = 0; i < size/4; i++) {
+	for(i = 0; i < size; i++) {
 	   pEepromMem[i] = ptr[i];
 
 	   Chip_EEPROM_WaitForIntStatus(LPC_EEPROM, EEPROM_INT_ENDOFPROG);
@@ -707,7 +710,7 @@ void saveParameters (uint32_t testNumber)
 
 
 
-
+//Actualizar los parametros en los registros de las FSM
 void updateAllParameters (uint8_t testNum){
 	uint8_t i;
 
