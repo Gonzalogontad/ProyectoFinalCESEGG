@@ -81,6 +81,10 @@ void EspRxCallback(void *param)
 	//Paso por param los datos del puerto
 	UARTData_t* UARTData = (UARTData_t*) param;
 
+
+	gpioWrite( LED2, true );
+
+
 	//Inicio seccion critica
 	uxSavedInterruptStatus = taskENTER_CRITICAL_FROM_ISR();	//
 
@@ -97,6 +101,8 @@ void EspRxCallback(void *param)
 		/* Actual macro used here is port specific. */
 		taskYIELD();
 	}
+
+	gpioWrite( LED2, false );
 
 }
 

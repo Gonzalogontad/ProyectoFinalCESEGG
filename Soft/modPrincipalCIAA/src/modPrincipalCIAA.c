@@ -7,18 +7,18 @@
 /*=====[Inclusions of function dependencies]=================================*/
 
 #include "modPrincipalCIAA.h"
-
 #include "FreeRTOS.h"
 #include "FreeRTOSConfig.h"
 #include "timers.h"
 #include "task.h"
-
 #include "sapi.h"
-#include "userTasks.h"
 #include "portsDriver.h"
-#include "UARTEspDriver.h"
+//#include "UARTEspDriver.h"
 #include "pruebas.h"
 #include "interpreter.h"
+#include "Esp8266FreeRTOS.h"
+#include "terminal.h"
+#include "DataMemory.h"
 /*=====[Definition macros of private constants]==============================*/
 
 /*=====[Definitions of extern global variables]==============================*/
@@ -32,59 +32,20 @@
 int main( void )
 {
 
-//	static portsConfig_t ports;
-//	static UARTData_t UARTData;
-//	static testState_t test;
-
-	//ports.uartValue = UART_GPIO;
-	//ports.baudRate = 460800;
-
-/*
-
-	UARTData.uartValue = UART_USB;
-	UARTData.baudRate = 115200;
-*/
-
-
    boardInit();
 
-   gpioInit( GPIO0, GPIO_OUTPUT );
-   gpioInit( T_COL1, GPIO_OUTPUT );
-   gpioWrite( T_COL1, ON ); //Habilito el modulo wifi
+   //gpioInit( GPIO0, GPIO_OUTPUT );
+   //gpioInit( T_COL1, GPIO_OUTPUT );
+   //gpioWrite( T_COL1, ON ); //Habilito el modulo wifi
 
 
    //Creo las tareas de test y al mismo tiempo inicializo los puertos de pruebas
-   interpreterInit();	//Creo la tarea del interprete
-   pruebasInit ();		//Creo las tareas de las pruebas (una por cada puerto)
+   interpreterInit();	//Configuro y creo la tarea del interprete
+   pruebasInit ();		//Configuro y creo las tareas de las pruebas (una por cada puerto)
+   espServerInit();		//Configuro y creo la tarea del servidor
+   terminalInit();		//Configuro y creo la tarea de la terminal de configuarcion
 
 
-	//Heart Bit
-   xTaskCreate(
-      myTask,                     // Function that implements the task.
-      (const char *)"myTask",     // Text name for the task.
-      configMINIMAL_STACK_SIZE*2, // Stack size in words, not bytes.
-      (void*)NULL,                          // Parameter passed into the task.
-      tskIDLE_PRIORITY+1,         // Priority at which the task is created.
-      0                           // Pointer to the task created in the system
-   );
-
-	//Creo la tarea del servidor
-   xTaskCreate(
-         myTask3,                     // Function that implements the task.
-         (const char *)"myTask3",     // Text name for the task.
-         configMINIMAL_STACK_SIZE*2, // Stack size in words, not bytes.
-         (void*)NULL,                          // Parameter passed into the task.
-         tskIDLE_PRIORITY+2,         // Priority at which the task is created.
-         0                           // Pointer to the task created in the system
-      );
-/*   xTaskCreate(
-         myTask4,                     // Function that implements the task.
-         (const char *)"myTask4",     // Text name for the task.
-         configMINIMAL_STACK_SIZE*2, // Stack size in words, not bytes.
-         (void*)&test,                          // Parameter passed into the task.
-         tskIDLE_PRIORITY+1,         // Priority at which the task is created.
-         0                           // Pointer to the task created in the system
-      );*/
    vTaskStartScheduler(); // Initialize scheduler
 
    while( true ); // If reach heare it means that the scheduler could not start

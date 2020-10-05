@@ -7,6 +7,7 @@
 
 #include "pruebas.h"
 #include "task.h"
+#include "DataMemory.h"
 //Defines Resultados prueba drivers
 #define digitalOuts	FSMReg->result[0]
 #define digitalIn  	FSMReg->result[1]
@@ -21,10 +22,10 @@
 #define sumIn2		FSMReg->in2Sum
 
 //Parametros prueba drivers
-#define ADC1Gain 	FSMReg->param [0]
-#define ADC2Gain  	FSMReg->param [1]
-#define testVoltage FSMReg->param [2]
-#define testCurrent FSMReg->param [3]
+#define testVoltage FSMReg->param [0]
+#define testCurrent FSMReg->param [1]
+#define ADC1Gain 	FSMReg->param [2]
+#define ADC2Gain  	FSMReg->param [3]
 
 //Parametros prueba temporizador
 #define minShort 	FSMReg->param [0]
@@ -32,7 +33,13 @@
 #define minLong 	FSMReg->param [2]
 #define maxLong 	FSMReg->param [3]
 
-static uint32_t parametersROM[TESTS_QTY][PARAM_NUM*PORTS_NUMBER];//Creo una matriz donde van a estar todos los parametros de cada test
+//Parametros calibrador
+#define Res1		FSMReg->param [0]
+#define Res2 		FSMReg->param [1]
+#define ADC1G 		FSMReg->param [2]
+#define ADC2G  		FSMReg->param [3]
+
+//static uint32_t parametersROM[TESTS_QTY][PARAM_NUM*PORTS_NUMBER];//Creo una matriz donde van a estar todos los parametros de cada test
 
 
 
@@ -53,7 +60,7 @@ bool_t pruebasInit ()
 		//}
 
 		//taskENTER_CRITICAL(  );
-			loadParameters ((uint32_t) i); 	//Cargo los parametros desde la EEPROM
+			loadParametersUnprotected ((uint32_t) i); 	//Cargo los parametros desde la EEPROM
 
 		//taskEXIT_CRITICAL(  );
 	}
@@ -120,6 +127,10 @@ void testsTask( void* taskParmPtr )
 			 case 2:
 				 FSMPruebaTemporizadores(test);
 				 break;
+			 case 3:
+				 FSMCalibracion(test);
+				 break;
+
 		 }
 	   }
 
@@ -194,6 +205,8 @@ void FSMPruebaDrivers(testState_t *FSMReg)
 	static uint8_t ADC_I[10];
 
 
+
+	receiveDataPort(&testPort,&ADC1DataTemp,&ADC2DataTemp, &digInTemp,0);
 	/*------Maquina de estados------*/
 
 	switch (FSMReg->state)
@@ -201,13 +214,15 @@ void FSMPruebaDrivers(testState_t *FSMReg)
 	case INIT:
 	{	//inicialización
 		//Le quito la alimentación al driver.
-		digitalOuts = 0;
+		//digitalOuts = 0;
+		digitalOuts = 0x05; //0110 Poweroff, loadOn, 10%
 		digitalIn = 0;
 		Vout = 0;
 		Vin = 0;
 		Iin = 0;
 		FSMReg->i=0;
-		FSMReg->pasa=3;
+		//FSMReg->pasa=3;
+		FSMReg->pasa=INIT;
 		if(false == sendDataPort(&testPort,(uint16_t) Vout, (uint8_t) digitalOuts, 0))
 		{
 			break; //no continuo hasta que se manden los valores iniciales
@@ -217,24 +232,24 @@ void FSMPruebaDrivers(testState_t *FSMReg)
 	}
 	case START:
 		{
-
+			FSMReg->pasa=MARCHA-1;
 		//Configuro el driver antes de encenderlo
 			switch(FSMReg->i){
-			case 0://10%
+			case 0://Prueba al 10%
 				{
-				digitalOuts = 0x06; //0110 Poweroff, loadOn, 10%
+				digitalOuts = 0x05; //0110 Poweroff, loadOn, 10%
 				Vout =102; //10%
 				break;
 				}
-			case 1://50%
+			case 1://Prueba al 50%
 				{
 				digitalOuts = 0x04; //0100 Poweroff, loadOn, 50%
 				Vout =510; //50%
 				break;
 				}
-			case 2://100%
+			case 2://Prueba al 100%
 				{
-				digitalOuts = 0x05; //0101 Poweroff, loadOn, 100%
+				digitalOuts = 0x06; //0101 Poweroff, loadOn, 100%
 				Vout =1023; //100%
 				break;
 				}
@@ -281,21 +296,24 @@ void FSMPruebaDrivers(testState_t *FSMReg)
 
 		//Configuro el driver antes de encenderlo
 			switch(FSMReg->i){
-			case 0://10%
+			case 0://Prueba al 10%
 				{
-				digitalOuts = 0x0E; //1110 Poweron, loadOn, 10%
+				digitalOuts = 0x0D; //1110 Poweron, loadOn, 10%
+				//digitalOuts = 0x0F; //1111 Poweron, loadOn, 10%
 				Vout =102; //10%
 				break;
 				}
-			case 1://50%
+			case 1://Prueba al 50%
 				{
-				digitalOuts = 0x0A; //1100 Poweron, loadOn, 50%
+				digitalOuts = 0x0C; //1100 Poweron, loadOn, 50%
+				//digitalOuts = 0x0D; //1110 Poweron, loadOn, 10%
 				Vout =510; //50%
 				break;
 				}
-			case 2://100%
+			case 2://Prueba al 100%
 				{
-				digitalOuts = 0x0B; //1101 Poweron, loadOn, 100%
+				digitalOuts = 0x0E; //1101 Poweron, loadOn, 100%
+				//digitalOuts = 0x0C; //1101 Poweron, loadOn, 100%
 				Vout =1023; //100%
 				break;
 				}
@@ -335,24 +353,32 @@ void FSMPruebaDrivers(testState_t *FSMReg)
 	}
 	case MEASURE:
 		{
-		receiveDataPort(&testPort,&ADC1DataTemp,&ADC2DataTemp, &digInTemp,0);
+		//receiveDataPort(&testPort,&ADC1DataTemp,&ADC2DataTemp, &digInTemp,0);
 		FSMReg->adcSamples++;
 		FSMReg->ADC_1+=ADC1DataTemp;
 		FSMReg->ADC_2+=ADC2DataTemp;
-		Iin= ADC1Gain*FSMReg->ADC_1/FSMReg->adcSamples;
-		Vin= ADC2Gain*FSMReg->ADC_2/FSMReg->adcSamples;
+
 		if (FSMReg->adcSamples==20)		//una vez tomadas las 20 muestras evaluo el resultado
 		{
+			//Iin= (ADC1Gain*FSMReg->ADC_1)/FSMReg->adcSamples;
+			//Vin= (ADC2Gain*FSMReg->ADC_2)/FSMReg->adcSamples;
+			Iin= ((ADC1Gain*FSMReg->ADC_1)/FSMReg->adcSamples)+(ADC_OFFSET*ADC1Gain);
+			Vin= ((ADC2Gain*FSMReg->ADC_2)/FSMReg->adcSamples)+(ADC_OFFSET*ADC2Gain);
+
+			FSMReg->adcSamples=0;
+			FSMReg->ADC_1=0;
+			FSMReg->ADC_2=0;
 			switch(FSMReg->i){
 			case 0://10%														//multiplico los porcentajes por 1000 para no usar flotante
 				{
-				if ((Iin < 150 *testCurrent)&&(Iin > 80 *testCurrent)&&			//Entre 8% y 15% de la corriente
-					(Vin < 1100 *testVoltage)&&(Vin > 900 *testVoltage))		//Entre 90% y 110% de la tension
+				if ((Iin < 150 *testCurrent)&&(Iin > 50 *testCurrent)&&			//Entre 8% y 15% de la corriente
+					(Vin < 1100 *testVoltage)&&(Vin > 700 *testVoltage))		//Entre 70% y 110% de la tension
 					FSMReg->i++;
 				else
 				{
 					FSMReg->i=3;
-					FSMReg->pasa=0;
+					//FSMReg->pasa=0;
+					FSMReg->pasa= NO_PASA;
 				}
 				break;
 				}
@@ -364,7 +390,8 @@ void FSMPruebaDrivers(testState_t *FSMReg)
 				else
 				{
 					FSMReg->i=3;
-					FSMReg->pasa=0;
+					//FSMReg->pasa=0;
+					FSMReg->pasa= NO_PASA;
 				}
 				break;
 				}
@@ -374,30 +401,35 @@ void FSMPruebaDrivers(testState_t *FSMReg)
 					(Vin < 1100 *testVoltage)&&(Vin > 900 *testVoltage))		//Entre 90% y 110% de la tension
 				{
 					FSMReg->i++;
-					FSMReg->pasa=1; //Cuando paso todas las pruebas marco como PASA
+					//FSMReg->pasa=1; //Cuando paso todas las pruebas marco como PASA
+					FSMReg->pasa = PASA;
 				}
 				else
 				{
 					FSMReg->i=3;
-					FSMReg->pasa=0;
+					//FSMReg->pasa=0;
+					FSMReg->pasa= NO_PASA;
 				}
 				break;
 				}
 			default: break;
 			}
-		}
+		//}
 		if(FSMReg->i==3)
 		{
 			FSMReg->state= STOP;
 		}
-
+		else
+			FSMReg->state= POWER_ON;
+		}//cambio
 		break;
 	}
 
 	case STOP:
 	{	//inicialización
 		//Le quito la alimentación al driver.
-		digitalOuts = 0;
+		//digitalOuts = 0;
+		digitalOuts = 0x05; //0110 Poweroff, loadOn, 10%
 		digitalIn = 0;
 		Vout = 0;
 		Vin = 0;
@@ -438,6 +470,9 @@ void FSMPruebaTemporizadores(testState_t *FSMReg){
 	int16_t ADC2DataTemp;
 	uint8_t digInTemp;
 	uint16_t DACValue;		//Valor a escribir en el DAC
+	uint32_t aux;
+	receiveDataPort(&testPort,&ADC1DataTemp,&ADC2DataTemp, &digInTemp,0);
+
 	switch (FSMReg->state)
 	{
 	case INIT:
@@ -465,13 +500,13 @@ void FSMPruebaTemporizadores(testState_t *FSMReg){
 
 		sendDataPort(&testPort,(uint16_t) Vout, (uint8_t) digitalOuts, 0);
 		FSMReg->tickRegister=xTaskGetTickCount();//guardo el tick para la demora
-		FSMReg->state= WAIT_2S;
+		FSMReg->state= WAIT_SHORT_SETUP;
 		break;
 		}
-
-	case WAIT_2S: 	//hago un retardo de 2S, no uso el vTaskDelay porque quiero que se ejecuten
+	case WAIT_SHORT_SETUP:
+	case WAIT_LONG_SETUP: 	//hago un retardo de 20S, no uso el vTaskDelay porque quiero que se ejecuten
 	{						//otras etapas de la misma tarea mientras se hace la espera.
-		if (checkTimeout (FSMReg->tickRegister, 2000))
+		if (checkTimeout (FSMReg->tickRegister, 20000))
 			{
 			//Paso al sig. estado
 			FSMReg->state= TRIGGER;
@@ -508,12 +543,13 @@ void FSMPruebaTemporizadores(testState_t *FSMReg){
 
 	case WAIT_ON:
 		{
-		receiveDataPort(&testPort,&ADC1DataTemp,&ADC2DataTemp, &digInTemp,0);
+		//receiveDataPort(&testPort,&ADC1DataTemp,&ADC2DataTemp, &digInTemp,0);
+
 		//Si en 30 segundos no se encendio el temporizador aborto la prueba
 		if (checkTimeout (FSMReg->tickRegister, 30000))
 			{
 			FSMReg->i=2;
-			FSMReg->pasa=0;
+			FSMReg->pasa=NO_PASA;
 			FSMReg->state= STOP;
 			break;
 			}
@@ -521,10 +557,13 @@ void FSMPruebaTemporizadores(testState_t *FSMReg){
 		if (digInTemp&0x01)
 		{
 			if (sumIn0<300) //Si estuvo al menos 300 ms encendido empiezo a contar
+			{
 				sumIn0++;
+			}
 			else
 			{
 				tempTick = xTaskGetTickCount(); //Tomo el estado actual del tick y luego comparo con el valor al inicio
+				FSMReg->tickRegister = xTaskGetTickCount(); //Leo el tick para hacer un timeout si no se apaga el temporizador
 				digitalIn=0x01;
 				FSMReg->state= WAIT_OFF;
 			}
@@ -541,7 +580,21 @@ void FSMPruebaTemporizadores(testState_t *FSMReg){
 
 	case WAIT_OFF:
 		{
-		receiveDataPort(&testPort,&ADC1DataTemp,&ADC2DataTemp, &digInTemp,0);
+		//receiveDataPort(&testPort,&ADC1DataTemp,&ADC2DataTemp, &digInTemp,0);
+
+		if (FSMReg->i==SHORT_TIME)
+			aux=1000*maxShort;
+		if (FSMReg->i==LONG_TIME)
+			aux=1000*maxLong;
+
+		if (checkTimeout (FSMReg->tickRegister, aux))
+			{
+			FSMReg->i=2;
+			FSMReg->pasa=NO_PASA;
+			FSMReg->state= STOP;
+			break;
+			}
+
 		if (digInTemp&0x01)
 		{
 			if (sumIn0<1000)
@@ -571,26 +624,29 @@ void FSMPruebaTemporizadores(testState_t *FSMReg){
 		switch(FSMReg->i){
 			case 0://Tiempo corto
 				{
-				if ((minShort < tempTick)&&(maxShort < tempTick))//Comparo el tiempo medido
+				if ((minShort < tempTick)&&(maxShort > tempTick))//Comparo el tiempo medido
+				{
 					FSMReg->i++;
+					FSMReg->state= WAIT_LONG_SETUP;
+				}
 				else
 				{
 					FSMReg->i=2;
-					FSMReg->pasa=0;
+					FSMReg->pasa=NO_PASA;
 				}
 				break;
 				}
-			case 1://50%
+			case 1://tiempo largo
 				{
-				if ((minLong < tempTick)&&(maxLong < tempTick))//Comparo el tiempo medido
+				if ((minLong < tempTick)&&(maxLong > tempTick))//Comparo el tiempo medido
 				{
 					FSMReg->i++;
-					FSMReg->pasa=1; //Cuando paso todas las pruebas marco como PASA
+					FSMReg->pasa=PASA; //Cuando paso todas las pruebas marco como PASA
 				}
 				else
 				{
 					FSMReg->i=2;
-					FSMReg->pasa=0;
+					FSMReg->pasa=NO_PASA;
 				}
 				break;
 				}
@@ -643,6 +699,205 @@ void FSMPruebaTemporizadores(testState_t *FSMReg){
 }
 
 
+
+//Maquina de estados del panel de calibracion
+
+void FSMCalibracion(testState_t *FSMReg)
+{
+	//uint16_t i = 0; 		//Variable auxiliar para lazos
+
+	uint16_t ADC1DataTemp;	//Variables auxiliar par los valores del ADC
+	uint16_t ADC2DataTemp;
+	uint8_t digInTemp;
+	uint16_t DACValue;		//Valor a escribir en el DAC
+	volatile uint32_t tempTick;		//Guardo los valores del Tick counter para medir tiempos
+	//char uartBuff[10];
+	static uint8_t ADC_V[10];
+	static uint8_t ADC_I[10];
+
+
+	receiveDataPort(&testPort,&ADC1DataTemp,&ADC2DataTemp, &digInTemp,0);
+
+	/*------Maquina de estados------*/
+
+	switch (FSMReg->state)
+	{
+	case INIT:
+	{	//inicialización
+		//Le quito la alimentación al driver.
+		digitalOuts = 0;
+		digitalIn = 0;
+		Vout = 0;
+		Vin = 0;
+		Iin = 0;
+		FSMReg->i=0;
+		FSMReg->pasa=3;
+		if(false == sendDataPort(&testPort,(uint16_t) Vout, (uint8_t) digitalOuts, 0))
+		{
+			break; //no continuo hasta que se manden los valores iniciales
+		}
+
+		break;
+	}
+	case START:
+		{
+
+		//digitalOuts = 0x05; //0101 Power off+out on+10%
+		digitalOuts = 0x04; //0100 Poweroff, loadOn, 50%
+		//digitalOuts = 0x06; //0101 Poweroff, loadOn, 100%
+
+		Vout =0; //0%
+
+		FSMReg->adcSamples=0;
+		FSMReg->ADC_1=0;
+		FSMReg->ADC_2=0;
+
+		sendDataPort(&testPort,(uint16_t) Vout, (uint8_t) digitalOuts, 0);
+		FSMReg->tickRegister=xTaskGetTickCount();//guardo el tick para la demora
+		FSMReg->state= WAIT_2S;
+		break;
+		}
+
+	case WAIT_2S: 	//hago un retardo de 5S
+	{
+		if (checkTimeout (FSMReg->tickRegister, 2000)){
+			FSMReg->state= CHANGE_VOUT;}
+		break;
+	}
+	case CHANGE_VOUT:
+		{
+		switch (FSMReg->i){
+		case 0:
+		case 1:
+			{
+			digitalOuts = 0x0D; //1000 Poweron, loadOn, 10%
+			break;
+			}
+		case 2:
+			{
+			digitalOuts = 0x0C; //1100 Poweron, loadOn, 50%
+			break;
+			}
+		case 3:
+			{
+			digitalOuts = 0x0E; //1101 Poweron, loadOn, 100%
+			break;
+			}
+
+
+
+		case 4:
+		case 5:
+		case 6:
+		case 7:
+
+
+		case 8:
+		case 9:
+		case 10:
+			{
+			digitalOuts = 0x0D; //1000 Poweron, loadOn, 10%
+			break;
+			}
+
+		default:
+			{
+			digitalOuts = 0x00; //1101 Poweroff
+			break;
+			}
+		}
+
+
+		Vout =FSMReg->i*102; //i*10%
+		FSMReg->adcSamples=0;
+		FSMReg->ADC_1=0;
+		FSMReg->ADC_2=0;
+
+		sendDataPort(&testPort,(uint16_t) Vout, (uint8_t) digitalOuts, 0);
+		FSMReg->tickRegister=xTaskGetTickCount();//guardo el tick para la demora
+		//FSMReg->state= WAIT_5S;
+		FSMReg->state= MEASURE;
+
+		break;
+		}
+	case WAIT_5S: 	//hago un retardo de 5S
+	{
+
+		if (checkTimeout (FSMReg->tickRegister, 5000)){
+			FSMReg->state= MEASURE;
+			FSMReg->tickRegister=xTaskGetTickCount();//guardo el tick para el tiempo de medicion
+		}
+		break;
+	}
+	case MEASURE:
+		{
+		//receiveDataPort(&testPort,&ADC1DataTemp,&ADC2DataTemp, &digInTemp,0);
+		FSMReg->adcSamples++;
+		FSMReg->ADC_1+=ADC1DataTemp;
+		FSMReg->ADC_2+=ADC2DataTemp;
+		if (FSMReg->adcSamples == 100){
+			//Res1= ADC1G*FSMReg->ADC_1/FSMReg->adcSamples;
+			//Res2= ADC2G*FSMReg->ADC_2/FSMReg->adcSamples;
+			Res1= (ADC1G*FSMReg->ADC_1/FSMReg->adcSamples)+(ADC_OFFSET*ADC1G);
+			Res2= (ADC2G*FSMReg->ADC_2/FSMReg->adcSamples)+(ADC_OFFSET*ADC2G);
+			FSMReg->adcSamples=0;
+			FSMReg->ADC_1=0;
+			FSMReg->ADC_2=0;
+
+			}
+		if (checkTimeout (FSMReg->tickRegister, 10000)){
+
+			FSMReg->i++;
+			FSMReg->state= CHANGE_VOUT;
+
+		}
+		if (FSMReg->i==11)
+			FSMReg->i=0;
+
+		break;
+
+	}
+
+	case STOP:
+	{	//inicialización
+		//Le quito la alimentación al driver.
+		digitalOuts = 0;
+		digitalIn = 0;
+		Vout = 0;
+		Vin = 0;
+		Iin = 0;
+		FSMReg->i=0;
+		if(false == sendDataPort(&testPort,(uint16_t) Vout, (uint8_t) digitalOuts, 0))
+		{
+			break; //no continuo hasta que se manden los valores iniciales
+		}
+
+		break;
+	}
+
+	default: //no deberia llegar nunca aca
+	{	//inicialización
+		//Le quito la alimentación al driver.
+		//digitalOuts = 0;
+		digitalOuts = 0x05; //0101 Power off+out on+10%
+		digitalIn = 0;
+		Vout = 0;
+		Vin = 0;
+		Iin = 0;
+		FSMReg->i=0;
+		if(false == sendDataPort(&testPort,(uint16_t) Vout, (uint8_t) digitalOuts, 0))
+		{
+			break; //no continuo hasta que se manden los valores iniciales
+		}
+
+		break;
+	}
+	}
+	return;
+}
+
+
+
 //Esta funcion devuelve true si ya paso el tiempo inciado por timeoutMS desde
 // el instante indicado por initialTick, que debe ser una captura del tick del sistema opertivo
 bool_t checkTimeout (uint32_t initialTick, uint32_t timeoutMS)
@@ -664,6 +919,7 @@ bool_t checkTimeout (uint32_t initialTick, uint32_t timeoutMS)
 	return ret;
 }
 
+/*  Movido a DataMemory.c
 
 void initEeprom(void)
 {
@@ -676,7 +932,7 @@ void loadParameters (uint32_t testNumber)
 {
 	uint32_t* ptr = &parametersROM[testNumber][0];
 	uint32_t i = 0;
-	uint32_t *pEepromMem = (uint32_t*)EEPROM_ADDRESS(testNumber,0);
+	uint32_t *pEepromMem = (uint32_t*)EEPROM_ADDRESS(testNumber+3,0); //inicio en la pagina 3 porque las tres primeras son del servidor
 	for(i = 0; i < PARAM_NUM * PORTS_NUMBER; i++) {
 		ptr[i] = pEepromMem[i];
 	}
@@ -694,7 +950,7 @@ void saveParameters (uint32_t testNumber)
 	//uint32_t* ptr = &parametersROM[testNumber-1][0];
 	uint32_t* ptr = &parametersROM[testNumber][0];
 	uint8_t i = 0;
-	uint32_t *pEepromMem = (uint32_t*)EEPROM_ADDRESS(testNumber,0);
+	uint32_t *pEepromMem = (uint32_t*)EEPROM_ADDRESS(testNumber+3,0);//las primeras 3 posiciones son del servidor
 	uint32_t size =PARAM_NUM * PORTS_NUMBER;
 	if(size > EEPROM_PAGE_SIZE )
 	   size = EEPROM_PAGE_SIZE;
@@ -707,7 +963,7 @@ void saveParameters (uint32_t testNumber)
 	  }
 }
 
-
+*/
 
 
 //Actualizar los parametros en los registros de las FSM
@@ -717,8 +973,6 @@ void updateAllParameters (uint8_t testNum){
 	for (i=0;i<PORTS_NUMBER;i++)
 		FSMRegisters[i].param = &parametersROM[testNum][i*PARAM_NUM]; //busco el punto donde estan los parametros del test actual en este puerto
 }
-
-
 
 
 

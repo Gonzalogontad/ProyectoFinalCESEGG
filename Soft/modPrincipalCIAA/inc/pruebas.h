@@ -9,9 +9,10 @@
 #define INC_PRUEBAS_H_
 #include "portsDriver.h"
 #define PARAM_NUM 	4 //numero de parametros de entrada
-#define RESULT_NUM 	4 //numero de resultados
+#define RESULT_NUM 	5 //numero de resultados
 #define CONTROL_QUEUE_LEN 10
-#define TESTS_QTY 2
+#define TESTS_QTY 3
+#define ADC_OFFSET 32
 typedef struct
 {
 uint8_t test; //Test en curso
@@ -27,11 +28,13 @@ portsData_t port;//Puerto
 uint8_t i;// numero de iteracion
 uint8_t adcSamples; //numero de samples de ADC
 uint32_t tickRegister;		//Guardo los valores del Tick counter para medir tiempos
-uint16_t ADC_1; //Suma de muestras
-uint16_t ADC_2; //Suma de muestras
-uint8_t  in0Sum; // Suma 1 cuando in0 esta en 1 y resta 1 cuando in0 esta en 0
-uint8_t  in1Sum;
-uint8_t  in2Sum;
+//uint16_t ADC_1; //Suma de muestras
+uint32_t ADC_1; //Suma de muestras
+//uint16_t ADC_2; //Suma de muestras
+uint32_t ADC_2; //Suma de muestras
+uint16_t  in0Sum; // Suma 1 cuando in0 esta en 1 y resta 1 cuando in0 esta en 0
+uint16_t  in1Sum;
+uint16_t  in2Sum;
 
 } testState_t;
 
@@ -52,6 +55,7 @@ enum estados {
 	INIT,
 	TEST_DRIVERS,
 	TEST_TIMERS,
+	CALIBRACION,
 	START,
 	WAIT_5S,
 	POWER_ON,
@@ -62,8 +66,9 @@ enum estados {
 	TRIGGER,
 	WAIT_OFF,
 	CHECK_TIME,
-
-
+	CHANGE_VOUT,
+	WAIT_SHORT_SETUP,
+	WAIT_LONG_SETUP,
 
 	//Verde
 	MARCHA = 21,
@@ -80,6 +85,14 @@ enum estados {
 
 };
 
+enum tiempos{
+	SHORT_TIME =0,
+	LONG_TIME,
+	TEST_END
+};
+
+
+
 bool_t pruebasInit ();
 void testsTask( void* taskParmPtr );
 bool_t setTestOrder (uint8_t portNum, uint8_t testNum, uint8_t testState );
@@ -87,12 +100,16 @@ uint8_t getTestsState (uint8_t portNum);
 bool_t sendToAllTests ( uint8_t testNum, uint8_t testState );
 void FSMPruebaDrivers(testState_t *FSMReg);
 void FSMPruebaTemporizadores(testState_t *FSMReg);
+void FSMCalibracion(testState_t *FSMReg);
 bool_t checkTimeout (uint32_t initialTick, uint32_t timeoutMS);
 
+void updateAllParameters (uint8_t testNum);
+
+/*
 void loadParameters (uint32_t testNumber);
 void saveParameters (uint32_t testNumber);
-void updateAllParameters (uint8_t testNum);
+
 uint32_t * getParameters (uint32_t testNumber,uint8_t port);
 void initEeprom(void);
-
+*/
 #endif /* PROYECTOS_CESE_PROYECTOFINALGG_PROYECTOFINALCESEGG_SOFT_MODPRINCIPALCIAA_INC_PRUEBAS_H_ */

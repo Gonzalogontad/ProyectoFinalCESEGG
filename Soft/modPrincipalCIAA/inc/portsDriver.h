@@ -39,17 +39,17 @@ extern "C" {
 
 typedef struct
 {
-	uint8_t portAddr; //Address del puerto (numero de puerto)
-	QueueHandle_t onTxQueue; //cola de transmision (por esta cola llegan los datos empaquetados para salir)
-	QueueHandle_t onRxQueue; //cola de recepcion (por esta cola llegan los datos validados para el port, pero sin separar)
+	uint8_t portAddr; 			//Address del puerto (numero de puerto)
+	QueueHandle_t onTxQueue; 	//cola de transmision (por esta cola llegan los datos empaquetados para salir)
+	QueueHandle_t onRxQueue; 	//cola de recepcion (por esta cola llegan los datos validados para el port, pero sin separar)
 } portsData_t;
 
 typedef struct
 {
-uartMap_t uartValue; //Numero de UART a utilizar
-uint32_t baudRate; //velocidad de transmision
-TimerHandle_t onTxTimeOut; //Timer para el timeout de la transmision
-portsData_t port [PORTS_NUMBER]; //Datos de entrada y salida de cada puerto
+	uartMap_t uartValue; 			//Numero de UART a utilizar
+	uint32_t baudRate; 				//Velocidad de transmision
+	TimerHandle_t onTxTimeOut; 		//Timer para el timeout de la transmision
+	portsData_t port [PORTS_NUMBER];//Datos de entrada y salida de cada puerto
 } portsConfig_t;
 
 
@@ -65,27 +65,15 @@ typedef struct
 
 /*=====[Prototypes (declarations) of public functions]=======================*/
 
-//bool_t	portsInit	(uartMap_t,uint32_t , driverConfig_t*);
-bool_t portsdriverInit(portsConfig_t *ports);
-void onTxTimeOutCallback(TimerHandle_t xTimer);
-void portsDataInit (portsData_t *port);
-void onTxCallback(void*param);
-bool_t sendDataPort(portsData_t * port,uint16_t DAC, uint8_t digitalOuts,TickType_t timeout);
-bool_t receiveDataPort(portsData_t * port,uint16_t *ADC1,uint16_t *ADC2, uint8_t *digitalIn,TickType_t timeout);
-void onRxCallback(void *param);
-//char*	getBuffer 	(driverConfig_t* selectedUart);
-//void 	putBuffer	(driverConfig_t* selectedUart, char *blockToFree);
-//int 	packetTX 	(driverConfig_t* selectedUart,char *txBlock);
-//char* 	waitPacket	(driverConfig_t* );
+bool_t 	portsdriverInit(portsConfig_t *ports);
+void 	onTxTimeOutCallback(TimerHandle_t xTimer);
+void 	portsDataInit (portsData_t *port);
+void 	onTxCallback(void*param);
+bool_t 	sendDataPort(portsData_t * port,uint16_t DAC, uint8_t digitalOuts,TickType_t timeout);
+bool_t 	receiveDataPort(portsData_t * port,uint16_t *ADC1,uint16_t *ADC2, uint8_t *digitalIn,TickType_t timeout);
+void 	onRxCallback(void *param);
 
-/*=====[Prototypes (declarations) of public interrupt functions]=============*/
 
-/*=====[C++ - end]===========================================================*/
 
-#ifdef __cplusplus
-}
-#endif
-
-/*=====[Avoid multiple inclusion - end]======================================*/
 
 #endif /* MYPROJECTS_RTOS2_TP1_INC_DRIVER_H_ */

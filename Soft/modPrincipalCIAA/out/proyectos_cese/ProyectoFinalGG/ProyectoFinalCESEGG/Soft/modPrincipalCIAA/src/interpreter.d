@@ -134,4 +134,6 @@ proyectos_cese/ProyectoFinalGG/ProyectoFinalCESEGG/Soft/modPrincipalCIAA/out/pro
  libs/freertos/include/timers.h libs/freertos/include/task.h \
  proyectos_cese/ProyectoFinalGG/ProyectoFinalCESEGG/Soft/modPrincipalCIAA/inc/pruebas.h \
  proyectos_cese/ProyectoFinalGG/ProyectoFinalCESEGG/Soft/modPrincipalCIAA/inc/portsDriver.h \
- proyectos_cese/ProyectoFinalGG/ProyectoFinalCESEGG/Soft/modPrincipalCIAA/inc/webPage.h
+ proyectos_cese/ProyectoFinalGG/ProyectoFinalCESEGG/Soft/modPrincipalCIAA/inc/webPage.h \
+ proyectos_cese/ProyectoFinalGG/ProyectoFinalCESEGG/Soft/modPrincipalCIAA/inc/DataMemory.h \
+ proyectos_cese/ProyectoFinalGG/ProyectoFinalCESEGG/Soft/modPrincipalCIAA/inc/pruebas.h

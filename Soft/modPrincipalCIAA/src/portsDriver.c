@@ -10,8 +10,6 @@
 
 #include "portsDriver.h"
 #include "sapi.h"
-//#include "uartIRQ.h"
-
 /*=====[Inclusions of private function dependencies]=========================*/
 
 /*=====[Definition macros of private constants]==============================*/
@@ -30,7 +28,7 @@
 
 /*=====[Implementations of public functions]=================================*/
 
-// Inicializacion de parte de transmision del driver
+// Inicializacion del driver de puertos de prueba
 // Requiere que se le pase una variable del tipo driverConfig_t
 // con los siguientes datos:
 // 	selectedUart.uartValue = (por ej:UART_USB);
@@ -45,11 +43,11 @@ bool_t portsdriverInit(portsConfig_t *ports)
 	for (i=0; i< PORTS_NUMBER; i++)
 	{
 		ports->port[i].portAddr = i;
-		// Creamos la cola para señalizar la recepción de un dato válido hacia la aplicación.
+		//Creo la cola para la recepción de un dato válido hacia la aplicación.
 
 		ports->port[i].onRxQueue  = xQueueCreate(IN_QUEUE_LEN, sizeof(rxData_t));
 
-		//	Creo una cola donde van a ir los datos que tengo que mandar por UART
+		//Creo una cola donde van a ir los datos que tengo que mandar por UART
 		ports->port[i].onTxQueue = xQueueCreate(OUT_QUEUE_LEN, sizeof(txData_t));
 
 		//Verifico la correcta creacion de las colas
@@ -123,10 +121,18 @@ void onRxCallback(void *param)
 		}
 		else
 		{
-			byteNumber==0;
-			receivedData.rxData [2] = aux;
-			aux=(receivedData.rxData[0]>>4)&0x07; //Obtengo el address del puerto que envio el dato
-			xQueueSendFromISR( ports->port[aux].onRxQueue, ( void * ) &receivedData, &xHigherPriorityTaskWoken );//Pongo en cola los datos recividos en la cola correspondiente
+			if(byteNumber==2)
+			{
+				byteNumber=3;
+				receivedData.rxData [2]= aux;
+			}
+			else{
+				byteNumber==0;
+				receivedData.rxData [3] = aux;
+				aux=(receivedData.rxData[0]>>4)&0x07; //Obtengo el address del puerto que envio el dato
+				if (aux<PORTS_NUMBER) //Agregado por error al desconectar
+					xQueueSendFromISR( ports->port[aux].onRxQueue, ( void * ) &receivedData, &xHigherPriorityTaskWoken );//Pongo en cola los datos recividos en la cola correspondiente
+			}
 		}
 	}
 
@@ -143,6 +149,7 @@ void onRxCallback(void *param)
 }
 
 //Callback del timer de transmision
+//Cada 1ms se llama a esta funcion para enviar los datos a los puertos
 void onTxTimeOutCallback(TimerHandle_t xTimer)
 {
 	// Obtenemos los datos de la UART seleccionada, aprovechando el campo reservado
@@ -150,7 +157,7 @@ void onTxTimeOutCallback(TimerHandle_t xTimer)
 	portsConfig_t *ports= (portsConfig_t *) pvTimerGetTimerID(xTimer);
 	gpioToggle( GPIO0 );
 
-	//Configuro el callback de la transmision de UART
+	//Configuro el callback de la interrupcion de transmision de UART
 	uartCallbackSet(ports->uartValue, UART_TRANSMITER_FREE,onTxCallback, (void*) ports);
 	uartSetPendingInterrupt(ports->uartValue);
 }
@@ -170,21 +177,21 @@ void portsDataInit (portsData_t *port)
 }
 
 
-
+//Callback de la interrupcion de transmision por UART
 void onTxCallback(void*param)
 {
-	portsConfig_t *ports = (portsConfig_t *) param;
-	BaseType_t xTaskWokenByReceive = pdFALSE; //Variable para evaluar el cambio de contexto al finaliza la interrupcion
+	portsConfig_t *ports = (portsConfig_t *) param; //Datos del puerto de comunicacion UART
+	BaseType_t xTaskWokenByReceive = pdFALSE; 		//Variable para evaluar el cambio de contexto al finaliza la interrupcion
 	UBaseType_t uxSavedInterruptStatus;
-	static txData_t dataToSend[PORTS_NUMBER];
-	static uint8_t portIndex=0;
-	static uint8_t byteIndex=0;
+	static txData_t dataToSend[PORTS_NUMBER]; 		//Buffer con los datos a transmitir
+	static uint8_t portIndex=0;	//Indice de puerto al que se le esta transmitiendo
+	static uint8_t byteIndex=0;	//Indice del byte de cada puerto que se esta transmitiendo
+	uint8_t emptyData = 0xff; 	//Byte que se envia dos veces para darle tiempo al esclavo para responder
 	uint8_t i;
-	uint8_t emptyData = 0xff; //Byte que se envia dos veces para darle tiempo al esclavo para responder
 	static uint8_t transmitEmpty = 0;
 
 
-
+	//Leo los datos de todas las colas de puertos para enviarlos (los leo al incio de cada rafaga de datos)
 	if (portIndex==0 && byteIndex==0)
 	{
 		for (i=0;i<PORTS_NUMBER;i++)
@@ -193,10 +200,11 @@ void onTxCallback(void*param)
 	}
 
 	//Si llegué a la interrupcion es porque hay que enviar datos
-	if(transmitEmpty==0)
+	if(transmitEmpty==0) //Transmito datos
 	{
-		uartTxWrite(ports->uartValue,dataToSend[portIndex].txData[byteIndex]);
-		//Luego verifico si termine de enviar el frame completo y deshabilito la interrupcion
+		uartTxWrite(ports->uartValue,dataToSend[portIndex].txData[byteIndex]);	//Envio el byte apuntado por portIndex y byteIndex
+
+
 		if (byteIndex<2)
 		{
 			byteIndex++;
@@ -205,7 +213,15 @@ void onTxCallback(void*param)
 		}
 		else
 		{
-			transmitEmpty=1;//
+			transmitEmpty=1; //El siguiente dato a transmitir es vacio para dar tiempo al esclavo para responder
+		}
+	}
+	else //Transmito byte vacio
+	{
+		uartTxWrite(ports->uartValue,emptyData);
+		if (transmitEmpty==2) //Si termi
+		{
+			//Verifico si termine de enviar el frame completo
 			if (portIndex<(PORTS_NUMBER-1))
 			{
 				portIndex++;
@@ -213,25 +229,23 @@ void onTxCallback(void*param)
 				uartCallbackSet(ports->uartValue, UART_TRANSMITER_FREE,onTxCallback, (void*) ports);
 				uartSetPendingInterrupt(ports->uartValue);//Disparo el envio del siguiente byte
 			}
-			else
+			else//Cuando termino deshabilito la interrupción
 			{
 				portIndex=0;
 				byteIndex=0;
-				uartCallbackClr(ports->uartValue, UART_TRANSMITER_FREE); //Deshabilito la interrupcion de TX
+				uartCallbackClr(ports->uartValue, UART_TRANSMITER_FREE);
 			}
-		}
-	}
-	else
-	{
-		uartTxWrite(ports->uartValue,emptyData);
-		if (transmitEmpty==2)
+
 			transmitEmpty=0;
+		}
 		else
+		{
 			transmitEmpty++;
+			uartCallbackSet(ports->uartValue, UART_TRANSMITER_FREE,onTxCallback, (void*) ports);
+			uartSetPendingInterrupt(ports->uartValue);//Disparo el envio del siguiente byte
+		}
 
 	}
-
-
 	//Hago la evaluacion de cambio de cambio de contexto necesario.
 	if (xTaskWokenByReceive != pdFALSE)
 	{
@@ -239,7 +253,7 @@ void onTxCallback(void*param)
 	}
 }
 
-
+//Funcion de para transmitir datos a los puertos
 bool_t sendDataPort(portsData_t * port,uint16_t DAC, uint8_t digitalOuts,TickType_t timeout)
 {
 	txData_t portData;
@@ -257,7 +271,7 @@ bool_t sendDataPort(portsData_t * port,uint16_t DAC, uint8_t digitalOuts,TickTyp
 
 }
 
-
+//Funcion para leer datos de los puertos
 bool_t receiveDataPort(portsData_t * port,uint16_t *ADC1,uint16_t *ADC2, uint8_t *digitalIn,TickType_t timeout)
 {
 	rxData_t portData;
@@ -267,7 +281,7 @@ bool_t receiveDataPort(portsData_t * port,uint16_t *ADC1,uint16_t *ADC2, uint8_t
 	if (pdTRUE==xQueueReceive( port->onRxQueue, ( void * ) &portData, timeout )) //Leo de la cola el dato recibido
 	{
 		*ADC1 = (((uint16_t)portData.rxData[0] & 0x0F)<<7) | (uint16_t)portData.rxData[1];
-		*ADC1 = (((uint16_t)portData.rxData[2] & 0x0F)<<7) | (uint16_t)portData.rxData[3];
+		*ADC2 = (((uint16_t)portData.rxData[2] & 0x0F)<<7) | (uint16_t)portData.rxData[3];
 		*digitalIn= (portData.rxData[2]>>4) & 0x07;
 		return true;
 	}
@@ -275,32 +289,5 @@ bool_t receiveDataPort(portsData_t * port,uint16_t *ADC1,uint16_t *ADC2, uint8_t
 		return false;
 
 }
-
-
-//	packetTX(driverConfig_t* selectedUart, char *txBlock) transmite el bloque
-//	txBlock por la UART indicada por selectedUart
-/*
-int packetTX(driverConfig_t* selectedUart, char *txBlock)
-{
-	xQueueSend(selectedUart->onTxQueue, &txBlock, portMAX_DELAY); 	// Envio a la cola de transmision el blocke a transmitir
-	taskENTER_CRITICAL();				// No permito que se modifique txcounter
-	if (selectedUart->txCounter == 0) 	// Si se esta enviando algo no llamo a la interrupcion para no interrumpir el delay
-		txInterruptEnable(selectedUart);
-	taskEXIT_CRITICAL();
-	uartSetPendingInterrupt(selectedUart->uartValue);
-}
-
-*/
-// 	waitPacket() se queda esperando un paquete de la UART seleccionada y
-//	devuelve un puntero al bloque de memoria
-/*
-char* waitPacket(driverConfig_t* selectedUart)
-{
-	char*rxBlock;
-	xQueueReceive(selectedUart->onRxQueue,(void *)&rxBlock,portMAX_DELAY);// Espero a que venga un bloque por la cola
-	return rxBlock;
-}
-*/
-/*=====[Implementations of private functions]================================*/
 
 

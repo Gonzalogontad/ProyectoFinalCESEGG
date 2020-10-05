@@ -10,6 +10,7 @@
 #include "string.h"
 #include "pruebas.h"
 #include "webPage.h"
+#include "DataMemory.h"
 
 char *panels [TESTS_QTY];
 uint32_t *params;
@@ -22,6 +23,7 @@ bool_t interpreterInit()
 	//de los paneles correspondientes a las pruebas
 	panels [0] = panel0; 
 	panels [1] = panel1;
+	panels [2] = panel2;
 	commandsQueue = xQueueCreate(INTERPRETER_QUEUE_LEN,sizeof(command_t));
 	xTaskCreate(
 	      interpreter,                     // Function that implements the task.
@@ -41,13 +43,18 @@ bool_t interpreterInit()
 //Ademas genera la informacion que se va a mostrar en pantalla
 void interpreter ()
 {
-	updateAllParameters (actualPanelNumber-1); 		//Cargo los parametros en los registros de la maquina de estado
+	//updateAllParameters (actualPanelNumber-1); 		//Cargo los parametros en los registros de la maquina de estado
+	loadParameters (actualPanelNumber-1); 		//Cargo los parametros en los registros de la maquina de estado
 	uint8_t i;
 	command_t command;
 	uint8_t portNum;
 	uint8_t testState;
 	actualPageData = pageDataA;
 	actualPanel=panel0;
+
+	//Correccion
+	updateAllParameters (actualPanelNumber-1);
+
 while (true)
 {
 	if(pdTRUE == xQueueReceive(commandsQueue,&command,250*portTICK_RATE_MS))
@@ -164,7 +171,7 @@ void refreshPageData(){
 	uint8_t aux;
 	uint8_t * auxPointer;
 	char auxStrig[60];
-	//Armo un string con formato AJAX de la siguiente forma
+	//Armo un string con formato JSON de la siguiente forma
 	// {"panel":Nº de panel, "data":[,,,,]}
 	stdioSprintf(pageData, "{\"panel\":%d,\"data\":[",actualPanelNumber);
 	for (j=0;j<8;j++)

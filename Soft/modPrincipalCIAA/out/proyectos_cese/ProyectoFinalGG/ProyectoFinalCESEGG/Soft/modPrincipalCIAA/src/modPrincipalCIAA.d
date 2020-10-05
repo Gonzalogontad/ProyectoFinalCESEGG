@@ -131,10 +131,12 @@ proyectos_cese/ProyectoFinalGG/ProyectoFinalCESEGG/Soft/modPrincipalCIAA/out/pro
  libs/sapi/sapi_v0.5.2/external_peripherals/imu/mpu60X0/inc/sapi_imu_mpu60X0.h \
  libs/sapi/sapi_v0.5.2/external_peripherals/memory/eeprom/inc/sapi_eeprom24xx1025.h \
  libs/sapi/sapi_v0.5.2/external_peripherals/ultrasonic/hcsr04/inc/sapi_ultrasonic_hcsr04.h \
- proyectos_cese/ProyectoFinalGG/ProyectoFinalCESEGG/Soft/modPrincipalCIAA/inc/userTasks.h \
  proyectos_cese/ProyectoFinalGG/ProyectoFinalCESEGG/Soft/modPrincipalCIAA/inc/portsDriver.h \
  libs/freertos/include/queue.h \
- proyectos_cese/ProyectoFinalGG/ProyectoFinalCESEGG/Soft/modPrincipalCIAA/inc/UARTEspDriver.h \
  proyectos_cese/ProyectoFinalGG/ProyectoFinalCESEGG/Soft/modPrincipalCIAA/inc/pruebas.h \
  proyectos_cese/ProyectoFinalGG/ProyectoFinalCESEGG/Soft/modPrincipalCIAA/inc/portsDriver.h \
- proyectos_cese/ProyectoFinalGG/ProyectoFinalCESEGG/Soft/modPrincipalCIAA/inc/interpreter.h
+ proyectos_cese/ProyectoFinalGG/ProyectoFinalCESEGG/Soft/modPrincipalCIAA/inc/interpreter.h \
+ proyectos_cese/ProyectoFinalGG/ProyectoFinalCESEGG/Soft/modPrincipalCIAA/inc/Esp8266FreeRTOS.h \
+ proyectos_cese/ProyectoFinalGG/ProyectoFinalCESEGG/Soft/modPrincipalCIAA/inc/terminal.h \
+ proyectos_cese/ProyectoFinalGG/ProyectoFinalCESEGG/Soft/modPrincipalCIAA/inc/DataMemory.h \
+ proyectos_cese/ProyectoFinalGG/ProyectoFinalCESEGG/Soft/modPrincipalCIAA/inc/pruebas.h

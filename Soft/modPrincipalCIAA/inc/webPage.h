@@ -16,6 +16,8 @@ extern char HttpBody[];
 
 extern char panel0[];
 extern char panel1[];
+extern char panel2[];
+
 
 extern char pageDataA[];
 extern char pageDataB[];

@@ -1,8 +1,11 @@
+/*Este modulo de software esta basado en modulo sapi_esp8266 incluido en la libreria sAPI
+ *con adaptaciones a la aplicacion y al uso con FreeRTOS.
+ */
+
 /* Copyright 2016, Marcelo Vieytes.
  * Copyright 2017, Pablo Gomez, Agustin Bassi.
  * All rights reserved.
  *
- * This file is part sAPI library for microcontrollers.
  *
  * Redistribution and use in source and binary forms, with or without
  * modification, are permitted provided that the following conditions are met:
@@ -50,6 +53,7 @@ extern "C" {
 /*==================[macros]=================================================*/
 
 #define gesp8266ConfigHttpServer gesp8266InitHttpServer
+//#define DEBUG
 
 /*==================[typedef]================================================*/
 
@@ -57,7 +61,7 @@ extern "C" {
 extern char * requestAnswer;
 /*==================[external functions declaration]=========================*/
 
-bool_t gesp8266InitHttpServer(char * wifiName, char * wifiPass);
+bool_t gesp8266InitHttpServer(char *, char * ,char * );
 bool_t gesp8266ReadHttpServer();
 bool_t gesp8266WriteHttpServer(const char * HttpWebPage);
 
@@ -68,6 +72,11 @@ uint8_t gesp8266GetConnectionId();
 void requestCallback(char *, uint8_t );
 void requestSeparate(char *, char **,char **,char **);
 uint32_t stringToInt (char *str);
+void espServerInit();
+bool_t setWifiFlag ();
+bool_t resetWifiFlag ();
+bool_t checkWifiChange();
+void server( void* taskParmPtr );
 /*==================[cplusplus]==============================================*/
 
 #ifdef __cplusplus
