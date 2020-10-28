@@ -2,9 +2,9 @@
  * DataMemory.c
  *
  *  Created on: 25 ago. 2020
- *      Author: root
+ *      Author: Gonzalo Gontad
  */
-
+ 
 #include "DataMemory.h"
 #include "FreeRTOS.h"
 #include "semphr.h"
@@ -30,16 +30,16 @@ bool initEeprom(void)
 	return ret;
 }
 
-//Cargar parametros desde EEPROM Protegido
+//Cargar parametros de las pruebas desde EEPROM (Protegido con semaforo)
 void loadParameters (uint32_t testNumber)
 {
 	xSemaphoreTake( EEPROMSemaphore, portMAX_DELAY);//Espero a que el recurso este disponible
 
-	uint32_t* ptr = &parametersROM[testNumber][0];
+	uint32_t* ptr = &parametersROM[testNumber][0];	//Obtengo el puntero a donde debo guardar los parametros
 	uint32_t i = 0;
 	uint32_t *pEepromMem = (uint32_t*)EEPROM_ADDRESS(testNumber+3,0); //inicio en la pagina 3 porque las tres primeras son del servidor
 	for(i = 0; i < PARAM_NUM * PORTS_NUMBER; i++) {
-		ptr[i] = pEepromMem[i];
+		ptr[i] = pEepromMem[i]; //Leo de EEPROM y guardo en RAM
 	}
 
 	xSemaphoreGive( EEPROMSemaphore );//Libero el recurso
@@ -52,7 +52,7 @@ void loadParametersUnprotected (uint32_t testNumber)
 	uint32_t i = 0;
 	uint32_t *pEepromMem = (uint32_t*)EEPROM_ADDRESS(testNumber+3,0); //inicio en la pagina 3 porque las tres primeras son del servidor
 	for(i = 0; i < PARAM_NUM * PORTS_NUMBER; i++) {
-		ptr[i] = pEepromMem[i];
+		ptr[i] = pEepromMem[i];	//Leo de EEPROM y guardo en RAM
 	}
 
 }

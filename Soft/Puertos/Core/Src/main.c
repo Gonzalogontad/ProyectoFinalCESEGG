@@ -133,14 +133,15 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
-  //Si hay datos para el DAC y las salidas digitales las actualizo
+  //En un loop infinito si hay datos para el DAC y las salidas digitales las actualizo
 	  if (dataFlag == 1)
 	  {
-		mcpData [0] = DACData[0];
+		mcpData [0] = DACData[0];	//Tomo los datos a enviar al dac
 		mcpData [1] = DACData[1];
 		dataFlag = 0;
-		HAL_I2C_Master_Transmit_IT(&hi2c1, mcpAddress, mcpData, (uint16_t) 2);
+		HAL_I2C_Master_Transmit_IT(&hi2c1, mcpAddress, mcpData, (uint16_t) 2); //Los envio al DAC
 
+		//Actualizo el estado de las salidas digitales
 		if (outData & 0x01)
 			HAL_GPIO_WritePin(GPIOA,GPIO_PIN_2,GPIO_PIN_SET);
 		else
@@ -160,7 +161,7 @@ int main(void)
 	  }
 
 
-	  if (HAL_GetTick()>=heartBeatTimeout)
+	  if (HAL_GetTick()>=heartBeatTimeout)	//Cada un segundo hago destella el LED de la placa para indicar que esta vivo y actualizo el addres del puerto.
 		  {
 		  heartBeatTimeout = heartBeatTimeout+HEART_BEAT_PERIOD;
 

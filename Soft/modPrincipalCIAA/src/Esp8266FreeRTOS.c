@@ -935,39 +935,39 @@ void requestCallback(char *rawReq, uint8_t reqLength)
 	//separo la request completa en 3 bloques (metodo, request limpia y version de HTTP)
 	requestSeparate(rawReq, &methode, &request, &HTTPVersion);
 
-	if (!strcmp(methode, "GET"))
+	if (!strcmp(methode, "GET"))	//Si el metodo es GET identifico que es lo que esta pidiendo
 	{
-		if (!strcmp(request, "/"))
+		if (!strcmp(request, "/"))	//Solicitud de pagina de inicio
 			requestAnswer = HttpWebPage;
 		else
 		{
-			if (strstr(request, "/data"))
-			{
-				requestAnswer = actualPageData;
-			}
-			else if (strstr(request, "/button"))
-			{
-				requestAnswer = ok;
-			}
-			else if (strstr(request, "/panel"))
-			{
-				requestAnswer = actualPanel;
-			}
-			else if (strstr(request, "/body"))
-			{
-				requestAnswer = HttpBody;
-			}
-			else if (strstr(request, "/save"))
-			{
-				requestAnswer = actualPageData;
-			}
-			else
-				requestAnswer = requestError;
+		if (strstr(request, "/data"))	//Solicitud de datos
+		{
+			requestAnswer = actualPageData;
 		}
+		else if (strstr(request, "/button"))	//Solicitud de estado de un boton (no implementado)
+		{	
+			requestAnswer = ok;
+		}
+		else if (strstr(request, "/panel"))		//Solicitud de panel actual
+		{
+			requestAnswer = actualPanel;
+		}
+		else if (strstr(request, "/body"))		//Solicitud de cuerpo de pagina
+		{
+			requestAnswer = HttpBody;
+		}
+		else if (strstr(request, "/save"))		
+		{
+			requestAnswer = actualPageData;
+		}
+		else
+			requestAnswer = requestError;		
 	}
-	else if (!strcmp(methode, "POST"))
+	}
+	else if (!strcmp(methode, "POST"))	//Si el metodo es POST
 	{
-		if (strstr(request, "/button$"))
+		if (strstr(request, "/button$"))	//Orden de boton apretado
 		{
 			//reemplazo los "$" por fin de cadena
 			auxpointer1 = strstr(request, "$"); //llego al primer signo $
@@ -977,11 +977,11 @@ void requestCallback(char *rawReq, uint8_t reqLength)
 			i = 1;
 			while ((i < 4) && (auxpointer2[i] != 0)) //
 			{
-				gpioToggle(LED1);
-				auxCommand.buttonId[i - 1] = auxpointer2[i];
+				//gpioToggle(LED1);
+				auxCommand.buttonId[i - 1] = auxpointer2[i];	//Capturo el ID del boton
 				i++;
 			}
-			sendCommand(auxCommand);
+			sendCommand(auxCommand);	//Envio el comando al interpreter
 			requestAnswer = ok;
 		}
 		else
@@ -1012,9 +1012,9 @@ void requestCallback(char *rawReq, uint8_t reqLength)
 					auxpointer2[0] = ' ';
 					auxpointer1 = auxpointer2;
 				}
-				sendCommand(auxCommand);
+				sendCommand(auxCommand);	//Envio el comando al interpreter
 
-				requestAnswer = actualPageData;
+				requestAnswer = actualPageData;	//Respondo con los datos del panel actual
 			}
 			else
 				requestAnswer = requestError;
