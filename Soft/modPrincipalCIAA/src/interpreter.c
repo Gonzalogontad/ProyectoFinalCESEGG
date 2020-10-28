@@ -24,14 +24,18 @@ bool_t interpreterInit()
 	panels [0] = panel0; 
 	panels [1] = panel1;
 	panels [2] = panel2;
+
+	//Creo la cola del interprete por donde le llegan los botones presionados en la interfaz de usuario y los datos(parametros)
 	commandsQueue = xQueueCreate(INTERPRETER_QUEUE_LEN,sizeof(command_t));
+
+	//Creo la tarea donde se ejecuta el interprete de comandos que llegan de la interfaz de usuario atravez del servidor WEB
 	xTaskCreate(
-	      interpreter,                     // Function that implements the task.
-	      (const char *)"Interprete",     // Text name for the task.
-	      configMINIMAL_STACK_SIZE, // Stack size in words, not bytes.
-	      (void*)NULL,                          // Parameter passed into the task.
-	      tskIDLE_PRIORITY+1,         // Priority at which the task is created.
-	      0                           // Pointer to the task created in the system
+	      interpreter,               // Function that implements the task.
+	      (const char *)"Interprete",// Text name for the task.
+	      configMINIMAL_STACK_SIZE,  // Stack size in words, not bytes.
+	      (void*)NULL,               // Parameter passed into the task.
+	      tskIDLE_PRIORITY+1,        // Priority at which the task is created.
+	      0                          // Pointer to the task created in the system
 	   );
 	actualPanelNumber=1;
 
@@ -43,7 +47,6 @@ bool_t interpreterInit()
 //Ademas genera la informacion que se va a mostrar en pantalla
 void interpreter ()
 {
-	//updateAllParameters (actualPanelNumber-1); 		//Cargo los parametros en los registros de la maquina de estado
 	loadParameters (actualPanelNumber-1); 		//Cargo los parametros en los registros de la maquina de estado
 	uint8_t i;
 	command_t command;

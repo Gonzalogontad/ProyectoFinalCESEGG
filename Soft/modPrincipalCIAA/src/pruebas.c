@@ -742,11 +742,8 @@ void FSMCalibracion(testState_t *FSMReg)
 	case START:
 		{
 
-		//digitalOuts = 0x05; //0101 Power off+out on+10%
-		digitalOuts = 0x04; //0100 Poweroff, loadOn, 50%
-		//digitalOuts = 0x06; //0101 Poweroff, loadOn, 100%
-
-		Vout =0; //0%
+		digitalOuts = 0x0D; //1000 Poweron, loadOn, 10%
+		Vout =0; //VDAC 0%
 
 		FSMReg->adcSamples=0;
 		FSMReg->ADC_1=0;
@@ -774,24 +771,19 @@ void FSMCalibracion(testState_t *FSMReg)
 			break;
 			}
 		case 2:
+		case 3:
 			{
 			digitalOuts = 0x0C; //1100 Poweron, loadOn, 50%
 			break;
 			}
-		case 3:
+		case 4:
+		case 5:
 			{
 			digitalOuts = 0x0E; //1101 Poweron, loadOn, 100%
 			break;
 			}
-
-
-
-		case 4:
-		case 5:
 		case 6:
 		case 7:
-
-
 		case 8:
 		case 9:
 		case 10:
@@ -799,7 +791,6 @@ void FSMCalibracion(testState_t *FSMReg)
 			digitalOuts = 0x0D; //1000 Poweron, loadOn, 10%
 			break;
 			}
-
 		default:
 			{
 			digitalOuts = 0x00; //1101 Poweroff
@@ -807,12 +798,10 @@ void FSMCalibracion(testState_t *FSMReg)
 			}
 		}
 
-
 		Vout =FSMReg->i*102; //i*10%
 		FSMReg->adcSamples=0;
 		FSMReg->ADC_1=0;
 		FSMReg->ADC_2=0;
-
 		sendDataPort(&testPort,(uint16_t) Vout, (uint8_t) digitalOuts, 0);
 		FSMReg->tickRegister=xTaskGetTickCount();//guardo el tick para la demora
 		//FSMReg->state= WAIT_5S;
@@ -831,13 +820,10 @@ void FSMCalibracion(testState_t *FSMReg)
 	}
 	case MEASURE:
 		{
-		//receiveDataPort(&testPort,&ADC1DataTemp,&ADC2DataTemp, &digInTemp,0);
 		FSMReg->adcSamples++;
 		FSMReg->ADC_1+=ADC1DataTemp;
 		FSMReg->ADC_2+=ADC2DataTemp;
 		if (FSMReg->adcSamples == 100){
-			//Res1= ADC1G*FSMReg->ADC_1/FSMReg->adcSamples;
-			//Res2= ADC2G*FSMReg->ADC_2/FSMReg->adcSamples;
 			Res1= (ADC1G*FSMReg->ADC_1/FSMReg->adcSamples)+(ADC_OFFSET*ADC1G);
 			Res2= (ADC2G*FSMReg->ADC_2/FSMReg->adcSamples)+(ADC_OFFSET*ADC2G);
 			FSMReg->adcSamples=0;
@@ -878,7 +864,6 @@ void FSMCalibracion(testState_t *FSMReg)
 	default: //no deberia llegar nunca aca
 	{	//inicialización
 		//Le quito la alimentación al driver.
-		//digitalOuts = 0;
 		digitalOuts = 0x05; //0101 Power off+out on+10%
 		digitalIn = 0;
 		Vout = 0;
@@ -919,51 +904,7 @@ bool_t checkTimeout (uint32_t initialTick, uint32_t timeoutMS)
 	return ret;
 }
 
-/*  Movido a DataMemory.c
 
-void initEeprom(void)
-{
-	Chip_EEPROM_Init(LPC_EEPROM); //inicializar la eeprom
-	Chip_EEPROM_SetAutoProg(LPC_EEPROM,EEPROM_AUTOPROG_AFT_1WORDWRITTEN); //Habilito autoprogramacion
-}
-
-//Cargar parametros desde EEPROM
-void loadParameters (uint32_t testNumber)
-{
-	uint32_t* ptr = &parametersROM[testNumber][0];
-	uint32_t i = 0;
-	uint32_t *pEepromMem = (uint32_t*)EEPROM_ADDRESS(testNumber+3,0); //inicio en la pagina 3 porque las tres primeras son del servidor
-	for(i = 0; i < PARAM_NUM * PORTS_NUMBER; i++) {
-		ptr[i] = pEepromMem[i];
-	}
-}
-
-//Obtener el puntero a los paramtros del test en RAM
-uint32_t * getParameters (uint32_t testNumber,uint8_t port)
-{
-	return (&parametersROM[testNumber][port*PARAM_NUM]);
-}
-
-//Guardar los parametros del test en EEPROM
-void saveParameters (uint32_t testNumber)
-{
-	//uint32_t* ptr = &parametersROM[testNumber-1][0];
-	uint32_t* ptr = &parametersROM[testNumber][0];
-	uint8_t i = 0;
-	uint32_t *pEepromMem = (uint32_t*)EEPROM_ADDRESS(testNumber+3,0);//las primeras 3 posiciones son del servidor
-	uint32_t size =PARAM_NUM * PORTS_NUMBER;
-	if(size > EEPROM_PAGE_SIZE )
-	   size = EEPROM_PAGE_SIZE;
-
-	  //for(i = 0; i < size/4; i++) {
-	for(i = 0; i < size; i++) {
-	   pEepromMem[i] = ptr[i];
-
-	   Chip_EEPROM_WaitForIntStatus(LPC_EEPROM, EEPROM_INT_ENDOFPROG);
-	  }
-}
-
-*/
 
 
 //Actualizar los parametros en los registros de las FSM

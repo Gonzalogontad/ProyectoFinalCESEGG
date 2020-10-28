@@ -68,7 +68,6 @@ void saveParameters (uint32_t testNumber)
 {
 	xSemaphoreTake( EEPROMSemaphore, portMAX_DELAY);//Espero a que el recurso este disponible
 
-	//uint32_t* ptr = &parametersROM[testNumber-1][0];
 	uint32_t* ptr = &parametersROM[testNumber][0];
 	uint8_t i = 0;
 	uint32_t *pEepromMem = (uint32_t*)EEPROM_ADDRESS(testNumber+3,0);//las primeras 3 posiciones son del servidor
@@ -76,7 +75,6 @@ void saveParameters (uint32_t testNumber)
 	if(size > EEPROM_PAGE_SIZE )
 	   size = EEPROM_PAGE_SIZE;
 
-	  //for(i = 0; i < size/4; i++) {
 	for(i = 0; i < size; i++) {
 	   pEepromMem[i] = ptr[i];
 
